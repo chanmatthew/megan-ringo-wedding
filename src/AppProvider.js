@@ -3,16 +3,12 @@ import React, { Component } from "react";
 export const AppContext = React.createContext();
 
 export class AppProvider extends Component {
-  handleIsBrandDark = bool => {
-    this.setState({
-      isBrandDark: bool
-    });
+  handleIsBrandDark = isBrandDark => {
+    this.setState({ isBrandDark });
   };
 
-  handleIsNavbarDark = bool => {
-    this.setState({
-      isNavbarDark: bool
-    });
+  handleIsNavbarDark = isNavbarDark => {
+    this.setState({ isNavbarDark });
   };
 
   state = {
