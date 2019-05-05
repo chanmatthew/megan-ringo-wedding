@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "@emotion/styled";
 
-const StyledP = styled.p`
+const StyledText = styled.p`
   font-size: 2.2rem;
   letter-spacing: 0.03em;
   line-height: 1.17em;
@@ -16,6 +16,6 @@ const StyledP = styled.p`
   font-style: ${props => (props.quote ? "italic" : "normal")};
 `;
 
-const Text = props => <StyledP {...props} />;
+const Text = props => <StyledText {...props} />;
 
 export default Text;

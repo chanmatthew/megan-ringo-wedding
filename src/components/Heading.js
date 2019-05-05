@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "@emotion/styled";
 
-const StyledH1 = styled.h1`
+const StyledHeading = styled.h2`
   position: absolute;
   font-weight: bold;
   color: #868fa4;
@@ -30,6 +30,6 @@ const StyledH1 = styled.h1`
   }
 `;
 
-const Heading = props => <StyledH1 {...props} />;
+const Heading = props => <StyledHeading {...props} />;
 
 export default Heading;

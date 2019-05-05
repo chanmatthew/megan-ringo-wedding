@@ -21,7 +21,7 @@ const SheSaidYes = ({ view, invert }) => (
         opacity="0.3"
         transform="scale3d(0.4, 0.4, 1)"
         src="/img/graphics/heart_outline.svg"
-        alt="heart_outline"
+        alt="Blue-Gold Heart - Outline"
       />
       <Graphic
         top="13em"
@@ -29,7 +29,7 @@ const SheSaidYes = ({ view, invert }) => (
         opacity="0.5"
         transform="scale3d(0.8, 0.8, 1)"
         src="/img/graphics/heart_filled.svg"
-        alt="heart_filled"
+        alt="Blue-Gold Heart - Filled"
       />
       <Graphic
         top="16em"
@@ -37,7 +37,7 @@ const SheSaidYes = ({ view, invert }) => (
         opacity="0.3"
         transform="scale3d(0.4, 0.4, 1)"
         src="/img/graphics/heart_outline.svg"
-        alt="heart_outline"
+        alt="Blue-Gold Heart - Outline"
       />
       <Text top="12em" left="7%" width="80%" quote>
         "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
@@ -49,7 +49,7 @@ const SheSaidYes = ({ view, invert }) => (
           opacity="0.5"
           transform="scale3d(0.4, 0.4, 1) translate3d(-125%, 0, 0);"
           src="/img/graphics/ring.svg"
-          alt="ring"
+          alt="Wedding Ring"
         />
       </Divider>
       <Text top="21em" right="7%" align="right" width="80%" quote>
@@ -58,7 +58,10 @@ const SheSaidYes = ({ view, invert }) => (
       </Text>
     </Article>
     <Article right view={view} wide={!invert}>
-      <img src="/img/photos/proposal.png" alt="proposal" />
+      <img
+        src="/img/photos/proposal.png"
+        alt="Ringo Proposes to Megan at Brooklyn Bridge Park"
+      />
     </Article>
   </section>
 );

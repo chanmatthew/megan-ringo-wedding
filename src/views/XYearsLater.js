@@ -9,7 +9,7 @@ import Span from "../components/Span";
 
 const Grid = styled.div`
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: repeat(3, 1fr);
   grid-column-gap: 1em;
   position: absolute;
   left: 50%;
@@ -19,7 +19,7 @@ const Grid = styled.div`
 
 const GridColumn = styled.div`
   display: grid;
-  grid-template-rows: 1fr 1fr 1fr;
+  grid-template-rows: repeat(3, 1fr);
   grid-row-gap: 1em;
 
   &:nth-of-type(even) {
@@ -42,40 +42,40 @@ const XYearsLater = ({ view, invert }) => (
         <GridColumn>
           <GridImg
             src="/img/photos/couple_on_shoulders.jpg"
-            alt="couple_on_shoulders"
+            alt="Megan on Ringo's Shoulders"
           />
           <GridImg
             src="/img/photos/couple_by_water.jpg"
-            alt="couple_by_water"
+            alt="Megan and Ringo at a Shoreline"
           />
           <GridImg
             src="/img/photos/couple_at_wedding.jpg"
-            alt="couple_at_wedding"
+            alt="Megan and Ringo Attending a Friend's Wedding"
           />
         </GridColumn>
         <GridColumn>
           <GridImg
             src="/img/photos/couple_selfie_in_jerseys.jpg"
-            alt="couple_selfie_in_jerseys"
+            alt="Megan and Ringo's Brooklyn Nets Jersey Selfie"
           />
           <GridImg
             src="/img/photos/couple_on_rooftop.jpg"
-            alt="couple_on_rooftop"
+            alt="Megan and Ringo at a Nighttime Rooftop Gathering"
           />
           <GridImg
             src="/img/photos/couple_at_graduation.jpg"
-            alt="couple_at_graduation"
+            alt="Ringo Attending Megan's Graduation from NYU Stern"
           />
         </GridColumn>
         <GridColumn>
           <GridImg
             src="/img/photos/couple_at_beach.jpg"
-            alt="couple_at_beach"
+            alt="Megan and Ringo at a Beach"
           />
           <GridImg src="/img/photos/couple_by_reef.jpg" alt="couple_by_reef" />
           <GridImg
             src="/img/photos/couple_at_bridge.jpg"
-            alt="couple_at_bridge"
+            alt="Megan and Ringo at the Foot of the Golden Gate Bridge"
           />
         </GridColumn>
       </Grid>
@@ -92,7 +92,7 @@ const XYearsLater = ({ view, invert }) => (
         opacity="0.3"
         transform="scale3d(0.4, 0.4, 1)"
         src="/img/graphics/heart_outline.svg"
-        alt="heart_outline"
+        alt="Blue-Gold Heart - Outline"
       />
       <Graphic
         top="23em"
@@ -100,7 +100,7 @@ const XYearsLater = ({ view, invert }) => (
         opacity="0.5"
         transform="scale3d(0.8, 0.8, 1)"
         src="/img/graphics/heart_filled.svg"
-        alt="heart_filled"
+        alt="Blue-Gold Heart - Filled"
       />
       <Graphic
         top="26em"
@@ -108,7 +108,7 @@ const XYearsLater = ({ view, invert }) => (
         opacity="0.3"
         transform="scale3d(0.4, 0.4, 1)"
         src="/img/graphics/heart_outline.svg"
-        alt="heart_outline"
+        alt="Blue-Gold Heart - Outline"
       />
       <Text top="15em">
         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod

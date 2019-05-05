@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "@emotion/styled";
 
-const StyledDiv = styled.div`
+const StyledDivider = styled.div`
   position: absolute;
   top: ${props => (props.top ? props.top : "auto")};
   bottom: ${props => (props.bottom ? props.bottom : "auto")};
@@ -13,10 +13,10 @@ const StyledDiv = styled.div`
     content: "";
     background-image: linear-gradient(
       to right,
-      rgba(237, 211, 151, 0),
+      rgba(255, 255, 255, 1),
       rgba(60, 98, 162, 1),
       rgba(237, 211, 151, 1),
-      rgba(237, 211, 151, 0)
+      rgba(255, 255, 255, 1)
     );
     opacity: 0.2;
     height: 5px;
@@ -31,10 +31,10 @@ const StyledDiv = styled.div`
     content: "";
     background-image: linear-gradient(
       to right,
-      rgba(237, 211, 151, 0),
+      rgba(255, 255, 255, 1),
       rgba(60, 98, 162, 1),
       rgba(237, 211, 151, 1),
-      rgba(237, 211, 151, 0)
+      rgba(255, 255, 255, 1)
     );
     opacity: 0.2;
     height: 5px;
@@ -45,6 +45,6 @@ const StyledDiv = styled.div`
   }
 `;
 
-const Divider = props => <StyledDiv {...props} />;
+const Divider = props => <StyledDivider {...props} />;
 
 export default Divider;

@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "@emotion/styled";
 
-const StyledImg = styled.img`
+const StyledGraphic = styled.img`
   position: ${props => (props.position ? props.position : "absolute")};
   top: ${props => (props.top ? props.top : "auto")};
   bottom: ${props => (props.bottom ? props.bottom : "auto")};
@@ -11,6 +11,6 @@ const StyledImg = styled.img`
   opacity: ${props => (props.opacity ? props.opacity : "1")};
 `;
 
-const Graphic = props => <StyledImg {...props} />;
+const Graphic = props => <StyledGraphic {...props} />;
 
 export default Graphic;
