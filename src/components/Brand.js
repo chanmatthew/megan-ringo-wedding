@@ -11,6 +11,7 @@ const StyledLink = styled(({ isBrandDark, ...props }) => <Link {...props} />)`
   font-family: Futura PT Demi;
   font-weight: 600;
   letter-spacing: 0.3125rem;
+  padding: 0.2em 0.6em;
   transition: opacity 0.2s ease;
 
   &:hover {
