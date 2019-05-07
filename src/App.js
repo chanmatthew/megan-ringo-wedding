@@ -10,6 +10,11 @@ const AsyncOurStory = Loadable({
   loading: () => <span />
 });
 
+const AsyncWhenWhere = Loadable({
+  loader: () => import("./views/WhenWhere"),
+  loading: () => <span />
+});
+
 class App extends Component {
   render() {
     return (
@@ -17,6 +22,7 @@ class App extends Component {
         <SiteHeader />
         <Router>
           <AsyncOurStory path="/" />
+          <AsyncWhenWhere path="when-where" />
         </Router>
       </AppProvider>
     );
