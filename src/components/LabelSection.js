@@ -3,10 +3,10 @@ import styled from "@emotion/styled";
 
 const StyledLabelSection = styled.section`
   position: absolute;
-  top: ${props => (props.top ? props.top : "auto")};
-  bottom: ${props => (props.bottom ? props.bottom : "auto")};
-  left: ${props => (props.left ? props.left : "auto")};
-  right: ${props => (props.right ? props.right : "auto")};
+  top: ${props => props.top || "auto"};
+  bottom: ${props => props.bottom || "auto"};
+  left: ${props => props.left || "auto"};
+  right: ${props => props.right || "auto"};
 `;
 
 const StyledCategory = styled.h2`
@@ -32,7 +32,12 @@ const StyledDescription = styled.h4`
 `;
 
 const LabelSection = props => (
-  <StyledLabelSection {...props}>
+  <StyledLabelSection
+    top={props.top}
+    bottom={props.bottom}
+    left={props.left}
+    right={props.right}
+  >
     <StyledCategory>{props.category}</StyledCategory>
     <StyledTitle>{props.title}</StyledTitle>
     <StyledDescription>{props.children}</StyledDescription>

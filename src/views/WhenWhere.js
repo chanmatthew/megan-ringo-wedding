@@ -25,7 +25,7 @@ class WhenWhere extends Component {
   render() {
     return (
       <Main>
-        <Article left view="0" wide={false}>
+        <Article left view="0">
           <LabelSection
             top="10em"
             left="2.5em"
@@ -38,7 +38,7 @@ class WhenWhere extends Component {
             category="Time"
             title="6:00 - 11:00 PM"
           >
-            <StyledActionLink href="" target="_blank">
+            <StyledActionLink href="" target="_blank" rel="noreferrer">
               Add to Google Calendar
             </StyledActionLink>
           </LabelSection>
@@ -54,6 +54,7 @@ class WhenWhere extends Component {
               margin="0.5em"
               href="https://www.google.com/maps/place/40-21+Main+St+3rd+Fl,+Flushing,+NY+11354/@40.7590825,-73.8316249,17z/data=!3m1!4b1!4m5!3m4!1s0x89c26011e70977b7:0xbb1733c952b00151!8m2!3d40.7590825!4d-73.8294362"
               target="_blank"
+              rel="noreferrer"
             >
               View Location
             </StyledActionLink>
