@@ -19,6 +19,7 @@ const StyledActionLink = styled.a`
 
 class WhenWhere extends Component {
   componentDidMount() {
+    this.props.handleIsBrandDark(true);
     this.props.handleIsNavbarDark(false);
   }
 
@@ -73,8 +74,12 @@ class WhenWhere extends Component {
 
 export default props => (
   <AppContext.Consumer>
-    {({ handleIsNavbarDark }) => (
-      <WhenWhere {...props} handleIsNavbarDark={handleIsNavbarDark} />
+    {({ handleIsBrandDark, handleIsNavbarDark }) => (
+      <WhenWhere
+        {...props}
+        handleIsBrandDark={handleIsBrandDark}
+        handleIsNavbarDark={handleIsNavbarDark}
+      />
     )}
   </AppContext.Consumer>
 );

@@ -15,6 +15,11 @@ const AsyncWhenWhere = Loadable({
   loading: () => <span />
 });
 
+const AsyncRSVP = Loadable({
+  loader: () => import("./views/RSVP"),
+  loading: () => <span />
+});
+
 class App extends Component {
   render() {
     return (
@@ -23,6 +28,7 @@ class App extends Component {
         <Router>
           <AsyncOurStory path="/" />
           <AsyncWhenWhere path="when-where" />
+          <AsyncRSVP path="rsvp" />
         </Router>
       </AppProvider>
     );
