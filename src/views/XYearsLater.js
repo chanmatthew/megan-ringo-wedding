@@ -80,7 +80,7 @@ const XYearsLater = ({ view, invert }) => (
       </Grid>
     </Article>
     <Article right view={view} wide={!invert}>
-      <Heading className="heading--with-graphic" top="20em" align="left">
+      <Heading withGraphic top="20em" align="left">
         <Span size="0.7">8 YEARS</Span>
         <br />
         <Span size="1">LATER...</Span>

@@ -6,8 +6,8 @@ const StyledFormArea = styled.div`
   color: #152540;
   letter-spacing: 0.15em;
   display: inline-block;
-  width: ${props => (props.width ? props.width : "100%")};
-  float: ${props => (props.float ? props.float : "none")};
+  width: ${props => props.width || "100%"};
+  float: ${props => props.float || "none"};
   margin-bottom: 1.6em;
 `;
 
@@ -19,7 +19,7 @@ const StyledFormError = styled.span`
 
 const FormArea = props => (
   <StyledFormArea width={props.width} float={props.float}>
-    {props.label}
+    <label htmlFor={props.inputId}>{props.label}</label>
     {props.error ? (
       <StyledFormError>{`*${props.error}`}</StyledFormError>
     ) : null}

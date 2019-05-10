@@ -28,6 +28,7 @@ const StyledFormInput = styled.input`
   outline: none;
 
   &:focus {
+    background-color: white;
     border: 1px solid #152540;
   }
 `;
@@ -46,6 +47,7 @@ const StyledFormTextArea = styled.textarea`
   outline: none;
 
   &:focus {
+    background-color: white;
     border: 1px solid #152540;
   }
 `;
@@ -150,16 +152,19 @@ class RSVP extends Component {
           >
             LET'S CELEBRATE!
           </Heading>
-          <StyledRSVPForm>
+          <StyledRSVPForm noValidate onSubmit={this.handleOnSubmit}>
             <FormArea
               width="15.125em"
               label="FIRST NAME"
               error={this.state.formErrors.firstName}
+              inputId="firstName"
             >
               <StyledFormInput
                 type="text"
                 ref={node => (this.formRefs.firstName = node)}
                 error={this.state.formErrors.firstName}
+                id="firstName"
+                name="firstName"
               />
             </FormArea>
             <FormArea
@@ -167,39 +172,47 @@ class RSVP extends Component {
               float="right"
               label="LAST NAME"
               error={this.state.formErrors.lastName}
+              inputId="lastName"
             >
               <StyledFormInput
                 type="text"
                 ref={node => (this.formRefs.lastName = node)}
                 error={this.state.formErrors.lastName}
+                id="lastName"
+                name="lastName"
               />
             </FormArea>
             <FormArea
               label="E-MAIL ADDRESS"
               error={this.state.formErrors.email}
+              inputId="email"
             >
               <StyledFormInput
                 type="email"
                 ref={node => (this.formRefs.email = node)}
                 error={this.state.formErrors.email}
+                id="email"
+                name="email"
               />
             </FormArea>
-            <FormArea label="ACCOMMODATIONS">
+            <FormArea label="ACCOMMODATIONS" inputId="accommodations">
               <StyledFormTextArea
                 type="text"
                 ref={node => (this.formRefs.accommodations = node)}
+                id="accommodations"
+                name="accommodations"
               />
             </FormArea>
-            <FormArea label="MESSAGE TO THE COUPLE">
+            <FormArea label="MESSAGE TO THE COUPLE" inputId="message">
               <StyledFormTextArea
                 type="text"
                 ref={node => (this.formRefs.message = node)}
+                id="message"
+                name="message"
               />
             </FormArea>
             <StyledFootnote>KINDLY RESPOND BY OCTOBER 5, 2019</StyledFootnote>
-            <StyledSubmitButton onClick={this.handleOnSubmit}>
-              SUBMIT
-            </StyledSubmitButton>
+            <StyledSubmitButton type="submit">SUBMIT</StyledSubmitButton>
           </StyledRSVPForm>
         </Article>
       </Main>

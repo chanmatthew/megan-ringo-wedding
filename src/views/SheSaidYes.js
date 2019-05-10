@@ -10,13 +10,7 @@ import Span from "../components/Span";
 const SheSaidYes = ({ view, invert }) => (
   <section>
     <Article left view={view} wide={invert}>
-      <Heading
-        className="heading--with-graphic"
-        top="10em"
-        left="7%"
-        width="93%"
-        align="left"
-      >
+      <Heading withGraphic top="10em" left="7%" width="93%" align="left">
         <Span size="0.7">SHE SAID</Span>
         <br />
         <Span size="1">YES!</Span>
