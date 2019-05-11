@@ -8,6 +8,7 @@ import SheSaidYes from "./SheSaidYes";
 
 class OurStory extends Component {
   componentDidMount() {
+    this.props.handleIsBrandDark(true);
     this.props.handleIsNavbarDark(false);
   }
 
@@ -24,8 +25,12 @@ class OurStory extends Component {
 
 export default props => (
   <AppContext.Consumer>
-    {({ handleIsNavbarDark }) => (
-      <OurStory {...props} handleIsNavbarDark={handleIsNavbarDark} />
+    {({ handleIsBrandDark, handleIsNavbarDark }) => (
+      <OurStory
+        {...props}
+        handleIsBrandDark={handleIsBrandDark}
+        handleIsNavbarDark={handleIsNavbarDark}
+      />
     )}
   </AppContext.Consumer>
 );

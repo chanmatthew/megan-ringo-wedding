@@ -2,7 +2,6 @@ import React from "react";
 import styled from "@emotion/styled";
 
 import Article from "../components/Article";
-import Graphic from "../components/Graphic";
 import Text from "../components/Text";
 import Heading from "../components/Heading";
 import Span from "../components/Span";
@@ -81,35 +80,11 @@ const XYearsLater = ({ view, invert }) => (
       </Grid>
     </Article>
     <Article right view={view} wide={!invert}>
-      <Heading top="20em" align="left">
+      <Heading withGraphic top="20em" align="left">
         <Span size="0.7">8 YEARS</Span>
         <br />
         <Span size="1">LATER...</Span>
       </Heading>
-      <Graphic
-        top="20em"
-        right="4.2em"
-        opacity="0.3"
-        transform="scale3d(0.4, 0.4, 1)"
-        src="/img/graphics/heart_outline.svg"
-        alt="Blue-Gold Heart - Outline"
-      />
-      <Graphic
-        top="23em"
-        right="4.5em"
-        opacity="0.5"
-        transform="scale3d(0.8, 0.8, 1)"
-        src="/img/graphics/heart_filled.svg"
-        alt="Blue-Gold Heart - Filled"
-      />
-      <Graphic
-        top="26em"
-        right="4.2em"
-        opacity="0.3"
-        transform="scale3d(0.4, 0.4, 1)"
-        src="/img/graphics/heart_outline.svg"
-        alt="Blue-Gold Heart - Outline"
-      />
       <Text top="15em">
         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
         tempor incididunt ut labore et dolore magna aliqua.
