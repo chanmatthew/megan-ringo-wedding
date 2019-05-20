@@ -5,6 +5,13 @@ import { AppContext } from "../AppProvider";
 import Main from "../components/Main";
 import Article from "../components/Article";
 import LabelSection from "../components/LabelSection";
+import {
+  formatDate,
+  formatTime,
+  getCalendarIsoString,
+  getMeridiem,
+  getTimeZoneAbbr
+} from "../utils";
 
 const StyledActionLink = styled.a`
   font-size: 1.75rem;
@@ -16,6 +23,48 @@ const StyledActionLink = styled.a`
     opacity: 0.6;
   }
 `;
+
+const event = {
+  name: "Wedding Ceremony - Megan and Ringo",
+  details: "For details, link here: https://meganandringo.com",
+  location: {
+    name: "Royal Queen Restaurant",
+    streetAddress: "40-21 Main Street, 3rd Fl.",
+    neighborhood: "Flushing",
+    state: "New York",
+    zipCode: "11354",
+    get fullAddress() {
+      return `${this.streetAddress}, ${this.neighborhood}, ${this.state} ${
+        this.zipCode
+      }`;
+    },
+    get googleMapsUrl() {
+      return `https://maps.google.com/maps?hl=en&q=${encodeURIComponent(
+        this.name + ", " + this.fullAddress
+      )}`;
+    }
+  },
+  timeZoneAbbr: getTimeZoneAbbr(),
+  start: new Date(Date.UTC(2019, 9, 16, 22, 0, 0)),
+  end: new Date(Date.UTC(2019, 9, 17, 3, 0, 0)),
+  get formattedDate() {
+    return formatDate(this.start);
+  },
+  get formattedTimeSlot() {
+    return `${formatTime(this.start)} - ${formatTime(this.end)} ${getMeridiem(
+      this.end
+    )}`;
+  },
+  get googleCalendarUrl() {
+    return `https://www.google.com/calendar/render?action=TEMPLATE&text=${
+      this.name
+    }&dates=${getCalendarIsoString(this.start)}/${getCalendarIsoString(
+      this.end
+    )}&details=${this.details}&location=${this.location.name}, ${
+      this.location.fullAddress
+    }&sf=true&output=xml`.replace(/\s/g, "+");
+  }
+};
 
 class WhenWhere extends Component {
   componentDidMount() {
@@ -31,15 +80,20 @@ class WhenWhere extends Component {
             top="10em"
             left="2.5em"
             category="Date"
-            title="SAT, OCT 16"
+            title={event.formattedDate.toUpperCase()}
           />
           <LabelSection
             top="24em"
             left="2.5em"
             category="Time"
-            title="6:00 - 11:00 PM"
+            subtitle={`(${event.timeZoneAbbr})`}
+            title={event.formattedTimeSlot.toUpperCase()}
           >
-            <StyledActionLink href="" target="_blank" rel="noreferrer">
+            <StyledActionLink
+              href={event.googleCalendarUrl}
+              target="_blank"
+              rel="noreferrer"
+            >
               Add to Google Calendar
             </StyledActionLink>
           </LabelSection>
@@ -47,13 +101,14 @@ class WhenWhere extends Component {
             top="38em"
             left="2.5em"
             category="Location"
-            title="ROYAL QUEEN RESTAURANT"
+            title={event.location.name.toUpperCase()}
           >
-            40-21 Main Street, 3rd Fl. <br />
-            Flushing, NY 11354
+            {event.location.streetAddress} <br />
+            {event.location.neighborhood}, {event.location.state}{" "}
+            {event.location.zipCode}
             <StyledActionLink
               margin="0.5em"
-              href="https://www.google.com/maps/place/40-21+Main+St+3rd+Fl,+Flushing,+NY+11354/@40.7590825,-73.8316249,17z/data=!3m1!4b1!4m5!3m4!1s0x89c26011e70977b7:0xbb1733c952b00151!8m2!3d40.7590825!4d-73.8294362"
+              href={event.location.googleMapsUrl}
               target="_blank"
               rel="noreferrer"
             >

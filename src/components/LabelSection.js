@@ -25,6 +25,11 @@ const StyledTitle = styled.h3`
   padding-bottom: 1rem;
 `;
 
+const StyledSubtitle = styled.span`
+  font-size: 1.75rem;
+  margin-left: 0.5em;
+`;
+
 const StyledDescription = styled.h4`
   font-size: 2.25rem;
   color: #152540;
@@ -39,7 +44,12 @@ const LabelSection = props => (
     right={props.right}
   >
     <StyledCategory>{props.category}</StyledCategory>
-    <StyledTitle>{props.title}</StyledTitle>
+    <StyledTitle>
+      {props.title}
+      {props.subtitle ? (
+        <StyledSubtitle>{props.subtitle}</StyledSubtitle>
+      ) : null}
+    </StyledTitle>
     <StyledDescription>{props.children}</StyledDescription>
   </StyledLabelSection>
 );
