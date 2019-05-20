@@ -24,7 +24,7 @@ export const getTimeZoneAbbr = () => {
     .split(" ")[2];
 };
 
-export const formatHours = date => {
+export const formatTime = date => {
   let hours = date.getHours(),
     minutes = date.getMinutes(),
     meridiemHours = hours % 12,

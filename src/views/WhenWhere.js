@@ -7,7 +7,7 @@ import Article from "../components/Article";
 import LabelSection from "../components/LabelSection";
 import {
   formatDate,
-  formatHours,
+  formatTime,
   getCalendarIsoString,
   getMeridiem,
   getTimeZoneAbbr
@@ -51,7 +51,7 @@ const event = {
     return formatDate(this.start);
   },
   get formattedTimeSlot() {
-    return `${formatHours(this.start)} - ${formatHours(this.end)} ${getMeridiem(
+    return `${formatTime(this.start)} - ${formatTime(this.end)} ${getMeridiem(
       this.end
     )}`;
   },

@@ -1,6 +1,6 @@
 import {
   formatDate,
-  formatHours,
+  formatTime,
   getCalendarIsoString,
   getMeridiem,
   getTimeZoneAbbr
@@ -8,7 +8,7 @@ import {
 
 export {
   formatDate,
-  formatHours,
+  formatTime,
   getCalendarIsoString,
   getMeridiem,
   getTimeZoneAbbr
