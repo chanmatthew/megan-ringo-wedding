@@ -63,7 +63,7 @@ class Guests extends Component {
           <StyledGuestList>
             {guests.map(guest => (
               <Guest
-                key={`${guest.name}--${guest.id}`}
+                key={guest.id}
                 guestId={guest.id}
                 guestName={guest.name}
                 handleRemoveGuest={handleRemoveGuest}

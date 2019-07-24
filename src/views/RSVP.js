@@ -33,6 +33,10 @@ const StyledPageTitle = styled.h1`
   box-shadow: 0 5px 10px 0 rgba(37, 41, 82, 0.1);
 `;
 
+const StyledPageSection = styled.section`
+  padding-bottom: 1em;
+`;
+
 const StyledPageDescription = styled.h2`
   font-size: 2.25rem;
   margin: 2.5em 0 0.7em 0;
@@ -52,7 +56,7 @@ const StyledSubDescription = styled.h3`
 const StyledRSVPForm = styled.form`
   position: relative;
   width: 55%;
-  margin: 0 auto 1em auto;
+  margin: 0 auto;
   padding: 3em 3em 3em 3em;
   border: 1px solid
     ${props =>
@@ -330,7 +334,7 @@ class RSVP extends Component {
         <StyledPageHeaderImage src="/img/photos/stock_blue_flowers.png">
           <StyledPageTitle>RSVP</StyledPageTitle>
         </StyledPageHeaderImage>
-        <section>
+        <StyledPageSection>
           <StyledPageDescription>
             WE'RE EXCITED TO CELEBRATE WITH YOU!
           </StyledPageDescription>
@@ -443,7 +447,7 @@ class RSVP extends Component {
             guests={guests.reduce((acc, guest) => acc.concat([guest.name]), [])}
             message={message && message.value}
           />
-        </section>
+        </StyledPageSection>
       </Main>
     );
   }

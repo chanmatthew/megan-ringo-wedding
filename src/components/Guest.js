@@ -16,7 +16,8 @@ const StyledGuest = styled.div`
       : "0 1.8em 0 0.8em"};
   margin-bottom: ${props =>
     props.removed ? "0" : props.mounted ? "0.5em" : "0"};
-  width: max-content;
+  float: left;
+  clear: both;
   max-width: 100%;
   height: ${props => (props.removed ? "0" : props.mounted ? "2.2em" : "0")};
   line-height: 2.2em;

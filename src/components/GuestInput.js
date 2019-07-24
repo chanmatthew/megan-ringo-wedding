@@ -3,8 +3,9 @@ import styled from "@emotion/styled";
 
 const StyledInputContainer = styled.div`
   margin-bottom: 0.67em;
-  display: flex;
   position: relative;
+  display: grid;
+  grid-template-columns: 1fr auto;
 
   ${props =>
     props.disabled &&
@@ -36,7 +37,6 @@ const StyledInputContainer = styled.div`
 
 const StyledLabel = styled.label`
   position: relative;
-  width: fill-available;
   margin-right: 0.5em;
 `;
 
@@ -68,7 +68,7 @@ const StyledGuestInput = styled.input`
 
 const StyledInputError = styled.span`
   position: absolute;
-  top: 105%;
+  bottom: -2em;
   right: 0;
   padding: 0 0.5em;
   color: rgba(255, 113, 113, 1);
@@ -115,7 +115,7 @@ const GuestInput = ({
         ref={node => setInputRef(node)}
         error={error}
         onKeyPress={e => {
-          if (e.key === "Enter") {
+          if (e.which === 13 || e.keycode === 13 || e.key === "Enter") {
             e.preventDefault();
             if (!disabled) {
               handleAddGuest();

@@ -21,7 +21,7 @@ const StyledModal = styled.div`
   position: relative;
   display: flex;
   flex-direction: column;
-  max-height: 100%;
+  max-height: 80%;
   max-width: 70%;
   border-radius: 0.25em;
   background-color: white;
@@ -68,7 +68,7 @@ const StyledModalTitle = styled.h2`
 `;
 
 const StyledModalBody = styled.div`
-  overflow: scroll;
+  overflow-y: auto;
   margin-bottom: 3em;
   padding: 0 2em;
 `;
@@ -105,7 +105,8 @@ const StyledModalGridLabel = styled.p`
 const StyledModalGridValue = styled.div`
   font-size: 1.5rem;
   line-height: 1.2em;
-  word-break: break-word;
+  word-wrap: break-word;
+  overflow: hidden;
 `;
 
 const StyledModalList = styled.ul`
@@ -114,8 +115,16 @@ const StyledModalList = styled.ul`
 
 const modalRoot = document.getElementById("modal-root");
 
+const labels = [
+  "First Name",
+  "Last Name",
+  "E-Mail Address",
+  "Names of Guests",
+  "Message"
+];
+
 class ConfirmationModal extends Component {
-  el = Object.assign(document.createElement("div"));
+  el = document.createElement("div");
 
   componentDidMount() {
     modalRoot.appendChild(this.el);
@@ -126,14 +135,6 @@ class ConfirmationModal extends Component {
   }
 
   render() {
-    const labels = [
-      "First Name",
-      "Last Name",
-      "E-Mail Address",
-      "Names of Guests",
-      "Message"
-    ];
-
     const {
       opened,
       handleCloseModal,
