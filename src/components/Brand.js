@@ -15,12 +15,16 @@ const StyledLink = styled(({ isBrandDark, ...props }) => <Link {...props} />)`
   transition: opacity 0.2s ease;
 
   &:hover {
-    opacity: 0.6;
+    opacity: 0.8;
   }
 `;
 
-const Brand = props => (
-  <StyledLink to="/" isBrandDark={props.isBrandDark}>
+const Brand = ({ isBrandDark, handleLinkClick }) => (
+  <StyledLink
+    to="/"
+    isBrandDark={isBrandDark}
+    onClick={() => handleLinkClick("/")}
+  >
     MEGAN & RINGO
   </StyledLink>
 );

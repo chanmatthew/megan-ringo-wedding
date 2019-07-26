@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Component } from "react";
 import styled from "@emotion/styled";
 
 import Brand from "./Brand";
@@ -13,11 +13,42 @@ const Header = styled.header`
   z-index: 1;
 `;
 
-const SiteHeader = () => (
-  <Header>
-    <Brand />
-    <Navbar />
-  </Header>
-);
+class SiteHeader extends Component {
+  state = {
+    activeLink: "/"
+  };
+
+  componentDidMount() {
+    this.setState({
+      activeLink: window.location.pathname
+    });
+  }
+
+  componentDidUpdate() {
+    window.onpopstate = () => {
+      this.setState({
+        activeLink: window.location.pathname
+      });
+    };
+  }
+
+  handleLinkClick = link => {
+    this.setState({
+      activeLink: link
+    });
+  };
+
+  render() {
+    return (
+      <Header>
+        <Brand handleLinkClick={this.handleLinkClick} />
+        <Navbar
+          activeLink={this.state.activeLink}
+          handleLinkClick={this.handleLinkClick}
+        />
+      </Header>
+    );
+  }
+}
 
 export default SiteHeader;
