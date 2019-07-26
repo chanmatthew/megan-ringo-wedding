@@ -5,6 +5,11 @@ import Loadable from "react-loadable";
 import { AppProvider } from "./AppProvider";
 import SiteHeader from "./components/SiteHeader";
 
+const AsyncHomepage = Loadable({
+  loader: () => import("./views/Homepage"),
+  loading: () => <span />
+});
+
 const AsyncOurStory = Loadable({
   loader: () => import("./views/OurStory"),
   loading: () => <span />
@@ -26,7 +31,8 @@ class App extends Component {
       <AppProvider>
         <SiteHeader />
         <Router>
-          <AsyncOurStory path="/" />
+          <AsyncHomepage path="/" />
+          <AsyncOurStory path="our-story" />
           <AsyncWhenWhere path="when-where" />
           <AsyncRSVP path="rsvp" />
         </Router>
