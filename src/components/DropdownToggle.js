@@ -53,7 +53,7 @@ const StyledDropdown = styled.div`
   &::before {
     position: absolute;
     content: "";
-    bottom: 99%;
+    top: -0.49em;
     left: 50%;
     transform: translate3d(-50%, 0, 0);
     border-left: 0.5em solid transparent;
@@ -64,7 +64,7 @@ const StyledDropdown = styled.div`
   &::after {
     position: absolute;
     content: "";
-    background-color: rgba(250, 250, 250, 0);
+    background-color: transparent;
     width: 100%;
     height: 0.7em;
     bottom: 100%;
