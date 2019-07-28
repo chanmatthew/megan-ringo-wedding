@@ -20,6 +20,11 @@ const AsyncWhenWhere = Loadable({
   loading: () => <span />
 });
 
+const AsyncBridesmaidsGroomsmen = Loadable({
+  loader: () => import("./views/BridesmaidsGroomsmen"),
+  loading: () => <span />
+});
+
 const AsyncRSVP = Loadable({
   loader: () => import("./views/RSVP"),
   loading: () => <span />
@@ -34,6 +39,7 @@ class App extends Component {
           <AsyncHomepage path="/" />
           <AsyncOurStory path="our-story" />
           <AsyncWhenWhere path="when-where" />
+          <AsyncBridesmaidsGroomsmen path="bridesmaids-groomsmen" />
           <AsyncRSVP path="rsvp" />
         </Router>
       </AppProvider>
