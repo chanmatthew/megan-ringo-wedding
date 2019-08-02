@@ -1,9 +1,16 @@
-import React, { Component } from "react";
-import styled from "@emotion/styled";
+import React, { useEffect } from "react";
+import styled from "@emotion/styled/macro";
 
 import { AppContext } from "../AppProvider";
-import Main from "../components/Main";
 import CameraOverlay from "../components/CameraOverlay";
+
+const StyledMain = styled.main`
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+`;
 
 const StyledHero = styled.div`
   position: relative;
@@ -46,37 +53,34 @@ const StyledMissionFooter = styled.p`
   letter-spacing: 0.05em;
 `;
 
-class Homepage extends Component {
-  componentDidMount() {
-    const { handleIsBrandDark, handleIsNavbarDark } = this.props;
+const Homepage = ({ handleIsBrandDark, handleIsNavbarDark }) => {
+  useEffect(() => {
     handleIsBrandDark(false);
     handleIsNavbarDark(false);
-  }
+  }, []);
 
-  render() {
-    return (
-      <Main>
-        <StyledHero src="/img/photos/bridge_in_forest.png">
-          <CameraOverlay />
-          <StyledMission>
-            <StyledMissionTitle>WE'RE GETTING MARRIED!</StyledMissionTitle>
-            <StyledMissionBody>
-              <StyledColoredSpan color="rgba(128, 149, 184, 1)">
-                #
-              </StyledColoredSpan>
-              <StyledColoredSpan color="rgba(246, 233, 203, 1)">
-                MINGOWEDDING
-              </StyledColoredSpan>
-            </StyledMissionBody>
-            <StyledMissionFooter>
-              10&#183;16&#183;19 | NEW YORK
-            </StyledMissionFooter>
-          </StyledMission>
-        </StyledHero>
-      </Main>
-    );
-  }
-}
+  return (
+    <StyledMain>
+      <StyledHero src="/img/photos/bridge_in_forest.jpg">
+        <CameraOverlay />
+        <StyledMission>
+          <StyledMissionTitle>WE'RE GETTING MARRIED!</StyledMissionTitle>
+          <StyledMissionBody>
+            <StyledColoredSpan color="rgba(128, 149, 184, 1)">
+              #
+            </StyledColoredSpan>
+            <StyledColoredSpan color="rgba(246, 233, 203, 1)">
+              MINGOWEDDING
+            </StyledColoredSpan>
+          </StyledMissionBody>
+          <StyledMissionFooter>
+            10&#183;16&#183;19 | NEW YORK
+          </StyledMissionFooter>
+        </StyledMission>
+      </StyledHero>
+    </StyledMain>
+  );
+};
 
 export default props => (
   <AppContext.Consumer>

@@ -1,9 +1,16 @@
 import React, { Component } from "react";
-import styled from "@emotion/styled";
+import styled from "@emotion/styled/macro";
 
 import { AppContext } from "../AppProvider";
-import Main from "../components/Main";
 import Card from "../components/Card";
+
+const StyledMain = styled.main`
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+`;
 
 const StyledPageHeaderImage = styled.div`
   position: absolute;
@@ -96,7 +103,7 @@ class BridesmaidsGroomsmen extends Component {
 
   render() {
     return (
-      <Main>
+      <StyledMain>
         <StyledPageHeaderImage src="/img/photos/bridesmaids_groomsmen_header.png">
           <StyledPageTitle>MEET THE...</StyledPageTitle>
         </StyledPageHeaderImage>
@@ -149,7 +156,7 @@ class BridesmaidsGroomsmen extends Component {
             ))}
           </StyledCardContainer>
         </StyledSection>
-      </Main>
+      </StyledMain>
     );
   }
 }

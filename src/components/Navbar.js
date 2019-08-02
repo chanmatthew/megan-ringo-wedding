@@ -1,9 +1,42 @@
 import React from "react";
 import { Link } from "@reach/router";
-import styled from "@emotion/styled";
+import styled from "@emotion/styled/macro";
 
 import { AppContext } from "../AppProvider";
+
 import DropdownToggle from "./DropdownToggle";
+
+import { MIN_WIDTH_BREAKPOINTS } from "../enums";
+
+const [
+  ,
+  ,
+  ,
+  ,
+  ,
+  ,
+  ,
+  TABLET_PORTRAIT_UP,
+  TABLET_LANDSCAPE_UP,
+  DESKTOP_UP
+] = MIN_WIDTH_BREAKPOINTS;
+
+const BTWN_TABLET_PORTRAIT_LANDSCAPE_UP = 896;
+
+const StyledNavbar = styled("nav")`
+  display: flex;
+  justify-content: center;
+`;
+
+const StyledNavList = styled("ul")`
+  display: flex;
+  width: 100%;
+  justify-content: center;
+`;
+
+const StyledNavListItem = styled("li")`
+  text-transform: uppercase;
+`;
 
 const StyledLink = styled(({ isNavbarDark, active, ...props }) => (
   <Link {...props} />
@@ -40,50 +73,50 @@ const StyledLink = styled(({ isNavbarDark, active, ...props }) => (
   }
 `;
 
-const ceremonyLinks = [
-  { name: "WHEN & WHERE", to: "/when-where" },
-  { name: "BRIDESMAIDS & GROOMSMEN", to: "/bridesmaids-groomsmen" }
-];
-
-const Navbar = ({ activeLink, handleLinkClick, isNavbarDark }) => (
-  <nav>
-    <ul>
-      <StyledLink
-        to="/our-story"
-        onClick={() => handleLinkClick("/our-story")}
-        isNavbarDark={isNavbarDark}
-        active={activeLink === "/our-story"}
-      >
-        OUR STORY
-      </StyledLink>
-      <DropdownToggle
-        name="THE CEREMONY"
-        links={ceremonyLinks}
-        handleLinkClick={handleLinkClick}
-        active={ceremonyLinks.filter(link => link.to === activeLink).length > 0}
-      />
-      <StyledLink
-        to="/album"
-        onClick={() => handleLinkClick("/album")}
-        isNavbarDark={isNavbarDark}
-        active={activeLink === "/album"}
-      >
-        ALBUM
-      </StyledLink>
-      <StyledLink
-        to="/rsvp"
-        onClick={() => handleLinkClick("/rsvp")}
-        isNavbarDark={isNavbarDark}
-        active={activeLink === "/rsvp"}
-      >
-        RSVP
-      </StyledLink>
-    </ul>
-  </nav>
+const Navbar = ({
+  activeLink,
+  handleLinkClick,
+  isNavbarDark,
+  navigationItems
+}) => (
+  <StyledNavbar>
+    <StyledNavList>
+      {navigationItems.map(item => (
+        <StyledNavListItem key={item.id}>
+          {item.dropdownItems ? (
+            <DropdownToggle
+              name={item.label}
+              items={item.dropdownItems}
+              handleLinkClick={handleLinkClick}
+              active={
+                item.dropdownItems.filter(dItem => dItem.link === activeLink)
+                  .length > 0
+              }
+            />
+          ) : (
+            <StyledLink
+              to={item.link}
+              onClick={() => handleLinkClick(item.link)}
+              isNavbarDark={isNavbarDark}
+              active={activeLink === item.link}
+            >
+              {item.label}
+            </StyledLink>
+          )}
+        </StyledNavListItem>
+      ))}
+    </StyledNavList>
+  </StyledNavbar>
 );
 
 export default props => (
   <AppContext.Consumer>
-    {({ isNavbarDark }) => <Navbar {...props} isNavbarDark={isNavbarDark} />}
+    {({ isNavbarDark, navigationItems }) => (
+      <Navbar
+        {...props}
+        isNavbarDark={isNavbarDark}
+        navigationItems={navigationItems}
+      />
+    )}
   </AppContext.Consumer>
 );

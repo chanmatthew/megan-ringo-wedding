@@ -1,6 +1,6 @@
 import React, { Component } from "react";
-import styled from "@emotion/styled";
-import uuidv4 from "uuid/v4";
+import styled from "@emotion/styled/macro";
+import shortid from "shortid";
 
 import Guest from "./Guest";
 import GuestInput from "./GuestInput";
@@ -38,7 +38,7 @@ class Guests extends Component {
 
     if (this.nameRef.value) {
       if ([...this.nameRef.value].length <= 42) {
-        let newGuest = { id: uuidv4(), name: this.nameRef.value };
+        let newGuest = { id: shortid.generate(), name: this.nameRef.value };
         handleAddGuest(newGuest);
         this.handleClearInput();
       } else {

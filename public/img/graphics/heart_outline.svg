@@ -1,7 +1,29 @@
 <svg width="77" height="60" viewBox="0 0 77 60" fill="none" xmlns="http://www.w3.org/2000/svg">
-<path fill-rule="evenodd" clip-rule="evenodd" d="M21.684 0.0301514L43.3377 21.6177L21.684 43.2053L0.0302734 21.6177L21.684 0.0301514ZM21.6929 9.75961L9.78956 21.6265L21.6929 33.4934L33.5961 21.6265L21.6929 9.75961Z" fill="#3C62A2" fill-opacity="0.5"/>
-<path fill-rule="evenodd" clip-rule="evenodd" d="M55.3163 0.0301514L76.97 21.6177L55.3163 43.2053L33.6626 21.6177L55.3163 0.0301514ZM55.3252 9.75961L43.4219 21.6265L55.3252 33.4934L67.2285 21.6265L55.3252 9.75961Z" fill="#EDD397" fill-opacity="0.5"/>
-<path fill-rule="evenodd" clip-rule="evenodd" d="M38.4999 16.7949L60.1536 38.3824L38.4999 59.97L16.8462 38.3824L38.4999 16.7949ZM38.5088 26.5244L26.6055 38.3913L38.5088 50.2582L50.4121 38.3913L38.5088 26.5244Z" fill="url(#paint0_linear)"/>
+<style type="text/css">
+  .no-fill .outline-path {
+    fill: white !important;
+    fill-opacity: 1 !important;
+  }
+
+  .outline-path:nth-child(1) {
+    fill: #3C62A2;
+    fill-opacity: 0.5;
+  }
+
+  .outline-path:nth-child(2) {
+    fill: #EDD397;
+    fill-opacity: 0.5;
+  }
+
+  .outline-path:nth-child(3) {
+    fill: url(#paint0_linear);
+  }
+</style>
+<g class="heart-outline">
+  <path class="outline-path" fill-rule="evenodd" clip-rule="evenodd" d="M21.684 0.0301514L43.3377 21.6177L21.684 43.2053L0.0302734 21.6177L21.684 0.0301514ZM21.6929 9.75961L9.78956 21.6265L21.6929 33.4934L33.5961 21.6265L21.6929 9.75961Z" />
+  <path class="outline-path" fill-rule="evenodd" clip-rule="evenodd" d="M55.3163 0.0301514L76.97 21.6177L55.3163 43.2053L33.6626 21.6177L55.3163 0.0301514ZM55.3252 9.75961L43.4219 21.6265L55.3252 33.4934L67.2285 21.6265L55.3252 9.75961Z" />
+  <path class="outline-path" fill-rule="evenodd" clip-rule="evenodd" d="M38.4999 16.7949L60.1536 38.3824L38.4999 59.97L16.8462 38.3824L38.4999 16.7949ZM38.5088 26.5244L26.6055 38.3913L38.5088 50.2582L50.4121 38.3913L38.5088 26.5244Z" />
+</g>
 <defs>
 <linearGradient id="paint0_linear" x1="60.1536" y1="16.7949" x2="16.9787" y2="60.1021" gradientUnits="userSpaceOnUse">
 <stop stop-color="#EDD397" stop-opacity="0.5"/>

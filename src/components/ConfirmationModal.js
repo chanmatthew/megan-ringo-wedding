@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { createPortal } from "react-dom";
-import styled from "@emotion/styled";
+import styled from "@emotion/styled/macro";
 
 const StyledModalBackdrop = styled.div`
   position: fixed;
