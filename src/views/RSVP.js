@@ -1,13 +1,21 @@
 import React, { Component } from "react";
-import styled from "@emotion/styled";
+import styled from "@emotion/styled/macro";
 import axios from "axios";
 
 import { AppContext } from "../AppProvider";
-import Main from "../components/Main";
 import FormArea from "../components/FormArea";
 import Guests from "../components/Guests";
 import Loading from "../components/Loading";
 import ConfirmationModal from "../components/ConfirmationModal";
+
+const StyledMain = styled.main`
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: white;
+`;
 
 const StyledPageHeaderImage = styled.div`
   position: relative;
@@ -35,6 +43,7 @@ const StyledPageTitle = styled.h1`
 
 const StyledPageSection = styled.section`
   padding-bottom: 1em;
+  background-color: white;
 `;
 
 const StyledPageDescription = styled.h2`
@@ -330,8 +339,8 @@ class RSVP extends Component {
     } = this.state;
 
     return (
-      <Main>
-        <StyledPageHeaderImage src="/img/photos/stock_blue_flowers.png">
+      <StyledMain>
+        <StyledPageHeaderImage src="/img/photos/stock_blue_flowers.jpg">
           <StyledPageTitle>RSVP</StyledPageTitle>
         </StyledPageHeaderImage>
         <StyledPageSection>
@@ -448,7 +457,7 @@ class RSVP extends Component {
             message={message && message.value}
           />
         </StyledPageSection>
-      </Main>
+      </StyledMain>
     );
   }
 }

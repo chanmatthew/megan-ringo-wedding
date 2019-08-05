@@ -1,8 +1,7 @@
 import React, { Component } from "react";
-import styled from "@emotion/styled";
+import styled from "@emotion/styled/macro";
 
 import { AppContext } from "../AppProvider";
-import Main from "../components/Main";
 import Article from "../components/Article";
 import LabelSection from "../components/LabelSection";
 import {
@@ -22,6 +21,10 @@ const StyledActionLink = styled.a`
   &:hover {
     opacity: 0.6;
   }
+`;
+
+const StyledArticle = styled(Article)`
+  background-color: white;
 `;
 
 const event = {
@@ -74,8 +77,8 @@ class WhenWhere extends Component {
 
   render() {
     return (
-      <Main>
-        <Article left view="0">
+      <main>
+        <StyledArticle left view="0" style={{ backgroundColor: "white" }}>
           <LabelSection
             top="10em"
             left="2.5em"
@@ -115,14 +118,14 @@ class WhenWhere extends Component {
               View Location
             </StyledActionLink>
           </LabelSection>
-        </Article>
+        </StyledArticle>
         <Article right view="0" wide={true}>
           <img
-            src="/img/photos/wedding_poster.png"
+            src="/img/photos/wedding_poster.jpg"
             alt="Megan and Ringo Posing With a Kiss on a Movie Poster"
           />
         </Article>
-      </Main>
+      </main>
     );
   }
 }

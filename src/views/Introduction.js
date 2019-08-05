@@ -1,76 +1,148 @@
-import React from "react";
+import React, { useEffect } from "react";
+import styled from "@emotion/styled/macro";
 
-import Article from "../components/Article";
-import Graphic from "../components/Graphic";
-import Text from "../components/Text";
+import ImageLoader from "../components/ImageLoader";
+import { MIN_WIDTH_BREAKPOINTS, PARALLAX_LAYER_HEIGHT } from "../enums";
+import { ParallaxLayer } from "react-spring/renderprops-addons";
+import { AppContext } from "../AppProvider";
 
-const Introduction = ({ view, invert }) => (
-  <section>
-    <Article left view={view} wide={invert}>
-      <Graphic
-        top="20em"
-        left="3em"
-        src="/img/graphics/megan_and_ringo.svg"
-        alt="Megan and Ringo's Wedding Header"
+const [
+  ,
+  ,
+  ,
+  ,
+  ,
+  SMALL_DEVICES_LANDSCAPE_UP,
+  ,
+  TABLET_PORTRAIT_UP,
+  ,
+  DESKTOP_UP
+] = MIN_WIDTH_BREAKPOINTS;
+
+const StyledIntroduction = styled("div")`
+  height: ${PARALLAX_LAYER_HEIGHT}px;
+`;
+
+const StyledPolaroid = styled(ImageLoader)`
+  background-position: calc(50% + 1em) center;
+  position: absolute;
+  bottom: 0;
+
+  @media only screen and (min-width: ${SMALL_DEVICES_LANDSCAPE_UP}px) {
+    background-position: center;
+  }
+
+  @media only screen and (min-width: ${TABLET_PORTRAIT_UP}px) {
+    background-position: bottom;
+  }
+
+  @media only screen and (min-width: ${DESKTOP_UP}px) {
+    background-size: contain;
+  }
+`;
+
+const StyledFrowningFacesPhoto = styled(ImageLoader)`
+  display: none;
+
+  @media only screen and (min-width: ${SMALL_DEVICES_LANDSCAPE_UP}px) {
+    display: block;
+    position: absolute;
+    left: calc(50% - 34em);
+    height: 12em;
+    width: 15em;
+    transform: rotate3d(0, 0, 1, -6deg);
+  }
+`;
+
+const StyledPhoneCallPhoto = styled(ImageLoader)`
+  display: none;
+
+  @media only screen and (min-width: ${SMALL_DEVICES_LANDSCAPE_UP}px) {
+    display: block;
+    position: absolute;
+    left: calc(50% - 37em);
+    height: 14em;
+    width: 19em;
+    transform: rotate3d(0, 0, 1, 6deg);
+  }
+`;
+
+const StyledBirthdayPhoto = styled(ImageLoader)`
+  display: none;
+
+  @media only screen and (min-width: ${SMALL_DEVICES_LANDSCAPE_UP}px) {
+    display: block;
+    position: absolute;
+    left: calc(50% + 17em);
+    height: 26em;
+    width: 19em;
+    transform: rotate3d(0, 0, 1, 3deg);
+  }
+`;
+
+const Introduction = ({
+  baseFactor,
+  isVisible,
+  handleIsBrandDark,
+  handleIsNavbarDark
+}) => {
+  useEffect(() => {
+    handleIsBrandDark(false);
+    handleIsNavbarDark(false);
+  }, []);
+
+  return (
+    <StyledIntroduction>
+      <ParallaxLayer offset={0} speed={0} factor={baseFactor}>
+        <StyledPolaroid
+          title="Polaroid - Megan and Ringo Drinking"
+          placeholder="/img/photos/polaroid_drinking_opt.jpg"
+          image="/img/photos/polaroid_drinking.jpg"
+          height="110%"
+          width="100%"
+          isVisible={isVisible}
+        />
+      </ParallaxLayer>
+      <ParallaxLayer offset={baseFactor * 0.25} speed={0.1} factor={baseFactor}>
+        <StyledFrowningFacesPhoto
+          title="Photo - Megan and Ringo 'Frowning'"
+          placeholder="/img/album/IMG_0450_opt.jpg"
+          image="/img/album/IMG_0450.jpg"
+          isVisible={isVisible}
+        />
+      </ParallaxLayer>
+      <ParallaxLayer
+        offset={baseFactor * 0.59375}
+        speed={-0.1}
+        factor={baseFactor}
+      >
+        <StyledPhoneCallPhoto
+          title="Photo - Megan Leaning on Ringo During Phone Call"
+          placeholder="/img/album/IMG_0567_grayscale_blur.jpg"
+          image="/img/album/IMG_0567_grayscale.jpg"
+          isVisible={isVisible}
+        />
+      </ParallaxLayer>
+      <ParallaxLayer offset={baseFactor * 0.3} speed={-0.1} factor={baseFactor}>
+        <StyledBirthdayPhoto
+          title="Photo - Megan and Ringo Celebrating Birthday"
+          placeholder="/img/album/IMG_5412_grayscale_blur.jpg"
+          image="/img/album/IMG_5412_grayscale.jpg"
+          isVisible={isVisible}
+        />
+      </ParallaxLayer>
+    </StyledIntroduction>
+  );
+};
+
+export default props => (
+  <AppContext.Consumer>
+    {({ handleIsBrandDark, handleIsNavbarDark }) => (
+      <Introduction
+        {...props}
+        handleIsBrandDark={handleIsBrandDark}
+        handleIsNavbarDark={handleIsNavbarDark}
       />
-      <Graphic
-        top="6em"
-        src="/img/graphics/leaves.svg"
-        alt="Branches of Leaves"
-      />
-      <Graphic
-        top="29em"
-        right="0"
-        transform="scale3d(-1, 1, 1)"
-        src="/img/graphics/leaves.svg"
-        alt="Branches of Leaves"
-      />
-      <Graphic
-        top="27em"
-        left="3em"
-        transform="scale3d(0.7, 0.7, 1) rotate3d(0, 0, 1, -30deg)"
-        src="/img/graphics/heart_filled.svg"
-        alt="Blue-Gold Heart-Filled"
-      />
-      <Graphic
-        top="34em"
-        left="17em"
-        src="/img/graphics/heart_filled.svg"
-        alt="Blue-Gold Heart-Filled"
-      />
-      <Graphic
-        top="17em"
-        left="30em"
-        transform="rotate3d(0, 0, 1, 10deg)"
-        src="/img/graphics/heart_filled.svg"
-        alt="Blue-Gold Heart-Filled"
-      />
-      <Graphic
-        top="33em"
-        left="5em"
-        transform="scale3d(0.5, 0.5, 1) rotate3d(0, 0, 1, 20deg)"
-        src="/img/graphics/heart_outline.svg"
-        alt="Blue-Gold Heart - Outline"
-      />
-      <Graphic
-        top="12em"
-        left="21em"
-        transform="scale3d(0.7, 0.7, 1) rotate3d(0, 0, 1, -25deg)"
-        src="/img/graphics/heart_outline.svg"
-        alt="Blue-Gold Heart - Outline"
-      />
-      <Text top="21em" left="7%">
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-        tempor incididunt ut labore et dolore magna aliqua.
-      </Text>
-    </Article>
-    <Article right view={view} wide={!invert}>
-      <img
-        src="/img/photos/couple_drinking.png"
-        alt="Megan and Ringo Drinking Pose in Celebration"
-      />
-    </Article>
-  </section>
+    )}
+  </AppContext.Consumer>
 );
-
-export default Introduction;

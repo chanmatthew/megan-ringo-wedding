@@ -1,35 +1,30 @@
 import React from "react";
-import styled from "@emotion/styled";
+import styled from "@emotion/styled/macro";
+
+import AnimatedHoc from "./AnimatedHoc";
 
 const StyledHeading = styled.h2`
-  position: absolute;
-  font-size: ${props => props.size || "1rem"};
   font-weight: bold;
-  color: #868fa4;
-  opacity: 0.4;
-  width: ${props => props.width || "100%"};
-  top: ${props => props.top || "auto"};
-  bottom: ${props => props.bottom || "auto"};
-  left: ${props => props.left || "auto"};
-  right: ${props => props.right || "auto"};
+  display: inline-block;
+  color: ${props => props.color || "#868fa4"};
+  font-size: ${props => props.size || "1rem"};
   text-align: ${props => props.align || "left"};
 
   ${props =>
-    props.withGraphic &&
+    props.withUnderline &&
     `
     &::after {
       position: absolute;
       content: "";
-      background-image: url("/img/graphics/heading_hearts.svg");
-      background-repeat: no-repeat;
-      right: 5em;
-      top: -1em;
-      height: 12em;
-      width: 8.625em;
+      border-bottom: 0.125em solid ${props.underlineColor ||
+        "rgba(134, 140, 164, 0.7)"};
+      width: 100%;
+      bottom: -0.5em;
+      left: 0;
     }
   `}
 `;
 
 const Heading = props => <StyledHeading {...props} />;
 
-export default Heading;
+export default AnimatedHoc(Heading);

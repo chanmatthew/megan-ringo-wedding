@@ -1,0 +1,10 @@
+export const BASE_UP = 0;
+export const PHONE_PORTRAIT_UP = 320;
+export const POST_IPHONE6_PORTRAIT_UP = 375;
+export const POST_IPHONE6_PLUS_PORTRAIT_UP = 414;
+export const PHONE_LANDSCAPE_UP = 480;
+export const SMALL_DEVICES_LANDSCAPE_UP = 576;
+export const BETWEEN_SMALL_DEVICES_TABLET_UP = 640;
+export const TABLET_PORTRAIT_UP = 768;
+export const TABLET_LANDSCAPE_UP = 1024;
+export const DESKTOP_UP = 1200;

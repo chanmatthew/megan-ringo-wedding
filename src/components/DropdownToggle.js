@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Link } from "@reach/router";
-import styled from "@emotion/styled";
+import styled from "@emotion/styled/macro";
 
 import { AppContext } from "../AppProvider";
 
@@ -99,7 +99,7 @@ class DropdownToggle extends Component {
   };
 
   render() {
-    const { isNavbarDark, name, links, handleLinkClick, active } = this.props;
+    const { isNavbarDark, name, items, handleLinkClick, active } = this.props;
     const { opened } = this.state;
 
     return (
@@ -112,16 +112,16 @@ class DropdownToggle extends Component {
       >
         {name}
         <StyledDropdown opened={opened}>
-          {links.map((link, i) => (
+          {items.map((item, i) => (
             <StyledDropdownLink
-              key={`${link.name}--${i}`}
-              to={link.to}
+              key={item.id}
+              to={item.link}
               onClick={() => {
                 this.handleToggleOpen(false);
-                handleLinkClick(link.to);
+                handleLinkClick(item.link);
               }}
             >
-              {link.name}
+              {item.label}
             </StyledDropdownLink>
           ))}
         </StyledDropdown>

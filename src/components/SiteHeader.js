@@ -1,54 +1,93 @@
-import React, { Component } from "react";
-import styled from "@emotion/styled";
+import React, { Fragment, useCallback, useEffect, useState } from "react";
+import styled from "@emotion/styled/macro";
+import { animated, useSpring, config } from "react-spring";
 
 import Brand from "./Brand";
 import Navbar from "./Navbar";
+import MobileNavbar from "./MobileNavbar";
 
-const Header = styled.header`
+import { useMedia } from "../hooks";
+import { MIN_WIDTH_BREAKPOINTS } from "../enums";
+
+const [
+  ,
+  ,
+  ,
+  ,
+  PHONE_LANDSCAPE_UP,
+  ,
+  ,
+  TABLET_PORTRAIT_UP,
+  ,
+  DESKTOP_UP
+] = MIN_WIDTH_BREAKPOINTS;
+
+const AnimatedHeader = styled(
+  ({ isTabletPortraitUp, isScrolling, ...props }) => (
+    <animated.header {...props} />
+  )
+)`
   display: flex;
-  justify-content: space-between;
+  justify-content: ${props =>
+    props.isTabletPortraitUp ? "space-between" : "flex-end"};
   align-items: center;
-  padding: 2em 1.5em;
-  position: relative;
+  padding: ${props => (props.isTabletPortraitUp ? "1em 0" : "0 1em")};
+  position: ${props => (props.isTabletPortraitUp ? "absolute" : "fixed")};
+  width: 100%;
   z-index: 1;
+
+  @media only screen and (min-width: ${PHONE_LANDSCAPE_UP}px) {
+    padding: 0 1.25em;
+  }
+
+  @media only screen and (min-width: ${TABLET_PORTRAIT_UP}px) {
+    padding: 0.875em 0;
+  }
+
+  @media only screen and (min-width: ${DESKTOP_UP}px) {
+    padding: 1.25em 0;
+  }
+
+  nav {
+    width: 50%;
+  }
 `;
 
-class SiteHeader extends Component {
-  state = {
-    activeLink: "/"
-  };
+const SiteHeader = () => {
+  const isTabletPortraitUp = useMedia(
+    `(min-width: ${MIN_WIDTH_BREAKPOINTS[6]}px)`
+  );
+  const [activeLink, setActiveLink] = useState(window.location.pathname);
 
-  componentDidMount() {
-    this.setState({
-      activeLink: window.location.pathname
-    });
-  }
+  const style = useSpring({
+    to: { transform: "translate3d(0, 0, 0)", opacity: "1" },
+    from: { transform: "translate3d(0, -100%, 0)", opacity: "0" },
+    config: config.molasses
+  });
 
-  componentDidUpdate() {
+  const memoizedHandleLinkClick = useCallback(link => setActiveLink(link), []);
+
+  useEffect(() => {
     window.onpopstate = () => {
-      this.setState({
-        activeLink: window.location.pathname
-      });
+      memoizedHandleLinkClick(window.location.pathname);
     };
-  }
+  });
 
-  handleLinkClick = link => {
-    this.setState({
-      activeLink: link
-    });
-  };
-
-  render() {
-    return (
-      <Header>
-        <Brand handleLinkClick={this.handleLinkClick} />
-        <Navbar
-          activeLink={this.state.activeLink}
-          handleLinkClick={this.handleLinkClick}
-        />
-      </Header>
-    );
-  }
-}
+  return (
+    <AnimatedHeader isTabletPortraitUp={isTabletPortraitUp} style={style}>
+      {isTabletPortraitUp ? (
+        <Fragment>
+          <Brand handleLinkClick={memoizedHandleLinkClick} />
+          <Navbar
+            activeLink={activeLink}
+            handleLinkClick={memoizedHandleLinkClick}
+          />
+        </Fragment>
+      ) : (
+        <MobileNavbar />
+      )}
+    </AnimatedHeader>
+  );
+};
 
 export default SiteHeader;
