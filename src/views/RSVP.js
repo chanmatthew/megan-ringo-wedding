@@ -7,6 +7,19 @@ import FormArea from "../components/FormArea";
 import Guests from "../components/Guests";
 import Loading from "../components/Loading";
 import ConfirmationModal from "../components/ConfirmationModal";
+import { MIN_WIDTH_BREAKPOINTS } from "../enums";
+
+const [
+  ,
+  ,
+  POST_IPHONE6_PORTRAIT_UP,
+  ,
+  ,
+  SMALL_DEVICES_LANDSCAPE_UP,
+  BETWEEN_SMALL_DEVICES_TABLET_UP,
+  TABLET_PORTRAIT_UP,
+  TABLET_LANDSCAPE_UP
+] = MIN_WIDTH_BREAKPOINTS;
 
 const StyledMain = styled.main`
   position: absolute;
@@ -20,16 +33,27 @@ const StyledMain = styled.main`
 const StyledPageHeaderImage = styled.div`
   position: relative;
   width: 100%;
-  height: 31.375em;
   background-image: url(${props => props.src || "none"});
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
   background-color: rgba(21, 37, 64, 1);
+  height: 15em;
+
+  @media only screen and (min-width: ${POST_IPHONE6_PORTRAIT_UP}px) {
+    height: 20em;
+  }
+
+  @media only screen and (min-width: ${SMALL_DEVICES_LANDSCAPE_UP}px) {
+    height: 25em;
+  }
+
+  @media only screen and (min-width: ${TABLET_LANDSCAPE_UP}px) {
+    height: 31.375em;
+  }
 `;
 
 const StyledPageTitle = styled.h1`
-  font-size: 2rem;
   position: absolute;
   left: 50%;
   bottom: 0;
@@ -39,6 +63,23 @@ const StyledPageTitle = styled.h1`
   color: rgba(54, 63, 84, 1);
   transform: translate3d(-50%, 50%, 0);
   box-shadow: 0 5px 10px 0 rgba(37, 41, 82, 0.1);
+  font-size: 1.25rem;
+
+  @media only screen and (min-width: ${POST_IPHONE6_PORTRAIT_UP}px) {
+    font-size: 1.5rem;
+  }
+
+  @media only screen and (min-width: ${SMALL_DEVICES_LANDSCAPE_UP}px) {
+    font-size: 1.625rem;
+  }
+
+  @media only screen and (min-width: ${TABLET_PORTRAIT_UP}px) {
+    font-size: 1.75rem;
+  }
+
+  @media only screen and (min-width: ${TABLET_LANDSCAPE_UP}px) {
+    font-size: 2rem;
+  }
 `;
 
 const StyledPageSection = styled.section`
@@ -47,35 +88,100 @@ const StyledPageSection = styled.section`
 `;
 
 const StyledPageDescription = styled.h2`
-  font-size: 2.25rem;
-  margin: 2.5em 0 0.7em 0;
   letter-spacing: 0.083em;
   text-align: center;
   color: rgba(54, 63, 84, 1);
+  width: 90%;
+  line-height: 1.2;
+  margin: 2.5em auto 0.7em;
+  font-size: 1.5rem;
+
+  @media only screen and (min-width: ${POST_IPHONE6_PORTRAIT_UP}px) {
+    font-size: 1.75rem;
+  }
+
+  @media only screen and (min-width: ${SMALL_DEVICES_LANDSCAPE_UP}px) {
+    font-size: 1.875rem;
+  }
+
+  @media only screen and (min-width: ${TABLET_PORTRAIT_UP}px) {
+    line-height: 1;
+    width: auto;
+    font-size: 2rem;
+  }
+
+  @media only screen and (min-width: ${TABLET_LANDSCAPE_UP}px) {
+    font-size: 2.25rem;
+  }
 `;
 
 const StyledSubDescription = styled.h3`
-  font-size: 1.25rem;
   margin-bottom: 1.5em;
   color: rgba(21, 37, 64, 0.5);
   text-align: center;
   letter-spacing: 0.0625em;
+  font-size: 0.875rem;
+
+  @media only screen and (min-width: ${POST_IPHONE6_PORTRAIT_UP}px) {
+    font-size: 1rem;
+  }
+
+  @media only screen and (min-width: ${SMALL_DEVICES_LANDSCAPE_UP}px) {
+    font-size: 1.2rem;
+  }
+
+  @media only screen and (min-width: ${TABLET_PORTRAIT_UP}px) {
+    font-size: 1.25rem;
+  }
 `;
 
 const StyledRSVPForm = styled.form`
   position: relative;
-  width: 55%;
+  max-width: 50em;
   margin: 0 auto;
-  padding: 3em 3em 3em 3em;
   border: 1px solid
     ${props =>
       props.error ? "rgba(255, 113, 113, 1)" : "rgba(255, 113, 113, 0)"};
   border-radius: 0.125em;
   transition: border 0.2s ease;
+  width: 95%;
+  padding: 1.5em 1em;
+
+  @media only screen and (min-width: ${POST_IPHONE6_PORTRAIT_UP}px) {
+    padding: 2em 1.5em;
+  }
+
+  @media only screen and (min-width: ${SMALL_DEVICES_LANDSCAPE_UP}px) {
+    padding: 2em;
+  }
+
+  @media only screen and (min-width: ${BETWEEN_SMALL_DEVICES_TABLET_UP}px) {
+    width: 90%;
+  }
+
+  @media only screen and (min-width: ${TABLET_PORTRAIT_UP}px) {
+    width: 87.5%;
+    padding: 3em;
+  }
+
+  @media only screen and (min-width: ${TABLET_LANDSCAPE_UP}px) {
+    width: 75%;
+  }
+`;
+
+const StyledNameFormArea = styled(FormArea)`
+  width: 100%;
+
+  @media only screen and (min-width: ${SMALL_DEVICES_LANDSCAPE_UP}px) {
+    width: 48%;
+  }
+
+  @media only screen and (min-width: ${TABLET_PORTRAIT_UP}px) {
+    width: 46%;
+  }
 `;
 
 const StyledFormInput = styled.input`
-  font-size: 1.5rem;
   display: block;
   height: 2.25em;
   width: 100%;
@@ -88,6 +194,23 @@ const StyledFormInput = styled.input`
     ${props =>
       props.error ? "rgba(255, 113, 113, 1)" : "rgba(220, 223, 226, 1)"};
   border-radius: 0.125em;
+  font-size: 1.1rem;
+
+  @media only screen and (min-width: ${POST_IPHONE6_PORTRAIT_UP}px) {
+    font-size: 1.2rem;
+  }
+
+  @media only screen and (min-width: ${SMALL_DEVICES_LANDSCAPE_UP}px) {
+    font-size: 1.3rem;
+  }
+
+  @media only screen and (min-width: ${TABLET_PORTRAIT_UP}px) {
+    font-size: 1.4rem;
+  }
+
+  @media only screen and (min-width: ${TABLET_LANDSCAPE_UP}px) {
+    font-size: 1.5rem;
+  }
 
   &:focus {
     background-color: white;
@@ -96,7 +219,6 @@ const StyledFormInput = styled.input`
 `;
 
 const StyledFormTextArea = styled.textarea`
-  font-size: 1.5rem;
   display: block;
   height: 8em;
   width: 100%;
@@ -107,6 +229,23 @@ const StyledFormTextArea = styled.textarea`
   resize: none;
   border: 1px solid rgba(220, 223, 226, 1);
   border-radius: 0.125em;
+  font-size: 1.1rem;
+
+  @media only screen and (min-width: ${POST_IPHONE6_PORTRAIT_UP}px) {
+    font-size: 1.2rem;
+  }
+
+  @media only screen and (min-width: ${SMALL_DEVICES_LANDSCAPE_UP}px) {
+    font-size: 1.3rem;
+  }
+
+  @media only screen and (min-width: ${TABLET_PORTRAIT_UP}px) {
+    font-size: 1.4rem;
+  }
+
+  @media only screen and (min-width: ${TABLET_LANDSCAPE_UP}px) {
+    font-size: 1.5rem;
+  }
 
   &:focus {
     background-color: white;
@@ -117,7 +256,6 @@ const StyledFormTextArea = styled.textarea`
 const StyledSubmitButton = styled.button`
   position: relative;
   font-family: "Futura PT";
-  font-size: 1.25rem;
   font-weight: bold;
   letter-spacing: 0.15em;
   display: block;
@@ -131,6 +269,23 @@ const StyledSubmitButton = styled.button`
   outline: none;
   transform: translate3d(0, 0, 0);
   transition: all 0.2s ease;
+  font-size: 0.875rem;
+
+  @media only screen and (min-width: ${POST_IPHONE6_PORTRAIT_UP}px) {
+    font-size: 1rem;
+  }
+
+  @media only screen and (min-width: ${SMALL_DEVICES_LANDSCAPE_UP}px) {
+    font-size: 1.1rem;
+  }
+
+  @media only screen and (min-width: ${TABLET_PORTRAIT_UP}px) {
+    font-size: 1.1875rem;
+  }
+
+  @media only screen and (min-width: ${TABLET_LANDSCAPE_UP}px) {
+    font-size: 1.25rem;
+  }
 
   &:hover {
     cursor: pointer;
@@ -151,15 +306,29 @@ const StyledButtonSpan = styled.span`
 `;
 
 const StyledFormError = styled.span`
-  font-size: 1.25rem;
   position: absolute;
-  right: 1em;
-  bottom: 1em;
   letter-spacing: 0.08em;
   color: rgba(255, 113, 113, 1);
   opacity: ${props => (props.visible ? "1" : "0")};
   white-space: nowrap;
   transition: opacity 0.2s ease;
+  font-size: 0.75rem;
+  right: 0.5em;
+  bottom: 0.5em;
+
+  @media only screen and (min-width: ${POST_IPHONE6_PORTRAIT_UP}px) {
+    right: 1em;
+    bottom: 1em;
+    font-size: 0.875rem;
+  }
+
+  @media only screen and (min-width: ${SMALL_DEVICES_LANDSCAPE_UP}px) {
+    font-size: 1rem;
+  }
+
+  @media only screen and (min-width: ${TABLET_PORTRAIT_UP}px) {
+    font-size: 1.25rem;
+  }
 `;
 
 const maxGuests = 10;
@@ -355,8 +524,7 @@ class RSVP extends Component {
             onSubmit={this.handleOnSubmit}
             error={Object.keys(formErrors).some(input => formErrors[input])}
           >
-            <FormArea
-              width="46%"
+            <StyledNameFormArea
               label="FIRST NAME"
               error={formErrors.firstName}
               inputId="firstName"
@@ -373,9 +541,8 @@ class RSVP extends Component {
                   }
                 }}
               />
-            </FormArea>
-            <FormArea
-              width="46%"
+            </StyledNameFormArea>
+            <StyledNameFormArea
               float="right"
               label="LAST NAME"
               error={formErrors.lastName}
@@ -393,7 +560,7 @@ class RSVP extends Component {
                   }
                 }}
               />
-            </FormArea>
+            </StyledNameFormArea>
             <FormArea
               label="E-MAIL ADDRESS"
               error={formErrors.emailAddress}

@@ -6,12 +6,12 @@ import Guest from "./Guest";
 import GuestInput from "./GuestInput";
 
 const StyledGuestContainer = styled.div`
-  margin-top: 0.8em;
+  margin-top: 1em;
 `;
 
 const StyledGuestList = styled.div`
   display: block;
-  border-radius: 0.1875em;
+  border-radius: 0.25em;
   overflow: hidden;
 `;
 
