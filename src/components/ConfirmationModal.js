@@ -2,6 +2,21 @@ import React, { Component } from "react";
 import { createPortal } from "react-dom";
 import styled from "@emotion/styled/macro";
 
+import { MIN_WIDTH_BREAKPOINTS } from "../enums";
+
+const [
+  BASE_UP,
+  PHONE_PORTRAIT_UP,
+  POST_IPHONE6_PORTRAIT_UP,
+  POST_IPHONE6_PLUS_PORTRAIT_UP,
+  PHONE_LANDSCAPE_UP,
+  SMALL_DEVICES_LANDSCAPE_UP,
+  BETWEEN_SMALL_DEVICES_TABLET_UP,
+  TABLET_PORTRAIT_UP,
+  TABLET_LANDSCAPE_UP,
+  DESKTOP_UP
+] = MIN_WIDTH_BREAKPOINTS;
+
 const StyledModalBackdrop = styled.div`
   position: fixed;
   top: 0;
@@ -21,8 +36,6 @@ const StyledModal = styled.div`
   position: relative;
   display: flex;
   flex-direction: column;
-  max-height: 80%;
-  max-width: 70%;
   border-radius: 0.25em;
   background-color: white;
   opacity: ${props => (props.opened ? "1" : "0")};
@@ -30,13 +43,27 @@ const StyledModal = styled.div`
   transform: ${props =>
     props.opened ? "translate3d(0, 0, 0)" : "translate3d(0, 100px, 0)"};
   transition: transform 0.5s ease, opacity 0.5s ease;
+  max-width: 95%;
+  max-height: 95%;
+
+  @media only screen and (min-width: ${PHONE_LANDSCAPE_UP}px) {
+    max-height: 80%;
+    max-width: 90%;
+  }
+
+  @media only screen and (min-width: ${TABLET_LANDSCAPE_UP}px) {
+    max-width: 80%;
+  }
+
+  @media only screen and (min-width: ${DESKTOP_UP}px) {
+    max-width: 70%;
+  }
 `;
 
 const StyledCloseButton = styled.button`
   outline: none;
   border: none;
   font-family: "Futura PT";
-  font-size: 4rem;
   font-weight: 300;
   line-height: 0.7em;
   position: absolute;
@@ -51,6 +78,15 @@ const StyledCloseButton = styled.button`
   user-select: none;
   transform: rotate3d(0, 0, 1, 45deg);
   transition: all 0.2s ease;
+  font-size: 3.125rem;
+
+  @media only screen and (min-width: ${TABLET_PORTRAIT_UP}px) {
+    font-size: 3.5rem;
+  }
+
+  @media only screen and (min-width: ${DESKTOP_UP}px) {
+    font-size: 4rem;
+  }
 
   &:hover {
     cursor: pointer;
@@ -60,26 +96,67 @@ const StyledCloseButton = styled.button`
 
 const StyledModalTitle = styled.h2`
   font-family: "Futura PT Demi";
-  font-size: 2rem;
   letter-spacing: 0.083em;
   color: rgba(54, 63, 84, 1);
   text-align: center;
   margin: 1em 0;
+  font-size: 1.375rem;
+
+  @media only screen and (min-width: ${POST_IPHONE6_PORTRAIT_UP}px) {
+    font-size: 1.5rem;
+  }
+
+  @media only screen and (min-width: ${TABLET_PORTRAIT_UP}px) {
+    font-size: 1.625rem;
+  }
+
+  @media only screen and (min-width: ${TABLET_LANDSCAPE_UP}px) {
+    font-size: 1.75rem;
+  }
+
+  @media only screen and (min-width: ${DESKTOP_UP}px) {
+    font-size: 2rem;
+  }
 `;
 
 const StyledModalBody = styled.div`
   overflow-y: auto;
   margin-bottom: 3em;
-  padding: 0 2em;
+  padding: 0 1em;
+
+  @media only screen and (min-width: ${POST_IPHONE6_PORTRAIT_UP}px) {
+    padding: 0 2em;
+  }
 `;
 
 const StyledModalMessage = styled.p`
-  font-size: 1.5rem;
   letter-spacing: 0.02em;
-  margin-bottom: 2.2em;
   color: rgba(54, 63, 84, 0.7);
   text-align: center;
-  line-height: 1.2em;
+  line-height: 1.4;
+  margin-bottom: 1.5em;
+  font-size: 1rem;
+
+  @media only screen and (min-width: ${POST_IPHONE6_PORTRAIT_UP}px) {
+    font-size: 1.1rem;
+  }
+
+  @media only screen and (min-width: ${SMALL_DEVICES_LANDSCAPE_UP}px) {
+    margin-bottom: 2.2em;
+  }
+
+  @media only screen and (min-width: ${TABLET_PORTRAIT_UP}px) {
+    font-size: 1.2rem;
+  }
+
+  @media only screen and (min-width: ${TABLET_LANDSCAPE_UP}px) {
+    line-height: 1.2;
+    font-size: 1.25rem;
+  }
+
+  @media only screen and (min-width: ${DESKTOP_UP}px) {
+    font-size: 1.5rem;
+  }
 `;
 
 const StyledModalStrongMessage = styled.strong`
@@ -87,13 +164,34 @@ const StyledModalStrongMessage = styled.strong`
 `;
 
 const StyledModalGrid = styled.div`
-  font-size: 1.25rem;
   letter-spacing: 0.02em;
   display: grid;
-  grid-template-columns: auto 1fr;
-  grid-row-gap: 1em;
-  grid-column-gap: 2em;
   padding-bottom: 0.25em;
+  grid-template-columns: 1fr;
+  grid-gap: 0;
+  font-size: 0.875rem;
+
+  @media only screen and (min-width: ${POST_IPHONE6_PORTRAIT_UP}px) {
+    font-size: 0.9375rem;
+  }
+
+  @media only screen and (min-width: ${SMALL_DEVICES_LANDSCAPE_UP}px) {
+    grid-template-columns: auto 1fr;
+    grid-row-gap: 1em;
+    grid-column-gap: 2em;
+  }
+
+  @media only screen and (min-width: ${TABLET_PORTRAIT_UP}px) {
+    font-size: 1.05rem;
+  }
+
+  @media only screen and (min-width: ${TABLET_LANDSCAPE_UP}px) {
+    font-size: 1.125rem;
+  }
+
+  @media only screen and (min-width: ${DESKTOP_UP}px) {
+    font-size: 1.25rem;
+  }
 `;
 
 const StyledModalGridLabel = styled.p`
@@ -103,10 +201,31 @@ const StyledModalGridLabel = styled.p`
 `;
 
 const StyledModalGridValue = styled.div`
-  font-size: 1.5rem;
   line-height: 1.2em;
   word-wrap: break-word;
   overflow: hidden;
+  font-size: 1.1rem;
+  margin-bottom: 1em;
+
+  @media only screen and (min-width: ${POST_IPHONE6_PORTRAIT_UP}px) {
+    font-size: 1.2rem;
+  }
+
+  @media only screen and (min-width: ${SMALL_DEVICES_LANDSCAPE_UP}px) {
+    margin-bottom: 0;
+  }
+
+  @media only screen and (min-width: ${TABLET_PORTRAIT_UP}px) {
+    font-size: 1.3rem;
+  }
+
+  @media only screen and (min-width: ${TABLET_LANDSCAPE_UP}px) {
+    font-size: 1.4rem;
+  }
+
+  @media only screen and (min-width: ${DESKTOP_UP}px) {
+    font-size: 1.5rem;
+  }
 `;
 
 const StyledModalList = styled.ul`

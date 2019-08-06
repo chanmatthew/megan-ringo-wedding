@@ -1,5 +1,18 @@
 import React from "react";
 import styled from "@emotion/styled/macro";
+import { MIN_WIDTH_BREAKPOINTS } from "../enums";
+
+const [
+  ,
+  ,
+  POST_IPHONE6_PORTRAIT_UP,
+  ,
+  ,
+  SMALL_DEVICES_LANDSCAPE_UP,
+  ,
+  TABLET_PORTRAIT_UP,
+  TABLET_LANDSCAPE_UP
+] = MIN_WIDTH_BREAKPOINTS;
 
 const StyledInputContainer = styled.div`
   margin-bottom: 0.67em;
@@ -42,7 +55,6 @@ const StyledLabel = styled.label`
 
 const StyledGuestInput = styled.input`
   display: inline-block;
-  font-size: 1.5rem;
   background-color: ${props =>
     props.error ? "rgba(255, 113, 113, 0.1)" : "rgba(250, 252, 254, 1)"};
   border: 1px solid
@@ -55,6 +67,23 @@ const StyledGuestInput = styled.input`
   vertical-align: middle;
   outline: none;
   opacity: ${props => (props.disabled ? "0" : "1")};
+  font-size: 1.1rem;
+
+  @media only screen and (min-width: ${POST_IPHONE6_PORTRAIT_UP}px) {
+    font-size: 1.2rem;
+  }
+
+  @media only screen and (min-width: ${SMALL_DEVICES_LANDSCAPE_UP}px) {
+    font-size: 1.3rem;
+  }
+
+  @media only screen and (min-width: ${TABLET_PORTRAIT_UP}px) {
+    font-size: 1.4rem;
+  }
+
+  @media only screen and (min-width: ${TABLET_LANDSCAPE_UP}px) {
+    font-size: 1.5rem;
+  }
 
   &:focus {
     background-color: white;
@@ -81,17 +110,34 @@ const StyledAddButton = styled.button`
   outline: none;
   border: none;
   font-family: "Futura PT";
-  font-size: 1.25rem;
-  letter-spacing: 0.15em;
   display: inline-block;
-  padding: 0.85em 1em;
   line-height: 1.25rem;
+  letter-spacing: 0.15em;
   background-color: rgba(240, 240, 245, 1);
   color: rgba(54, 63, 84, 0.4);
   border-radius: 0.25em;
   vertical-align: middle;
   transition: all 0.2s ease;
   opacity: ${props => (props.disabled ? "0" : "1")};
+  padding: 0.6em 1em;
+  font-size: 1rem;
+
+  @media only screen and (min-width: ${POST_IPHONE6_PORTRAIT_UP}px) {
+    padding: 0.625em 1em;
+  }
+
+  @media only screen and (min-width: ${SMALL_DEVICES_LANDSCAPE_UP}px) {
+    padding: 0.75em 1em;
+  }
+
+  @media only screen and (min-width: ${TABLET_PORTRAIT_UP}px) {
+    padding: 0.85em 1em;
+    font-size: 1.1rem;
+  }
+
+  @media only screen and (min-width: ${TABLET_LANDSCAPE_UP}px) {
+    font-size: 1.25rem;
+  }
 
   &:hover,
   &:focus {

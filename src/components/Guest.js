@@ -1,5 +1,18 @@
 import React, { Component } from "react";
 import styled from "@emotion/styled/macro";
+import { MIN_WIDTH_BREAKPOINTS } from "../enums";
+
+const [
+  ,
+  ,
+  POST_IPHONE6_PORTRAIT_UP,
+  ,
+  ,
+  SMALL_DEVICES_LANDSCAPE_UP,
+  ,
+  ,
+  TABLET_LANDSCAPE_UP
+] = MIN_WIDTH_BREAKPOINTS;
 
 const StyledGuest = styled.div`
   position: relative;
@@ -29,6 +42,19 @@ const StyledGuest = styled.div`
   transform-origin: center top;
   transition: opacity 0.2s ease, height 0.2s ease, padding 0.2s ease,
     margin 0.2s ease;
+  font-size: 0.875rem;
+
+  @media only screen and (min-width: ${POST_IPHONE6_PORTRAIT_UP}px) {
+    font-size: 1rem;
+  }
+
+  @media only screen and (min-width: ${SMALL_DEVICES_LANDSCAPE_UP}px) {
+    font-size: 1.1rem;
+  }
+
+  @media only screen and (min-width: ${TABLET_LANDSCAPE_UP}px) {
+    font-size: 1.25rem;
+  }
 
   &:hover {
     color: rgba(54, 63, 84, 1);
