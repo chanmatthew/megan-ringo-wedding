@@ -2,7 +2,20 @@ import React, { useEffect } from "react";
 import styled from "@emotion/styled/macro";
 
 import { AppContext } from "../AppProvider";
-import CameraOverlay from "../components/CameraOverlay";
+import { MIN_WIDTH_BREAKPOINTS } from "../enums";
+
+const [
+  ,
+  ,
+  POST_IPHONE6_PORTRAIT_UP,
+  ,
+  ,
+  ,
+  BETWEEN_SMALL_DEVICES_TABLET_UP,
+  TABLET_PORTRAIT_UP,
+  TABLET_LANDSCAPE_UP,
+  DESKTOP_UP
+] = MIN_WIDTH_BREAKPOINTS;
 
 const StyledMain = styled.main`
   position: absolute;
@@ -16,41 +29,48 @@ const StyledHero = styled.div`
   position: relative;
   width: 100%;
   height: 100vh;
-  min-height: 67.5em;
-  background-image: url(${props => props.src || "none"});
-  background-position: center;
+  background-image: url(${props => props.mobileSrc}),
+    linear-gradient(to bottom, rgba(27, 38, 42, 1), rgba(84, 84, 92, 1));
+  background-position: center bottom;
   background-repeat: no-repeat;
   background-size: cover;
-  background-color: rgba(21, 37, 64, 1);
+  min-height: 35em;
+
+  @media only screen and (min-width: ${POST_IPHONE6_PORTRAIT_UP}px) {
+    min-height: 45em;
+  }
+
+  @media only screen and (min-width: ${BETWEEN_SMALL_DEVICES_TABLET_UP}px) {
+    background-image: url(${props => props.desktopSrc}),
+      linear-gradient(to bottom, rgba(27, 38, 42, 1), rgba(84, 84, 92, 1));
+    min-height: 45em;
+  }
+
+  @media only screen and (min-width: ${TABLET_PORTRAIT_UP}px) {
+    min-height: 55em;
+  }
+
+  @media only screen and (min-width: ${TABLET_LANDSCAPE_UP}px) {
+    min-height: 65em;
+  }
+
+  @media only screen and (min-width: ${DESKTOP_UP}px) {
+    min-height: 75em;
+  }
 `;
 
-const StyledMission = styled.div`
+const StyledGraphic = styled.img`
   position: absolute;
-  top: 42%;
-  left: 2.8em;
-`;
+  height: 10em;
+  bottom: 55%;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  display: block;
 
-const StyledMissionTitle = styled.p`
-  font-size: 2.25rem;
-  font-weight: bold;
-  color: rgba(255, 255, 255, 1);
-`;
-
-const StyledMissionBody = styled.p`
-  font-size: 5rem;
-  font-family: "Futura PT Extra";
-`;
-
-const StyledColoredSpan = styled.span`
-  color: ${props => props.color};
-`;
-
-const StyledMissionFooter = styled.p`
-  font-size: 1.5rem;
-  font-family: "Futura PT Demi";
-  color: rgba(255, 255, 255, 1);
-  text-align: right;
-  letter-spacing: 0.05em;
+  @media only screen and (min-width: ${BETWEEN_SMALL_DEVICES_TABLET_UP}px) {
+    display: none;
+  }
 `;
 
 const Homepage = ({ handleIsBrandDark, handleIsNavbarDark }) => {
@@ -61,22 +81,11 @@ const Homepage = ({ handleIsBrandDark, handleIsNavbarDark }) => {
 
   return (
     <StyledMain>
-      <StyledHero src="/img/photos/bridge_in_forest.jpg">
-        <CameraOverlay />
-        <StyledMission>
-          <StyledMissionTitle>WE'RE GETTING MARRIED!</StyledMissionTitle>
-          <StyledMissionBody>
-            <StyledColoredSpan color="rgba(128, 149, 184, 1)">
-              #
-            </StyledColoredSpan>
-            <StyledColoredSpan color="rgba(246, 233, 203, 1)">
-              MINGOWEDDING
-            </StyledColoredSpan>
-          </StyledMissionBody>
-          <StyledMissionFooter>
-            10&#183;16&#183;19 | NEW YORK
-          </StyledMissionFooter>
-        </StyledMission>
+      <StyledHero
+        desktopSrc="/img/photos/homepage_photo.jpg"
+        mobileSrc="/img/photos/homepage_photo_mobile.jpg"
+      >
+        <StyledGraphic src="/img/graphics/homepage_graphic.svg" />
       </StyledHero>
     </StyledMain>
   );
