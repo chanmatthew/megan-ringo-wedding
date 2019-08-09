@@ -182,6 +182,7 @@ const StyledNameFormArea = styled(FormArea)`
 `;
 
 const StyledFormInput = styled.input`
+  font-family: Helvetica, "Futura PT", Arial, sans-serif;
   display: block;
   height: 2.25em;
   width: 100%;
@@ -194,6 +195,7 @@ const StyledFormInput = styled.input`
     ${props =>
       props.error ? "rgba(255, 113, 113, 1)" : "rgba(220, 223, 226, 1)"};
   border-radius: 0.125em;
+  appearance: none;
   font-size: 1.1rem;
 
   @media only screen and (min-width: ${POST_IPHONE6_PORTRAIT_UP}px) {
@@ -219,6 +221,7 @@ const StyledFormInput = styled.input`
 `;
 
 const StyledFormTextArea = styled.textarea`
+  font-family: Helvetica, "Futura PT", Arial, sans-serif;
   display: block;
   height: 8em;
   width: 100%;
@@ -229,6 +232,7 @@ const StyledFormTextArea = styled.textarea`
   resize: none;
   border: 1px solid rgba(220, 223, 226, 1);
   border-radius: 0.125em;
+  appearance: none;
   font-size: 1.1rem;
 
   @media only screen and (min-width: ${POST_IPHONE6_PORTRAIT_UP}px) {

@@ -50,8 +50,13 @@ const StyledLabel = styled.label`
 const StyledFormError = styled.span`
   color: rgba(255, 113, 113, 1);
   letter-spacing: 0.08em;
-  margin: 0 0 0 0.5em;
-  display: inline;
+  margin: 0.5em 0 0 0;
+  display: block;
+
+  @media only screen and (min-width: ${POST_IPHONE6_PORTRAIT_UP}px) {
+    margin: 0 0 0 0.5em;
+    display: inline;
+  }
 
   @media only screen and (min-width: ${SMALL_DEVICES_LANDSCAPE_UP}px) and (max-width: ${TABLET_LANDSCAPE_UP -
       1}px) {
