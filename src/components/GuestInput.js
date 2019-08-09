@@ -17,8 +17,7 @@ const [
 const StyledInputContainer = styled.div`
   margin-bottom: 0.67em;
   position: relative;
-  display: grid;
-  grid-template-columns: 1fr auto;
+  display: flex;
 
   ${props =>
     props.disabled &&
@@ -30,16 +29,34 @@ const StyledInputContainer = styled.div`
       bottom: 0;
       left: 0;
       right: 0;
-      font-size: 1.25rem;
       background-color: rgba(250, 252, 254, 1);
       border: 1px dashed rgba(220, 223, 226, 1);
       border-radius: 0.25em;
       text-align: center;
       color: rgba(54, 63, 84, 0.4);
       padding: 0 1em;
-      line-height: 2.7em;
+      display: flex;
+      justify-content: center;
+      align-items: center;
       transition: all 0.2s ease;
       cursor: not-allowed;
+      font-size: 1rem;
+
+      @media only screen and (min-width: ${POST_IPHONE6_PORTRAIT_UP}px) {
+        font-size: 1.1rem;
+      }
+
+      @media only screen and (min-width: ${SMALL_DEVICES_LANDSCAPE_UP}px) {
+        font-size: 1.15rem;
+      }
+
+      @media only screen and (min-width: ${TABLET_PORTRAIT_UP}px) {
+        font-size: 1.2rem;
+      }
+
+      @media only screen and (min-width: ${TABLET_LANDSCAPE_UP}px) {
+        font-size: 1.25rem;
+      }
     }
 
     &:hover::after {
@@ -51,10 +68,11 @@ const StyledInputContainer = styled.div`
 const StyledLabel = styled.label`
   position: relative;
   margin-right: 0.5em;
+  width: 100%;
 `;
 
 const StyledGuestInput = styled.input`
-  display: inline-block;
+  font-family: Helvetica, "Futura PT", Arial, sans-serif;
   background-color: ${props =>
     props.error ? "rgba(255, 113, 113, 0.1)" : "rgba(250, 252, 254, 1)"};
   border: 1px solid
@@ -67,6 +85,7 @@ const StyledGuestInput = styled.input`
   vertical-align: middle;
   outline: none;
   opacity: ${props => (props.disabled ? "0" : "1")};
+  appearance: none;
   font-size: 1.1rem;
 
   @media only screen and (min-width: ${POST_IPHONE6_PORTRAIT_UP}px) {
@@ -109,8 +128,7 @@ const StyledInputError = styled.span`
 const StyledAddButton = styled.button`
   outline: none;
   border: none;
-  font-family: "Futura PT";
-  display: inline-block;
+  font-family: "Futura PT", Helvetica, Arial, sans-serif;
   line-height: 1.25rem;
   letter-spacing: 0.15em;
   background-color: rgba(240, 240, 245, 1);
