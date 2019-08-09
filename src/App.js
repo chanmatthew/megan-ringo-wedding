@@ -45,8 +45,12 @@ const StyledParallaxContainer = styled.div`
 const StyledParallax = styled(
   ({ isOverflowY, parallaxBackground, ...props }) => <Parallax {...props} />
 )`
+  overflow: ${props =>
+    props.isOverflowY ? "visible" : "hidden scroll"} !important;
+
   & > div {
-    overflow-y: ${props => props.isOverflowY && "scroll !important"};
+    overflow: ${props => props.isOverflowY && "visible !important"};
+    height: ${props => props.isOverflowY && "100% !important"};
   }
 `;
 
@@ -140,6 +144,7 @@ const App = () => {
         ref={ref => (parallaxRef = ref)}
         pages={pages}
         isOverflowY={isOverflowY}
+        native
       >
         <AppProvider>
           <SiteHeader />
@@ -149,7 +154,7 @@ const App = () => {
                 unique
                 reset
                 // reset
-                // native
+                native={!isGreaterThanTablet}
                 items={location}
                 keys={location.pathname.split("/")[1]}
                 delay={300}
