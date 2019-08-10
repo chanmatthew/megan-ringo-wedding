@@ -3,17 +3,44 @@ import { Link } from "@reach/router";
 import styled from "@emotion/styled/macro";
 
 import { AppContext } from "../AppProvider";
+import { MIN_WIDTH_BREAKPOINTS } from "../enums";
+
+const [
+  ,
+  ,
+  ,
+  ,
+  ,
+  ,
+  ,
+  TABLET_PORTRAIT_UP,
+  TABLET_LANDSCAPE_UP,
+  DESKTOP_UP
+] = MIN_WIDTH_BREAKPOINTS;
 
 const StyledDropdownToggle = styled.span`
   color: ${props => (props.isNavbarDark ? "#152540" : "white")};
-  font-size: 1.4rem;
-  font-weight: 500;
-  letter-spacing: 0.1875rem;
+  font-size: 1rem;
   padding: 0.4em 0.8em;
   transition: opacity 0.2s ease;
   opacity: ${props => (props.active ? "1" : "0.8")};
   cursor: default;
   position: relative;
+  white-space: nowrap;
+  letter-spacing: 0.12rem;
+
+  @media only screen and (min-width: ${TABLET_PORTRAIT_UP}px) {
+    font-size: 1rem;
+    letter-spacing: 0.1875rem;
+  }
+
+  @media only screen and (min-width: ${TABLET_LANDSCAPE_UP}px) {
+    font-size: 1.2rem;
+  }
+
+  @media only screen and (min-width: ${DESKTOP_UP}px) {
+    font-size: 1.4rem;
+  }
 
   &:not(:last-child) {
     margin-right: 1.3em;
@@ -72,7 +99,7 @@ const StyledDropdown = styled.div`
 `;
 
 const StyledDropdownLink = styled(({ ...props }) => <Link {...props} />)`
-  font-size: 1.2rem;
+  font-size: 0.875rem;
   display: block;
   width: 100%;
   text-align: center;
@@ -83,6 +110,14 @@ const StyledDropdownLink = styled(({ ...props }) => <Link {...props} />)`
   line-height: 2.4em;
   transition: opacity 0.2s ease;
   white-space: nowrap;
+
+  @media only screen and (min-width: ${TABLET_LANDSCAPE_UP}px) {
+    font-size: 1rem;
+  }
+
+  @media only screen and (min-width: ${DESKTOP_UP}px) {
+    font-size: 1.2rem;
+  }
 
   &:hover {
     background-color: rgba(240, 240, 240, 1);

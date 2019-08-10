@@ -21,15 +21,15 @@ const [
 const StyledLink = styled(({ isBrandDark, ...props }) => <Link {...props} />)`
   text-decoration: none;
   color: ${props => (props.isBrandDark ? "#152540" : "white")};
-  ${"" /* font-size: 1.5rem; */}
-  font-family: Futura PT Demi;
-  font-weight: 600;
-  letter-spacing: 0.15em;
-  padding: 0.2em 1em;
+  font-family: "Futura PT Demi";
   transition: opacity 0.2s ease;
+  font-size: 1.25rem;
+  letter-spacing: 0.1em;
+  padding: 0.1em 0.5em;
 
   @media only screen and (min-width: ${TABLET_PORTRAIT_UP}px) {
-    font-size: 1.25rem;
+    letter-spacing: 0.15em;
+    padding: 0.2em 1em;
   }
 
   @media only screen and (min-width: ${TABLET_LANDSCAPE_UP}px) {

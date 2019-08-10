@@ -14,12 +14,11 @@ const [
   ,
   ,
   ,
-  PHONE_LANDSCAPE_UP,
   ,
   ,
+  BETWEEN_SMALL_DEVICES_TABLET_UP,
   TABLET_PORTRAIT_UP,
-  ,
-  DESKTOP_UP
+  TABLET_LANDSCAPE_UP
 ] = MIN_WIDTH_BREAKPOINTS;
 
 const AnimatedHeader = styled(
@@ -28,23 +27,25 @@ const AnimatedHeader = styled(
   )
 )`
   display: flex;
-  justify-content: ${props =>
-    props.isTabletPortraitUp ? "space-between" : "flex-end"};
+  justify-content: space-between;
   align-items: center;
-  padding: ${props => (props.isTabletPortraitUp ? "1em 0" : "0 1em")};
-  position: ${props => (props.isTabletPortraitUp ? "absolute" : "fixed")};
-  width: 100%;
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
   z-index: 1;
+  padding: 0 1em;
 
-  @media only screen and (min-width: ${PHONE_LANDSCAPE_UP}px) {
-    padding: 0 1.25em;
+  @media only screen and (min-width: ${BETWEEN_SMALL_DEVICES_TABLET_UP}px) {
+    padding: 1em 0;
+    width: 98%;
   }
 
   @media only screen and (min-width: ${TABLET_PORTRAIT_UP}px) {
-    padding: 0.875em 0;
+    width: 96%;
   }
 
-  @media only screen and (min-width: ${DESKTOP_UP}px) {
+  @media only screen and (min-width: ${TABLET_LANDSCAPE_UP}px) {
     padding: 1.25em 0;
   }
 
@@ -58,6 +59,7 @@ const SiteHeader = () => {
     `(min-width: ${MIN_WIDTH_BREAKPOINTS[6]}px)`
   );
   const [activeLink, setActiveLink] = useState(window.location.pathname);
+  const [isToggled, toggleMenu] = useState(false);
 
   const style = useSpring({
     to: { transform: "translate3d(0, 0, 0)", opacity: "1" },
@@ -67,8 +69,22 @@ const SiteHeader = () => {
 
   const memoizedHandleLinkClick = useCallback(link => setActiveLink(link), []);
 
+  const openMenu = () => {
+    toggleMenu(true);
+    document.body.className += " unscrollable";
+  };
+
+  const closeMenu = () => {
+    toggleMenu(false);
+    document.body.className = document.body.className.replace(
+      /\bunscrollable\b/g,
+      ""
+    );
+  };
+
   useEffect(() => {
     window.onpopstate = () => {
+      closeMenu();
       memoizedHandleLinkClick(window.location.pathname);
     };
   });
@@ -84,7 +100,11 @@ const SiteHeader = () => {
           />
         </Fragment>
       ) : (
-        <MobileNavbar />
+        <MobileNavbar
+          isToggled={isToggled}
+          openMenu={openMenu}
+          closeMenu={closeMenu}
+        />
       )}
     </AnimatedHeader>
   );
