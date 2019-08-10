@@ -10,6 +10,8 @@ import Loading from "../components/Loading";
 import ConfirmationModal from "../components/ConfirmationModal";
 import { MIN_WIDTH_BREAKPOINTS } from "../enums";
 
+const { REACT_APP_RSVP_ENDPOINT } = process.env;
+
 const [
   ,
   ,
@@ -457,7 +459,7 @@ class RSVP extends Component {
             },
             () => {
               axios
-                .post("http://localhost:3001/rsvp", this.createFormJson())
+                .post(REACT_APP_RSVP_ENDPOINT, this.createFormJson())
                 .then(() => {
                   this.setState(
                     {
