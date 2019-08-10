@@ -277,7 +277,7 @@ class BridesmaidsGroomsmen extends Component {
                 {row.map((bridesmaid, i) => (
                   <Card
                     key={`bridesmaid.name--${i}`}
-                    src={`/img/photos/bridesmaids/${bridesmaid.name}.png`}
+                    src={`/img/photos/bridesmaids/${bridesmaid.name.toLowerCase()}.png`}
                     name={bridesmaid.name}
                   >
                     {bridesmaid.maidOfHonor ? (
@@ -301,7 +301,7 @@ class BridesmaidsGroomsmen extends Component {
                 {row.map((groomsman, i) => (
                   <Card
                     key={`groomsman.name--${i}`}
-                    src={`/img/photos/groomsmen/${groomsman.name}.png`}
+                    src={`/img/photos/groomsmen/${groomsman.name.toLowerCase()}.png`}
                     name={groomsman.name}
                   >
                     {groomsman.bestMan ? (
