@@ -169,15 +169,15 @@ const App = () => {
                       location={state === "update" ? location : loc}
                       primary={false}
                     >
-                      <AsyncHomepage path="/" />
+                      <AsyncHomepage path={`${process.env.PUBLIC_URL}/`} />
                       <AsyncOurStory
-                        path="our-story"
+                        path={`${process.env.PUBLIC_URL}/our-story`}
                         baseFactor={baseFactor}
                         isGreaterThanTablet={isGreaterThanTablet}
                       />
-                      <AsyncWhenWhere path="when-where" />
-                      <AsyncBridesmaidsGroomsmen path="bridesmaids-groomsmen" />
-                      <AsyncRSVP path="rsvp" />
+                      <AsyncWhenWhere path={`${process.env.PUBLIC_URL}/when-where`} />
+                      <AsyncBridesmaidsGroomsmen path={`${process.env.PUBLIC_URL}/bridesmaids-groomsmen`} />
+                      <AsyncRSVP path={`${process.env.PUBLIC_URL}/rsvp`}/>
                     </Router>
                   </animated.div>
                 )}
