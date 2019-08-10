@@ -119,7 +119,7 @@ const Navbar = ({
               />
             ) : (
               <StyledLink
-                to={item.link}
+                to={`${process.env.PUBLIC_URL}${item.link}`}
                 onClick={() => handleLinkClick(item.link)}
                 isNavbarDark={isNavbarDark}
                 active={activeLink === item.link}
