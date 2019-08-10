@@ -19,7 +19,7 @@ jobs:
             - ./node_modules
       - run:
           name: build
-          command: npm run build
+          command: CI=false npm run build
       - run:
           name: deploy
           command: npm run deploy

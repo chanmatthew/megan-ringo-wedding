@@ -1,3 +1,5 @@
+[![CircleCI](https://circleci.com/gh/chanmatthew/megan-ringo-wedding.svg?style=svg)](https://circleci.com/gh/chanmatthew/megan-ringo-wedding)
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
