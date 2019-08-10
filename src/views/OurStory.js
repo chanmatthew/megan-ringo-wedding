@@ -1,4 +1,5 @@
 import React, { Fragment, useEffect } from "react";
+import { Helmet } from "react-helmet";
 import { ParallaxLayer } from "react-spring/renderprops-addons";
 import styled from "@emotion/styled/macro";
 
@@ -16,6 +17,9 @@ import SportJerseysPhoto from "./SportJerseysPhoto";
 import FirstDate from "./FirstDate";
 
 import ParallaxSection from "../components/ParallaxSection";
+
+const description =
+  "8 years ago, Megan and Ringo met at NYU's All-University games during their freshman year of college. 8 years later, after many impromptu dates, late study nights, first jobs, promotions and more, Ringo proposed to Megan at the Brooklyn Bridge park, a symbol of Megan's beloved home and city that brought them together.";
 
 const StyledDivider = styled.div`
   height: 100%;
@@ -163,6 +167,12 @@ const OurStory = ({
         left: "0"
       }}
     >
+      <Helmet>
+        <title>Megan and Ringo's Wedding - Our Story</title>
+        <meta name="description" content={description} />
+        <meta content={description} property="og:description" />
+        <link rel="canonical" href="https://meganandringo.com/our-story" />
+      </Helmet>
       <Sections
         baseFactor={baseFactor}
         isGreaterThanTablet={isGreaterThanTablet}

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="695px" height="545px" viewBox="0 0 695 545" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 56.3 (81716) - https://sketch.com -->
+    <title>Safari Pinned Tab Logo</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <radialGradient cx="50%" cy="100%" fx="50%" fy="100%" r="237.838313%" gradientTransform="translate(0.500000,1.000000),scale(0.620115,1.000000),rotate(-90.000000),translate(-0.500000,-1.000000)" id="radialGradient-1">
+            <stop stop-color="#9EB3D6" offset="0%"></stop>
+            <stop stop-color="#91A1BB" offset="0%"></stop>
+            <stop stop-color="#F6E9CB" offset="100%"></stop>
+        </radialGradient>
+        <linearGradient x1="76.6666667%" y1="0%" x2="-76.6666667%" y2="0%" id="linearGradient-2">
+            <stop stop-color="#E2D5B7" offset="0%"></stop>
+            <stop stop-color="#8095B8" offset="100%"></stop>
+        </linearGradient>
+        <linearGradient x1="176.666667%" y1="0%" x2="23.3333333%" y2="0%" id="linearGradient-3">
+            <stop stop-color="#F6E9CB" offset="0%"></stop>
+            <stop stop-color="#6C81A4" offset="100%"></stop>
+        </linearGradient>
+    </defs>
+    <g id="Safari-Pinned-Tab" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Desktop-HD" transform="translate(-400.000000, -269.000000)">
+            <g id="Safari-Pinned-Tab-Logo" transform="translate(348.000000, 139.000000)">
+                <rect id="Rectangle" fill-opacity="0" fill="#FFFFFF" x="0" y="0" width="800" height="800"></rect>
+                <g id="Logo" transform="translate(53.000000, 0.000000)">
+                    <g id="heart" transform="translate(-2.776000, 127.777778)">
+                        <polygon id="Rectangle" fill="#F6E9CB" fill-rule="nonzero" transform="translate(575.264688, 123.775874) rotate(45.000000) translate(-575.264688, -123.775874) " points="436.250303 91.2036299 714.212172 91.4903488 714.279073 156.348118 436.317204 156.061399"></polygon>
+                        <polygon id="Rectangle" fill="#F6E9CB" fill-rule="nonzero" transform="translate(424.728627, 123.770796) rotate(135.000000) translate(-424.728627, -123.770796) " points="285.781143 91.485271 563.743012 91.1985522 563.676111 156.056322 285.714242 156.34304"></polygon>
+                        <polygon id="Rectangle" fill="#F6E9CB" fill-rule="nonzero" transform="translate(575.261879, 274.615848) rotate(135.000000) translate(-575.261879, -274.615848) " points="436.314395 242.330323 714.276264 242.043604 714.209363 306.901373 436.247494 307.188092"></polygon>
+                        <polygon id="Rectangle" fill="#8095B8" fill-rule="nonzero" transform="translate(123.668147, 123.773060) rotate(-45.000000) translate(-123.668147, -123.773060) " points="-15.2793365 91.4875344 262.682532 91.2008155 262.615631 156.058585 -15.3462376 156.345304"></polygon>
+                        <polygon id="Rectangle" fill="#8095B8" fill-rule="nonzero" transform="translate(123.663265, 274.619998) rotate(45.000000) translate(-123.663265, -274.619998) " points="-15.3511198 242.047754 262.610749 242.334473 262.67765 307.192242 -15.2842187 306.905524"></polygon>
+                        <polygon id="Rectangle" fill="#8095B8" fill-rule="nonzero" transform="translate(274.197258, 123.775874) rotate(45.000000) translate(-274.197258, -123.775874) " points="135.182873 91.2036299 413.144742 91.4903488 413.211643 156.348118 135.249774 156.061399"></polygon>
+                        <polygon id="Path" fill="url(#radialGradient-1)" points="503.658438 302.777778 352.552 454.730437 201.444633 302.777778 155.456 349.02367 306.562438 500.97633 352.552 547.222222 398.540633 500.97633 549.648 349.02367"></polygon>
+                        <polygon id="Rectangle" fill="url(#linearGradient-2)" fill-rule="nonzero" transform="translate(424.731436, 274.619998) rotate(45.000000) translate(-424.731436, -274.619998) " points="285.717051 242.047754 563.678919 242.334473 563.745821 307.192242 285.783952 306.905524"></polygon>
+                        <polygon id="Rectangle" fill="url(#linearGradient-3)" fill-rule="nonzero" transform="translate(274.202325, 274.617184) rotate(-45.000000) translate(-274.202325, -274.617184) " points="135.254841 242.331659 413.21671 242.04494 413.149809 306.902709 135.18794 307.189428"></polygon>
+                        <polygon id="Rectangle" fill="#B4AF9C" fill-rule="nonzero" transform="translate(349.465476, 199.198604) rotate(45.000000) translate(-349.465476, -199.198604) " points="317.003141 166.736269 381.86091 166.80317 381.927811 231.660939 317.070042 231.594038"></polygon>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
