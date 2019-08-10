@@ -21,7 +21,7 @@ const [
 const StyledLink = styled(({ isBrandDark, ...props }) => <Link {...props} />)`
   text-decoration: none;
   color: ${props => (props.isBrandDark ? "#152540" : "white")};
-  font-family: "Futura PT Demi";
+  font-family: "Futura PT Demi", Helvetica, Arial, sans-serif;
   transition: opacity 0.2s ease;
   font-size: 1.25rem;
   letter-spacing: 0.1em;
