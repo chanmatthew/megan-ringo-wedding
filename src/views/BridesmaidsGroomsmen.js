@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Helmet } from "react-helmet";
 import styled from "@emotion/styled/macro";
 
 import { AppContext } from "../AppProvider";
@@ -17,6 +18,9 @@ const [
   TABLET_LANDSCAPE_UP,
   DESKTOP_UP
 ] = MIN_WIDTH_BREAKPOINTS;
+
+const description =
+  "Meet the bridesmaids and groomsmen for Megan Chan and Ringo Lu's wedding ceremony. The bridesmaids are Shirley, Alexia, Tracy, Cathy and Priscilla. The maid of honor is Michelle. The groomsmen are Mario, Tommy, David, Jackson, Ken and Matthew. The best man is Richard.";
 
 const StyledMain = styled.main`
   position: absolute;
@@ -251,6 +255,15 @@ class BridesmaidsGroomsmen extends Component {
   render() {
     return (
       <StyledMain>
+        <Helmet>
+          <title>Megan and Ringo's Wedding - The Ceremony</title>
+          <meta name="description" content={description} />
+          <meta content={description} property="og:description" />
+          <link
+            rel="canonical"
+            href="https://meganandringo.com/bridesmaids-groomsmen"
+          />
+        </Helmet>
         <StyledPageHeaderImage src="/img/photos/bridesmaids_groomsmen_header.png">
           <StyledPageTitle>MEET THE...</StyledPageTitle>
         </StyledPageHeaderImage>

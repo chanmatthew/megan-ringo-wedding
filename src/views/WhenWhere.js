@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Helmet } from "react-helmet";
 import styled from "@emotion/styled/macro";
 
 import { AppContext } from "../AppProvider";
@@ -11,6 +12,9 @@ import {
   getMeridiem,
   getTimeZoneAbbr
 } from "../utils";
+
+const description =
+  "The wedding ceremony of Megan Chan and Ringo Lu will be held at the Royal Queen Restaurant, a sophisticated Chinese restaurant and event space located in Flushing, NY, on October 26, 2019 from 6:00 PM to 11:00 PM EST.";
 
 const StyledActionLink = styled.a`
   font-size: 1.75rem;
@@ -37,9 +41,7 @@ const event = {
     state: "New York",
     zipCode: "11354",
     get fullAddress() {
-      return `${this.streetAddress}, ${this.neighborhood}, ${this.state} ${
-        this.zipCode
-      }`;
+      return `${this.streetAddress}, ${this.neighborhood}, ${this.state} ${this.zipCode}`;
     },
     get googleMapsUrl() {
       return `https://maps.google.com/maps?hl=en&q=${encodeURIComponent(
@@ -78,6 +80,12 @@ class WhenWhere extends Component {
   render() {
     return (
       <main>
+        <Helmet>
+          <title>Megan and Ringo's Wedding - The Ceremony</title>
+          <meta name="description" content={description} />
+          <meta content={description} property="og:description" />
+          <link rel="canonical" href="https://meganandringo.com/when-where" />
+        </Helmet>
         <StyledArticle left view="0" style={{ backgroundColor: "white" }}>
           <LabelSection
             top="10em"

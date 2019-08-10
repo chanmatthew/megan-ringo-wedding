@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Helmet } from "react-helmet";
 import styled from "@emotion/styled/macro";
 import axios from "axios";
 
@@ -20,6 +21,9 @@ const [
   TABLET_PORTRAIT_UP,
   TABLET_LANDSCAPE_UP
 ] = MIN_WIDTH_BREAKPOINTS;
+
+const description =
+  "RSVP to Megan and Ringo's wedding. Please reply back with the following pieces of information by September 1: first name, last name, e-mail address, a list of guests and a message to the couple.";
 
 const StyledMain = styled.main`
   position: absolute;
@@ -513,6 +517,12 @@ class RSVP extends Component {
 
     return (
       <StyledMain>
+        <Helmet>
+          <title>Megan and Ringo's Wedding - RSVP</title>
+          <meta name="description" content={description} />
+          <meta content={description} property="og:description" />
+          <link rel="canonical" href="https://meganandringo.com/rsvp" />
+        </Helmet>
         <StyledPageHeaderImage src="/img/photos/stock_blue_flowers.jpg">
           <StyledPageTitle>RSVP</StyledPageTitle>
         </StyledPageHeaderImage>

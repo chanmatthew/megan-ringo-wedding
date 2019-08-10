@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import { Helmet } from "react-helmet";
 import styled from "@emotion/styled/macro";
 
 import { AppContext } from "../AppProvider";
@@ -16,6 +17,9 @@ const [
   TABLET_LANDSCAPE_UP,
   DESKTOP_UP
 ] = MIN_WIDTH_BREAKPOINTS;
+
+const description =
+  "The wedding ceremony of Megan Chan and Ringo Lu will take place October 26, 2019 in New York City. Family and friends, join us as we celebrate an important milestone in the lives of Megan and Ringo.";
 
 const StyledMain = styled.main`
   position: absolute;
@@ -81,6 +85,12 @@ const Homepage = ({ handleIsBrandDark, handleIsNavbarDark }) => {
 
   return (
     <StyledMain>
+      <Helmet>
+        <title>Megan and Ringo's Wedding - Homepage</title>
+        <meta name="description" content={description} />
+        <meta content={description} property="og:description" />
+        <link rel="canonical" href="https://meganandringo.com" />
+      </Helmet>
       <StyledHero
         desktopSrc="/img/photos/homepage_photo.jpg"
         mobileSrc="/img/photos/homepage_photo_mobile.jpg"
