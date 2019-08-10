@@ -19,7 +19,7 @@ import FirstDate from "./FirstDate";
 import ParallaxSection from "../components/ParallaxSection";
 
 const description =
-  "8 years ago, Megan Chan and Ringo Lu met at NYU's All-University games during their freshman year of college. 8 years later, after many impromptu dates, late study nights, first jobs, promotions and more, Ringo proposed to Megan at the Brooklyn Bridge park, a symbol of Megan's beloved home and city that brought them together.";
+  "8 years ago, Megan and Ringo met at NYU's All-University games during their freshman year of college. 8 years later, after many impromptu dates, late study nights, first jobs, promotions and more, Ringo proposed to Megan at the Brooklyn Bridge park, a symbol of Megan's beloved home and city that brought them together.";
 
 const StyledDivider = styled.div`
   height: 100%;

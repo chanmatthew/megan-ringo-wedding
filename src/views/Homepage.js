@@ -19,7 +19,7 @@ const [
 ] = MIN_WIDTH_BREAKPOINTS;
 
 const description =
-  "The wedding ceremony of Megan Chan and Ringo Lu will take place October 26, 2019 in New York City. Family and friends, join us as we celebrate an important milestone in the lives of Megan and Ringo.";
+  "The wedding ceremony of Megan and Ringo will take place October 26, 2019 in New York City. Family and friends, join us as we celebrate an important milestone in the lives of Megan and Ringo.";
 
 const StyledMain = styled.main`
   position: absolute;

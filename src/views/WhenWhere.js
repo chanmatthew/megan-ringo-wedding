@@ -14,7 +14,7 @@ import {
 } from "../utils";
 
 const description =
-  "The wedding ceremony of Megan Chan and Ringo Lu will be held at the Royal Queen Restaurant, a sophisticated Chinese restaurant and event space located in Flushing, NY, on October 26, 2019 from 6:00 PM to 11:00 PM EST.";
+  "The wedding ceremony of Megan and Ringo will be held at the Royal Queen Restaurant, a sophisticated Chinese restaurant and event space located in Flushing, NY, on October 26, 2019 from 6:00 PM to 11:00 PM EST.";
 
 const StyledActionLink = styled.a`
   font-size: 1.75rem;
