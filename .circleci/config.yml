@@ -17,6 +17,9 @@ jobs:
           key: dependency-cache-{{ checksum "package.json" }}
           paths:
             - ./node_modules
+      - add_ssh_keys:
+          fingerprints:
+            - "68:96:a5:b2:df:ac:2f:89:ff:bd:8b:ec:c3:3f:19:82"
       - run:
           name: deploy
           command: CI=false npm run deploy
