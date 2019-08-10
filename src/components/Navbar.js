@@ -21,21 +21,33 @@ const [
   DESKTOP_UP
 ] = MIN_WIDTH_BREAKPOINTS;
 
-const BTWN_TABLET_PORTRAIT_LANDSCAPE_UP = 896;
-
 const StyledNavbar = styled("nav")`
   display: flex;
-  justify-content: center;
+  justify-content: flex-end;
 `;
 
 const StyledNavList = styled("ul")`
   display: flex;
-  width: 100%;
-  justify-content: center;
 `;
 
 const StyledNavListItem = styled("li")`
   text-transform: uppercase;
+
+  &:not(:last-child) {
+    margin-right: 0.1em;
+
+    @media only screen and (min-width: ${TABLET_PORTRAIT_UP}px) {
+      margin-right: 0.7em;
+    }
+
+    @media only screen and (min-width: ${TABLET_LANDSCAPE_UP}px) {
+      margin-right: 1em;
+    }
+
+    @media only screen and (min-width: ${DESKTOP_UP}px) {
+      margin-right: 1.3em;
+    }
+  }
 `;
 
 const StyledLink = styled(({ isNavbarDark, active, ...props }) => (
@@ -43,16 +55,27 @@ const StyledLink = styled(({ isNavbarDark, active, ...props }) => (
 ))`
   text-decoration: none;
   color: ${props => (props.isNavbarDark ? "#152540" : "white")};
-  font-size: 1.4rem;
-  font-weight: 500;
-  letter-spacing: 0.1875rem;
-  padding: 0.4em 0.8em;
+  font-size: 1rem;
+  padding: 0.2em 0.4em;
   transition: opacity 0.2s ease;
   opacity: ${props => (props.active ? "1" : "0.8")};
   position: relative;
+  white-space: nowrap;
+  letter-spacing: 0.12rem;
 
-  &:not(:last-child) {
-    margin-right: 1.3em;
+  @media only screen and (min-width: ${TABLET_PORTRAIT_UP}px) {
+    font-size: 1rem;
+    letter-spacing: 0.1875rem;
+  }
+
+  @media only screen and (min-width: ${TABLET_LANDSCAPE_UP}px) {
+    font-size: 1.2rem;
+    padding: 0.3em 0.6em;
+  }
+
+  @media only screen and (min-width: ${DESKTOP_UP}px) {
+    font-size: 1.4rem;
+    padding: 0.4em 0.8em;
   }
 
   &:hover {
@@ -81,30 +104,32 @@ const Navbar = ({
 }) => (
   <StyledNavbar>
     <StyledNavList>
-      {navigationItems.map(item => (
-        <StyledNavListItem key={item.id}>
-          {item.dropdownItems ? (
-            <DropdownToggle
-              name={item.label}
-              items={item.dropdownItems}
-              handleLinkClick={handleLinkClick}
-              active={
-                item.dropdownItems.filter(dItem => dItem.link === activeLink)
-                  .length > 0
-              }
-            />
-          ) : (
-            <StyledLink
-              to={item.link}
-              onClick={() => handleLinkClick(item.link)}
-              isNavbarDark={isNavbarDark}
-              active={activeLink === item.link}
-            >
-              {item.label}
-            </StyledLink>
-          )}
-        </StyledNavListItem>
-      ))}
+      {navigationItems.map(item =>
+        !item.hidden ? (
+          <StyledNavListItem key={item.id}>
+            {item.dropdownItems ? (
+              <DropdownToggle
+                name={item.label}
+                items={item.dropdownItems}
+                handleLinkClick={handleLinkClick}
+                active={
+                  item.dropdownItems.filter(dItem => dItem.link === activeLink)
+                    .length > 0
+                }
+              />
+            ) : (
+              <StyledLink
+                to={item.link}
+                onClick={() => handleLinkClick(item.link)}
+                isNavbarDark={isNavbarDark}
+                active={activeLink === item.link}
+              >
+                {item.label}
+              </StyledLink>
+            )}
+          </StyledNavListItem>
+        ) : null
+      )}
     </StyledNavList>
   </StyledNavbar>
 );

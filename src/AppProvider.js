@@ -20,6 +20,13 @@ export class AppProvider extends Component {
     navigationItems: [
       {
         id: shortid.generate(),
+        label: "Home",
+        desc: "Return to the homepage",
+        link: "/",
+        hidden: true
+      },
+      {
+        id: shortid.generate(),
         label: "Our Story",
         desc: "Read how it all began!",
         link: "/our-story"

@@ -54,22 +54,16 @@ const StyledCaret = styled.div`
   `}
 `;
 
-const MobileNavbar = () => {
-  const [isToggled, toggleMenu] = useState(false);
-
+const MobileNavbar = ({ isToggled, openMenu, closeMenu }) => {
   const { menuY } = useSpring({
     from: { menuY: 0 },
     menuY: isToggled ? 1 : 0,
     config: config.slow
   });
 
-  const closeMenu = () => {
-    toggleMenu(false);
-  };
-
   return (
     <Fragment>
-      <StyledMobileToggle onClick={() => toggleMenu(!isToggled)}>
+      <StyledMobileToggle onClick={isToggled ? closeMenu : openMenu}>
         <StyledHeartOutline
           className={isToggled ? "" : "no-fill"}
           isToggled={isToggled}
