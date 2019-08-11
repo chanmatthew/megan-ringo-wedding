@@ -170,14 +170,10 @@ class WhenWhere extends Component {
         <StyledArticle left>
           <StyledEventDetailsContainer>
             <LabelSection
-              top="10em"
-              left="2.5em"
               category="Date"
               title={event.formattedDate.toUpperCase()}
             />
             <LabelSection
-              top="24em"
-              left="2.5em"
               category="Time"
               subtitle={`(${event.timeZoneAbbr})`}
               title={event.formattedTimeSlot.toUpperCase()}
@@ -191,8 +187,6 @@ class WhenWhere extends Component {
               </StyledActionLink>
             </LabelSection>
             <LabelSection
-              top="38em"
-              left="2.5em"
               category="Location"
               title={event.location.name.toUpperCase()}
             >

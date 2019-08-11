@@ -49,7 +49,7 @@ const StyledLabelSection = styled.section`
 const StyledCategory = styled.h2`
   font-size: 1.2rem;
   font-weight: bold;
-  color: rgba(104, 113, 134, 1);
+  color: rgb(104, 113, 134);
   opacity: 0.4;
   letter-spacing: 0.03em;
   margin-bottom: 0.3em;
