@@ -87,7 +87,11 @@ const SiteHeader = () => {
       closeMenu();
       memoizedHandleLinkClick(window.location.pathname);
     };
-  });
+
+    if (isTabletPortraitUp) {
+      closeMenu();
+    }
+  }, [isTabletPortraitUp]);
 
   return (
     <AnimatedHeader isTabletPortraitUp={isTabletPortraitUp} style={style}>
