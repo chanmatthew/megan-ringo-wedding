@@ -56,13 +56,8 @@ const StyledParallax = styled(
 
 const calculatePages = (currentPath, isGreaterThanTablet, baseFactor) => {
   switch (currentPath) {
-    case "/when-where":
-      return isGreaterThanTablet
-        ? window.innerHeight > PARALLAX_LAYER_HEIGHT
-          ? 1
-          : baseFactor
-        : 2 * baseFactor;
     case "/":
+    case "/when-where":
     case "/album":
     case "/rsvp":
     case "/bridesmaids-groomsmen":
@@ -91,8 +86,7 @@ const App = () => {
   );
 
   const [isOverflowY, setIsOverflowY] = useState(
-    currentLocation.location.pathname !== "/our-story" &&
-      currentLocation.location.pathname !== "/when-where"
+    currentLocation.location.pathname !== "/our-story"
   );
 
   let parallaxRef = null;
@@ -128,10 +122,7 @@ const App = () => {
       )
     );
 
-    setIsOverflowY(
-      currentLocation.location.pathname !== "/our-story" &&
-        currentLocation.location.pathname !== "/when-where"
-    );
+    setIsOverflowY(currentLocation.location.pathname !== "/our-story");
 
     return () => {
       window.removeEventListener("resize", updateRaf, false);
