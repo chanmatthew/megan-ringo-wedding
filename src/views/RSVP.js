@@ -533,7 +533,7 @@ class RSVP extends Component {
             WE'RE EXCITED TO CELEBRATE WITH YOU!
           </StyledPageDescription>
           <StyledSubDescription>
-            KINDLY RESPOND BY OCTOBER 5, 2019
+            KINDLY RESPOND BY SEPTEMBER 1, 2019
           </StyledSubDescription>
           <StyledRSVPForm
             noValidate
