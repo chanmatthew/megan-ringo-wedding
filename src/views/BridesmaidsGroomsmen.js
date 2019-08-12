@@ -20,7 +20,7 @@ const [
 ] = MIN_WIDTH_BREAKPOINTS;
 
 const description =
-  "Meet the bridesmaids and groomsmen for Megan and Ringo's wedding ceremony. The bridesmaids are Shirley, Alexia, Tracy, Cathy and Priscilla. The maid of honor is Michelle. The groomsmen are Mario, Tommy, David, Jackson, Ken and Matthew. The best man is Richard.";
+  "Meet the bridesmaids and groomsmen for Megan and Ringo's wedding ceremony. The bridesmaids are Shirley, Priscilla, Tracy, Cathy and Alexia. The maid of honor is Michelle. The groomsmen are Tommy, David, Jackson, Ken and Matthew. The best men are Richard and Mario.";
 
 const StyledMain = styled.main`
   position: absolute;
@@ -185,16 +185,13 @@ const StyledCardRow = styled.div`
 `;
 
 const StyledSpecialTitle = styled.div`
-  position: absolute;
   font-size: 1rem;
   letter-spacing: 0.1em;
-  top: -2em;
-  left: 50%;
-  transform: translate3d(-50%, 0, 0);
   white-space: nowrap;
   color: ${props => props.color};
   display: flex;
   align-items: center;
+  margin-bottom: 0.2em;
 
   @media only screen and (min-width: ${POST_IPHONE6_PORTRAIT_UP}px) {
     font-size: 1.1rem;
@@ -233,16 +230,16 @@ const StyledCrown = styled.div`
 
 const bridesmaids = [
   [{ name: "Michelle", maidOfHonor: true }],
-  [{ name: "Shirley" }, { name: "Alexia" }],
+  [{ name: "Shirley" }, { name: "Priscilla" }],
   [{ name: "Tracy" }, { name: "Cathy" }],
-  [{ name: "Priscilla" }]
+  [{ name: "Alexia" }]
 ];
 
 const groomsmen = [
-  [{ name: "Richard", bestMan: true }],
-  [{ name: "Mario" }, { name: "Tommy" }],
-  [{ name: "David" }, { name: "Jackson" }],
-  [{ name: "Ken" }, { name: "Matthew" }]
+  [{ name: "Richard", bestMan: true }, { name: "Mario", bestMan: true }],
+  [{ name: "Tommy" }, { name: "David" }],
+  [{ name: "Jackson" }, { name: "Ken" }],
+  [{ name: "Matthew" }]
 ];
 
 class BridesmaidsGroomsmen extends Component {
@@ -277,7 +274,7 @@ class BridesmaidsGroomsmen extends Component {
                 {row.map((bridesmaid, i) => (
                   <Card
                     key={`bridesmaid.name--${i}`}
-                    src={`/img/photos/bridesmaids/${bridesmaid.name.toLowerCase()}.png`}
+                    src={`/img/photos/bridesmaids/${bridesmaid.name.toLowerCase()}.jpg`}
                     name={bridesmaid.name}
                   >
                     {bridesmaid.maidOfHonor ? (
@@ -301,7 +298,7 @@ class BridesmaidsGroomsmen extends Component {
                 {row.map((groomsman, i) => (
                   <Card
                     key={`groomsman.name--${i}`}
-                    src={`/img/photos/groomsmen/${groomsman.name.toLowerCase()}.png`}
+                    src={`/img/photos/groomsmen/${groomsman.name.toLowerCase()}.jpg`}
                     name={groomsman.name}
                   >
                     {groomsman.bestMan ? (
