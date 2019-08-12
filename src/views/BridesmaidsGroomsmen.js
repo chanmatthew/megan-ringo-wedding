@@ -20,7 +20,7 @@ const [
 ] = MIN_WIDTH_BREAKPOINTS;
 
 const description =
-  "Meet the bridesmaids and groomsmen for Megan and Ringo's wedding ceremony. The bridesmaids are Shirley, Alexia, Tracy, Cathy and Priscilla. The maid of honor is Michelle. The groomsmen are Mario, Tommy, David, Jackson, Ken and Matthew. The best man is Richard.";
+  "Meet the bridesmaids and groomsmen for Megan and Ringo's wedding ceremony. The bridesmaids are Shirley, Priscilla, Tracy, Cathy and Alexia. The maid of honor is Michelle. The groomsmen are Tommy, David, Jackson, Ken and Matthew. The best men are Richard and Mario.";
 
 const StyledMain = styled.main`
   position: absolute;
