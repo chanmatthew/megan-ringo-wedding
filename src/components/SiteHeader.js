@@ -88,10 +88,14 @@ const SiteHeader = ({ isSiteHeaderShown }) => {
       isLoading = false;
     }
 
+    if (isTabletPortraitUp) {
+      closeMenu();
+    }
+
     setHeaderState(
       isTabletLandscapeUp === false || isSiteHeaderShown ? "shown" : "hidden"
     );
-  }, [isSiteHeaderShown, isTabletLandscapeUp]);
+  }, [isTabletPortraitUp, isSiteHeaderShown, isTabletLandscapeUp]);
 
   return (
     <Header native state={headerState}>
