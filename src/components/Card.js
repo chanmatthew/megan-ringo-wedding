@@ -15,6 +15,14 @@ const [
   DESKTOP_UP
 ] = MIN_WIDTH_BREAKPOINTS;
 
+const CARD_SIZE_RATIO = 3.5 / 3;
+
+const StyledCardContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
+
 const StyledCard = styled.div`
   position: relative;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
@@ -40,41 +48,41 @@ const StyledCardImage = styled.div`
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
-  height: 15em;
+  height: 17.5em;
   width: 15em;
 
   @media only screen and (min-width: ${POST_IPHONE6_PORTRAIT_UP}px) {
-    height: 17em;
+    height: calc(${CARD_SIZE_RATIO} * 17em);
     width: 17em;
   }
 
   @media only screen and (min-width: ${PHONE_LANDSCAPE_UP}px) {
-    height: 13em;
+    height: calc(${CARD_SIZE_RATIO} * 13em);
     width: 13em;
   }
 
   @media only screen and (min-width: ${SMALL_DEVICES_LANDSCAPE_UP}px) {
-    height: 15em;
+    height: 17.5em;
     width: 15em;
   }
 
   @media only screen and (min-width: ${BETWEEN_SMALL_DEVICES_TABLET_UP}px) {
-    height: 8em;
+    height: calc(${CARD_SIZE_RATIO} * 8em);
     width: 8em;
   }
 
   @media only screen and (min-width: ${TABLET_PORTRAIT_UP}px) {
-    height: 9em;
+    height: 10.5em;
     width: 9em;
   }
 
   @media only screen and (min-width: ${TABLET_LANDSCAPE_UP}px) {
-    height: 12em;
+    height: 14em;
     width: 12em;
   }
 
   @media only screen and (min-width: ${DESKTOP_UP}px) {
-    height: 15em;
+    height: 17.5em;
     width: 15em;
   }
 `;
@@ -102,11 +110,13 @@ const StyledCardName = styled.div`
 `;
 
 const Card = props => (
-  <StyledCard>
-    <StyledCardImage src={props.src} />
-    <StyledCardName>{props.name}</StyledCardName>
+  <StyledCardContainer>
     {props.children}
-  </StyledCard>
+    <StyledCard>
+      <StyledCardImage src={props.src} />
+      <StyledCardName>{props.name}</StyledCardName>
+    </StyledCard>
+  </StyledCardContainer>
 );
 
 export default Card;
