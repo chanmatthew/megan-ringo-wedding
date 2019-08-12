@@ -89,8 +89,8 @@ const FiltersPhoto = ({ isVisible }) => (
   <StyledFiltersPhoto>
     <StyledPhotoImage
       title="Megan and Ringo - Four Color Filters - NYU Photo"
-      placeholder="/img/album/IMG_0452_opt.jpg"
-      image="/img/album/IMG_0452.jpg"
+      placeholder="/img/album/IMG_5_opt.jpg"
+      image="/img/album/IMG_5.jpg"
       isVisible={isVisible}
     />
   </StyledFiltersPhoto>

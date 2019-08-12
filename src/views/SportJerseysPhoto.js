@@ -69,8 +69,8 @@ const SportJerseysPhoto = ({ isVisible }) => (
   <StyledSportJerseysPhoto>
     <StyledPhotoImage
       title="Megan and Ringo - Wearing Sport Jerseys - NYU Photo"
-      placeholder="/img/album/IMG_0942_opt.jpg"
-      image="/img/album/IMG_0942.jpg"
+      placeholder="/img/album/IMG_24_opt.jpg"
+      image="/img/album/IMG_24.jpg"
       isVisible={isVisible}
     />
   </StyledSportJerseysPhoto>

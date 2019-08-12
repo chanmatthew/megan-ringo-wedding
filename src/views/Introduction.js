@@ -106,8 +106,8 @@ const Introduction = ({
       <ParallaxLayer offset={baseFactor * 0.25} speed={0.1} factor={baseFactor}>
         <StyledFrowningFacesPhoto
           title="Photo - Megan and Ringo 'Frowning'"
-          placeholder="/img/album/IMG_0450_opt.jpg"
-          image="/img/album/IMG_0450.jpg"
+          placeholder="/img/album/IMG_3_opt.jpg"
+          image="/img/album/IMG_3.jpg"
           isVisible={isVisible}
         />
       </ParallaxLayer>

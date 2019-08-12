@@ -311,8 +311,8 @@ const SheSaidYes = ({ isVisible, isGreaterThanTablet, baseFactor }) => {
           </StyledText>
           <StyledRingPhoto
             title="Photo - Megan Showcases Ring with Ringo and Friends"
-            placeholder="/img/album/IMG_4635_opt.jpg"
-            image="/img/album/IMG_4635.jpg"
+            placeholder="/img/album/IMG_62_opt.jpg"
+            image="/img/album/IMG_62.jpg"
             isVisible={isVisible}
           />
         </ParallaxLayer>

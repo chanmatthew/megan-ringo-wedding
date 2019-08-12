@@ -79,8 +79,8 @@ const DistortedPhoto = ({ baseFactor, isVisible }) => (
   <StyledDistortedPhoto>
     <StyledPhotoImage
       title="Megan and Ringo - Distorted Faces - NYU Photo"
-      placeholder="/img/album/IMG_0451_opt.jpg"
-      image="/img/album/IMG_0451.jpg"
+      placeholder="/img/album/IMG_4_opt.jpg"
+      image="/img/album/IMG_4.jpg"
       isVisible={isVisible}
       baseFactor={baseFactor}
     />

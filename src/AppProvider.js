@@ -12,11 +12,17 @@ export class AppProvider extends Component {
     this.setState({ isNavbarDark });
   };
 
+  handleIsSiteHeaderShown = isSiteHeaderShown => {
+    this.setState({ isSiteHeaderShown });
+  };
+
   state = {
+    isSiteHeaderShown: true,
     isBrandDark: true,
     isNavbarDark: true,
     handleIsBrandDark: this.handleIsBrandDark,
     handleIsNavbarDark: this.handleIsNavbarDark,
+    handleIsSiteHeaderShown: this.handleIsSiteHeaderShown,
     navigationItems: [
       {
         id: shortid.generate(),
