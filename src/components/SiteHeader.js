@@ -1,7 +1,7 @@
 import React, { Fragment, useCallback, useEffect, useState } from "react";
 import styled from "@emotion/styled/macro";
 import { animated, Keyframes } from "react-spring/renderprops";
-import { useSpring, config } from "react-spring";
+import { animated as animatedBase, useSpring, config } from "react-spring";
 
 import { AppContext } from "../AppProvider";
 
@@ -28,11 +28,9 @@ function delay(ms) {
   return new Promise(resolve => setTimeout(resolve, ms));
 }
 
-const AnimatedHeader = styled(
-  ({ isTabletPortraitUp, isScrolling, ...props }) => (
-    <animated.header {...props} />
-  )
-)`
+const AnimatedHeader = styled(({ ...props }) => (
+  <animatedBase.header {...props} />
+))`
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -72,7 +70,7 @@ let isLoading = true;
 
 const SiteHeader = ({ isSiteHeaderShown }) => {
   const isTabletPortraitUp = useMedia(
-    `(min-width: ${MIN_WIDTH_BREAKPOINTS[6]}px)`
+    `(min-width: ${BETWEEN_SMALL_DEVICES_TABLET_UP}px)`
   );
   const isTabletLandscapeUp = useMedia(`(min-width: ${TABLET_LANDSCAPE_UP}px)`);
   const [activeLink, setActiveLink] = useState(window.location.pathname);
@@ -134,7 +132,7 @@ const SiteHeader = ({ isSiteHeaderShown }) => {
             transform: y.interpolate(y => `translate3d(0, ${y}%, 0)`)
           }}
         >
-          <AnimatedHeader isTabletPortraitUp={isTabletPortraitUp} style={style}>
+          <AnimatedHeader style={style}>
             {isTabletPortraitUp ? (
               <Fragment>
                 <Brand handleLinkClick={memoizedHandleLinkClick} />

@@ -1,6 +1,6 @@
 import React, { useCallback, useState, useEffect } from "react";
-import { Keyframes, animated } from "react-spring/renderprops";
 import { a } from "react-spring";
+import { Keyframes, animated } from "react-spring/renderprops";
 import { Helmet } from "react-helmet";
 import styled from "@emotion/styled/macro";
 import Heading from "../components/Heading";
