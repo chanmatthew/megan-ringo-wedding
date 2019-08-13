@@ -90,7 +90,7 @@ const StyledHeading = styled(Heading)`
   @media only screen and (min-width: ${TABLET_LANDSCAPE_UP}px) {
     position: absolute;
     display: block;
-    left: 2.5em;
+    left: 1.375em;
     top: 14em;
   }
 
@@ -164,7 +164,7 @@ const StyledText = styled(Text)`
     display: block;
     background-position: left top;
     line-height: 1.25;
-    left: 1.75em;
+    left: 1em;
     width: 60%;
     top: 17em;
     font-size: 1.625rem;
@@ -185,7 +185,7 @@ const StyledButton = styled.button`
   @media only screen and (min-width: ${TABLET_LANDSCAPE_UP}px) {
     position: absolute;
     display: block;
-    left: 2.5em;
+    left: 1.875em;
     top: 24em;
     -webkit-appearance: none;
     border: none;

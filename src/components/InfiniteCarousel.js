@@ -40,6 +40,7 @@ const AnimatedCarouselControls = styled(({ ...props }) => (
 
   @media only screen and (min-width: ${BETWEEN_SMALL_DEVICES_TABLET_UP}px) {
     height: 5em;
+    top: 1em;
   }
 `;
 

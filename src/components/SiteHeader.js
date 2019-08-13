@@ -12,7 +12,17 @@ import MobileNavbar from "./MobileNavbar";
 import { useMedia } from "../hooks";
 import { MIN_WIDTH_BREAKPOINTS } from "../enums";
 
-const [, , , , , , , , TABLET_LANDSCAPE_UP] = MIN_WIDTH_BREAKPOINTS;
+const [
+  ,
+  ,
+  ,
+  ,
+  ,
+  ,
+  BETWEEN_SMALL_DEVICES_TABLET_UP,
+  TABLET_PORTRAIT_UP,
+  TABLET_LANDSCAPE_UP
+] = MIN_WIDTH_BREAKPOINTS;
 
 function delay(ms) {
   return new Promise(resolve => setTimeout(resolve, ms));
@@ -28,6 +38,18 @@ const AnimatedHeader = styled(
   align-items: center;
   z-index: 1;
   padding: 0 1em;
+  margin: 0 auto;
+
+  @media only screen and (min-width: ${BETWEEN_SMALL_DEVICES_TABLET_UP}px) {
+    padding: 1em 0;
+    width: 98%;
+  }
+  @media only screen and (min-width: ${TABLET_PORTRAIT_UP}px) {
+    width: 96%;
+  }
+  @media only screen and (min-width: ${TABLET_LANDSCAPE_UP}px) {
+    padding: 1.25em 0;
+  }
 
   nav {
     width: 50%;

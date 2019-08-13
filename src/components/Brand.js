@@ -25,19 +25,21 @@ const StyledLink = styled(({ isBrandDark, ...props }) => <Link {...props} />)`
   transition: opacity 0.2s ease;
   font-size: 1.25rem;
   letter-spacing: 0.1em;
-  padding: 0.1em 0.5em;
+  padding: 0.1em 0.32em;
 
   @media only screen and (min-width: ${TABLET_PORTRAIT_UP}px) {
     letter-spacing: 0.15em;
-    padding: 0.2em 1em;
+    padding: 0.2em 0.32em;
   }
 
   @media only screen and (min-width: ${TABLET_LANDSCAPE_UP}px) {
     font-size: 1.5rem;
+    padding: 0.1em 0.48em;
   }
 
   @media only screen and (min-width: ${DESKTOP_UP}px) {
     font-size: 1.75rem;
+    padding: 0.1em 0.64em;
   }
 
   &:hover {
