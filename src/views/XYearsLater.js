@@ -357,52 +357,52 @@ const imageColumns = [
     {
       id: shortid.generate(),
       alt: "Photo - Megan on Ringo's Shoulders",
-      name: "IMG_7235"
+      name: "IMG_82"
     },
     {
       id: shortid.generate(),
       alt: "Photo - Megan and Ringo at a Shoreline",
-      name: "IMG_3081"
+      name: "IMG_42"
     },
     {
       id: shortid.generate(),
       alt: "Photo - Megan and Ringo Attending a Friend's Wedding",
-      name: "IMG_2073"
+      name: "IMG_34"
     }
   ],
   [
     {
       id: shortid.generate(),
       alt: "Photo - Megan and Ringo's Brooklyn Nets Jersey Selfie",
-      name: "IMG_0942"
+      name: "IMG_24"
     },
     {
       id: shortid.generate(),
       alt: "Photo - Megan and Ringo at a Nighttime Rooftop Gathering",
-      name: "IMG_8112"
+      name: "IMG_90"
     },
     {
       id: shortid.generate(),
       alt: "Photo - Ringo Attending Megan's Graduation from NYU Stern",
-      name: "IMG_7687"
+      name: "IMG_86"
     }
   ],
   [
     {
       id: shortid.generate(),
       alt: "Megan and Ringo at a Beach",
-      name: "IMG_5698",
+      name: "IMG_74",
       ext: "jpg"
     },
     {
       id: shortid.generate(),
       alt: "Photo - Megan and Ringo Attending a Wedding Reception",
-      name: "IMG_7777"
+      name: "IMG_87"
     },
     {
       id: shortid.generate(),
       alt: "Photo - Megan and Ringo at the Foot of the Golden Gate Bridge",
-      name: "IMG_0350"
+      name: "IMG_1"
     }
   ]
 ];

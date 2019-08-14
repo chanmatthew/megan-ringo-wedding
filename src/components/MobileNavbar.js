@@ -3,6 +3,7 @@ import styled from "@emotion/styled/macro";
 import SVG from "react-inlinesvg";
 import Loadable from "react-loadable";
 import { useSpring, config, animated } from "react-spring";
+import { AppContext } from "../AppProvider";
 
 const AsyncMobileMenu = Loadable({
   loader: () => import("./MobileMenu"),
@@ -37,7 +38,8 @@ const StyledHeartOutline = styled.div`
 `;
 
 const StyledCaret = styled.div`
-  color: ${props => (props.isToggled ? "#a6afc4;" : "#FFFFFF")};
+  color: ${props =>
+    props.isToggled ? "#a6afc4;" : props.isNavbarDark ? "#152540" : "#FFFFFF"};
   transition: transform 250ms ease-in-out;
   display: flex;
   align-items: center;
@@ -54,7 +56,7 @@ const StyledCaret = styled.div`
   `}
 `;
 
-const MobileNavbar = ({ isToggled, openMenu, closeMenu }) => {
+const MobileNavbar = ({ isToggled, openMenu, closeMenu, isNavbarDark }) => {
   const { menuY } = useSpring({
     from: { menuY: 0 },
     menuY: isToggled ? 1 : 0,
@@ -65,7 +67,7 @@ const MobileNavbar = ({ isToggled, openMenu, closeMenu }) => {
     <Fragment>
       <StyledMobileToggle onClick={isToggled ? closeMenu : openMenu}>
         <StyledHeartOutline
-          className={isToggled ? "" : "no-fill"}
+          className={isToggled ? "" : `${isNavbarDark ? "" : "no-"}fill`}
           isToggled={isToggled}
         >
           <SVG
@@ -73,7 +75,7 @@ const MobileNavbar = ({ isToggled, openMenu, closeMenu }) => {
             alt="Blue-Gold Heart - Outline"
           />
         </StyledHeartOutline>
-        <StyledCaret isToggled={isToggled}>
+        <StyledCaret isNavbarDark={isNavbarDark} isToggled={isToggled}>
           <SVG src="/img/graphics/caret.svg" alt="Caret" />
         </StyledCaret>
       </StyledMobileToggle>
@@ -94,4 +96,10 @@ const MobileNavbar = ({ isToggled, openMenu, closeMenu }) => {
   );
 };
 
-export default MobileNavbar;
+export default props => (
+  <AppContext.Consumer>
+    {({ isNavbarDark }) => (
+      <MobileNavbar {...props} isNavbarDark={isNavbarDark} />
+    )}
+  </AppContext.Consumer>
+);

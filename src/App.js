@@ -33,6 +33,11 @@ const AsyncBridesmaidsGroomsmen = Loadable({
   loading: () => <span />
 });
 
+const AsyncAlbum = Loadable({
+  loader: () => import("./views/Album"),
+  loading: () => <span />
+});
+
 const AsyncRSVP = Loadable({
   loader: () => import("./views/RSVP"),
   loading: () => <span />
@@ -132,10 +137,10 @@ const App = () => {
   return (
     <StyledParallaxContainer>
       <StyledParallax
+        native
         ref={ref => (parallaxRef = ref)}
         pages={pages}
         isOverflowY={isOverflowY}
-        native
       >
         <AppProvider>
           <SiteHeader />
@@ -167,6 +172,7 @@ const App = () => {
                         baseFactor={baseFactor}
                         isGreaterThanTablet={isGreaterThanTablet}
                       />
+                      <AsyncAlbum path="album" />
                       <AsyncWhenWhere path="when-where" />
                       <AsyncBridesmaidsGroomsmen path="bridesmaids-groomsmen" />
                       <AsyncRSVP path="rsvp" />

@@ -1,6 +1,9 @@
 import React, { Fragment, useCallback, useEffect, useState } from "react";
 import styled from "@emotion/styled/macro";
-import { animated, useSpring, config } from "react-spring";
+import { animated, Keyframes } from "react-spring/renderprops";
+import { animated as animatedBase, useSpring, config } from "react-spring";
+
+import { AppContext } from "../AppProvider";
 
 import Brand from "./Brand";
 import Navbar from "./Navbar";
@@ -21,30 +24,27 @@ const [
   TABLET_LANDSCAPE_UP
 ] = MIN_WIDTH_BREAKPOINTS;
 
-const AnimatedHeader = styled(
-  ({ isTabletPortraitUp, isScrolling, ...props }) => (
-    <animated.header {...props} />
-  )
-)`
+function delay(ms) {
+  return new Promise(resolve => setTimeout(resolve, ms));
+}
+
+const AnimatedHeader = styled(({ ...props }) => (
+  <animatedBase.header {...props} />
+))`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  position: absolute;
-  left: 0;
-  right: 0;
-  margin: 0 auto;
   z-index: 1;
   padding: 0 1em;
+  margin: 0 auto;
 
   @media only screen and (min-width: ${BETWEEN_SMALL_DEVICES_TABLET_UP}px) {
     padding: 1em 0;
     width: 98%;
   }
-
   @media only screen and (min-width: ${TABLET_PORTRAIT_UP}px) {
     width: 96%;
   }
-
   @media only screen and (min-width: ${TABLET_LANDSCAPE_UP}px) {
     padding: 1.25em 0;
   }
@@ -54,12 +54,36 @@ const AnimatedHeader = styled(
   }
 `;
 
-const SiteHeader = () => {
+const AnimatedHeaderWrapper = styled(({ ...props }) => (
+  <animated.div {...props} />
+))`
+  position: absolute;
+  right: 0;
+  left: 0;
+  height: 5em;
+  z-index: 1;
+`;
+
+const Header = Keyframes.Spring({
+  shown: {
+    delay: 0,
+    y: 0,
+    opacity: 1
+  },
+  hidden: async call => {
+    await delay(300);
+    await call({ delay: 0, y: -100, opacity: 0 });
+  }
+});
+
+const SiteHeader = ({ isSiteHeaderShown }) => {
   const isTabletPortraitUp = useMedia(
-    `(min-width: ${MIN_WIDTH_BREAKPOINTS[6]}px)`
+    `(min-width: ${BETWEEN_SMALL_DEVICES_TABLET_UP}px)`
   );
+  const isTabletLandscapeUp = useMedia(`(min-width: ${TABLET_LANDSCAPE_UP}px)`);
   const [activeLink, setActiveLink] = useState(window.location.pathname);
   const [isToggled, toggleMenu] = useState(false);
+  const [headerState, setHeaderState] = useState("shown");
 
   const style = useSpring({
     to: { transform: "translate3d(0, 0, 0)", opacity: "1" },
@@ -87,31 +111,54 @@ const SiteHeader = () => {
       closeMenu();
       memoizedHandleLinkClick(window.location.pathname);
     };
+  }, []);
 
+  useEffect(() => {
     if (isTabletPortraitUp) {
       closeMenu();
     }
-  }, [isTabletPortraitUp]);
+
+    setHeaderState(
+      isTabletLandscapeUp === false || isSiteHeaderShown ? "shown" : "hidden"
+    );
+  }, [isTabletPortraitUp, isSiteHeaderShown, isTabletLandscapeUp]);
 
   return (
-    <AnimatedHeader isTabletPortraitUp={isTabletPortraitUp} style={style}>
-      {isTabletPortraitUp ? (
-        <Fragment>
-          <Brand handleLinkClick={memoizedHandleLinkClick} />
-          <Navbar
-            activeLink={activeLink}
-            handleLinkClick={memoizedHandleLinkClick}
-          />
-        </Fragment>
-      ) : (
-        <MobileNavbar
-          isToggled={isToggled}
-          openMenu={openMenu}
-          closeMenu={closeMenu}
-        />
+    <Header native state={headerState}>
+      {({ y, opacity }) => (
+        <AnimatedHeaderWrapper
+          style={{
+            opacity: opacity.interpolate(o => o),
+            transform: y.interpolate(y => `translate3d(0, ${y}%, 0)`)
+          }}
+        >
+          <AnimatedHeader style={style}>
+            {isTabletPortraitUp ? (
+              <Fragment>
+                <Brand handleLinkClick={memoizedHandleLinkClick} />
+                <Navbar
+                  activeLink={activeLink}
+                  handleLinkClick={memoizedHandleLinkClick}
+                />
+              </Fragment>
+            ) : (
+              <MobileNavbar
+                isToggled={isToggled}
+                openMenu={openMenu}
+                closeMenu={closeMenu}
+              />
+            )}
+          </AnimatedHeader>
+        </AnimatedHeaderWrapper>
       )}
-    </AnimatedHeader>
+    </Header>
   );
 };
 
-export default SiteHeader;
+export default props => (
+  <AppContext.Consumer>
+    {({ isSiteHeaderShown }) => (
+      <SiteHeader {...props} isSiteHeaderShown={isSiteHeaderShown} />
+    )}
+  </AppContext.Consumer>
+);

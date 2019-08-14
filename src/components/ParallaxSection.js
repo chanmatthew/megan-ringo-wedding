@@ -17,7 +17,7 @@ const ParallaxSection = ({
     <VisibilitySensor once partialVisibility>
       {({ isVisible }) =>
         isFadeIn ? (
-          <Spring delay={delay} to={{ opacity: isVisible ? 1 : 0 }} native>
+          <Spring native delay={delay} to={{ opacity: isVisible ? 1 : 0 }}>
             {props => (
               <div style={{ ...props, height: "100%", width: "100%" }}>
                 {cloneElement(children, {
