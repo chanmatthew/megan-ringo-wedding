@@ -5,11 +5,6 @@
     fill-opacity: 1 !important;
   }
 
-  .fill .outline-path {
-    fill: #152540 !important;
-    fill-opacity: 1 !important;
-  }
-
   .outline-path:nth-child(1) {
     fill: #3C62A2;
     fill-opacity: 0.5;
