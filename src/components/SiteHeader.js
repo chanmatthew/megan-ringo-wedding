@@ -54,6 +54,16 @@ const AnimatedHeader = styled(({ ...props }) => (
   }
 `;
 
+const AnimatedHeaderWrapper = styled(({ ...props }) => (
+  <animated.div {...props} />
+))`
+  position: absolute;
+  right: 0;
+  left: 0;
+  height: 5em;
+  z-index: 1;
+`;
+
 const Header = Keyframes.Spring({
   shown: {
     delay: 0,
@@ -65,8 +75,6 @@ const Header = Keyframes.Spring({
     await call({ delay: 0, y: -100, opacity: 0 });
   }
 });
-
-let isLoading = true;
 
 const SiteHeader = ({ isSiteHeaderShown }) => {
   const isTabletPortraitUp = useMedia(
@@ -99,15 +107,13 @@ const SiteHeader = ({ isSiteHeaderShown }) => {
   };
 
   useEffect(() => {
-    if (isLoading) {
-      window.onpopstate = () => {
-        closeMenu();
-        memoizedHandleLinkClick(window.location.pathname);
-      };
+    window.onpopstate = () => {
+      closeMenu();
+      memoizedHandleLinkClick(window.location.pathname);
+    };
+  }, []);
 
-      isLoading = false;
-    }
-
+  useEffect(() => {
     if (isTabletPortraitUp) {
       closeMenu();
     }
@@ -120,14 +126,8 @@ const SiteHeader = ({ isSiteHeaderShown }) => {
   return (
     <Header native state={headerState}>
       {({ y, opacity }) => (
-        <animated.div
+        <AnimatedHeaderWrapper
           style={{
-            position: "absolute",
-            right: "0",
-            left: "0",
-            padding: "1.25em 0",
-            height: "5em",
-            zIndex: "1",
             opacity: opacity.interpolate(o => o),
             transform: y.interpolate(y => `translate3d(0, ${y}%, 0)`)
           }}
@@ -149,7 +149,7 @@ const SiteHeader = ({ isSiteHeaderShown }) => {
               />
             )}
           </AnimatedHeader>
-        </animated.div>
+        </AnimatedHeaderWrapper>
       )}
     </Header>
   );
