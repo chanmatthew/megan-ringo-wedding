@@ -104,7 +104,7 @@ const StyledCarouselNavItems = styled.ul``;
 
 const StyledInfiniteCarousel = styled.div`
   pointer-events: ${props => !props.isShifted && "none"};
-  overflow-x: hidden;
+  overflow-x: visible;
   position: absolute;
   right: 0;
   bottom: 0;
@@ -113,6 +113,7 @@ const StyledInfiniteCarousel = styled.div`
 
   @media only screen and (min-width: ${TABLET_LANDSCAPE_UP}px) {
     top: 0;
+    overflow-x: hidden;
   }
 `;
 
