@@ -104,7 +104,7 @@ const StyledCarouselNavItems = styled.ul``;
 
 const StyledInfiniteCarousel = styled.div`
   pointer-events: ${props => !props.isShifted && "none"};
-  overflow-x: ${props => !props.isShifted && "hidden"};
+  overflow-x: hidden;
   position: absolute;
   right: 0;
   bottom: 0;
