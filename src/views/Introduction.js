@@ -9,8 +9,8 @@ import { AppContext } from "../AppProvider";
 const [
   ,
   ,
-  ,
-  ,
+  POST_IPHONE6_PORTRAIT_UP,
+  POST_IPHONE6_PLUS_PORTRAIT_UP,
   ,
   SMALL_DEVICES_LANDSCAPE_UP,
   ,
@@ -24,9 +24,19 @@ const StyledIntroduction = styled("div")`
 `;
 
 const StyledPolaroid = styled(ImageLoader)`
-  background-position: calc(50% + 1em) center;
+  background-position: calc(50% + 0.5em) center;
   position: absolute;
   bottom: 0;
+  height: 102.5%;
+
+  @media only screen and (min-width: ${POST_IPHONE6_PORTRAIT_UP}px) {
+    background-position: calc(50% + 0.75em) center;
+    height: 110%;
+  }
+
+  @media only screen and (min-width: ${POST_IPHONE6_PLUS_PORTRAIT_UP}px) {
+    background-position: calc(50% + 1em) center;
+  }
 
   @media only screen and (min-width: ${SMALL_DEVICES_LANDSCAPE_UP}px) {
     background-position: center;

@@ -469,7 +469,7 @@ const XYearsLater = ({ baseFactor, isVisible }) => {
               height: `${PARALLAX_LAYER_HEIGHT * baseFactor}px`
             }}
           >
-            <span>8 YEARS</span>
+            <span>5 YEARS</span>
             <br />
             <span>LATER</span>
           </StyledHeading>

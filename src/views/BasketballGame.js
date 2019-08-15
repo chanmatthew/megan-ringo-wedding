@@ -23,8 +23,7 @@ const StyledBasketballGame = styled.div`
 `;
 
 const StyledBackgroundOverlay = styled.div`
-  background-color: #5e6982;
-  opacity: 0.8;
+  background-color: #868fa4;
   position: absolute;
   width: 100%;
   height: 100%;

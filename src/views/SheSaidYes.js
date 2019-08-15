@@ -1,13 +1,14 @@
-import React, { useMemo } from "react";
+import React from "react";
 import styled from "@emotion/styled/macro";
 import { ParallaxLayer } from "react-spring/renderprops-addons";
-
-import Article from "../components/Article";
-import Text from "../components/StoryText";
-import Heading from "../components/Heading";
 import ImageLoader from "../components/ImageLoader";
-
 import { MIN_WIDTH_BREAKPOINTS, PARALLAX_LAYER_HEIGHT } from "../enums";
+import Heading from "../components/Heading";
+import Text from "../components/StoryText";
+import SkewPanel, {
+  BaseStyledSkewPanel,
+  BaseStyledSkew
+} from "../components/SkewPanel";
 
 const [
   ,
@@ -22,50 +23,132 @@ const [
   DESKTOP_UP
 ] = MIN_WIDTH_BREAKPOINTS;
 
-const StyledSheSaidYes = styled.div`
-  display: table;
+const StyledXYearsLater = styled.div`
+  height: ${PARALLAX_LAYER_HEIGHT / 16}em;
+`;
+
+const StyledBackgroundOverlay = styled.div`
+  background-color: #35445c;
+  position: absolute;
   width: 100%;
+  height: 110%;
+`;
+
+const StyledBackgroundImage = styled(ImageLoader)`
+  height: 115%;
+  top: 60em;
+
+  @media only screen and (min-width: ${TABLET_PORTRAIT_UP}px) {
+    height: 150%;
+    top: 0;
+  }
+`;
+
+const StyledSkewPanel = styled(SkewPanel)`
+  max-width: 450px;
+  width: 90vw;
+  height: 120%;
+  margin-top: -17.5em;
+
+  @media only screen and (min-width: ${POST_IPHONE6_PLUS_PORTRAIT_UP}px) {
+    margin-top: -15em;
+    width: 85vw;
+  }
+
+  @media only screen and (min-width: ${PHONE_LANDSCAPE_UP}px) {
+    width: 70vw;
+  }
+
+  @media only screen and (min-width: ${SMALL_DEVICES_LANDSCAPE_UP}px) {
+    width: 80vw;
+  }
+
+  @media only screen and (min-width: ${TABLET_PORTRAIT_UP}px) {
+    margin-top: 0;
+  }
+
+  @media only screen and (min-width: ${TABLET_LANDSCAPE_UP}px) {
+    width: 42vw;
+  }
+
+  @media only screen and (min-width: ${DESKTOP_UP}px) {
+    width: 40vw;
+  }
+
+  ${BaseStyledSkewPanel} {
+    max-width: 540px;
+    width: 100vw;
+
+    @media only screen and (min-width: ${POST_IPHONE6_PLUS_PORTRAIT_UP}px) {
+      width: 95vw;
+    }
+
+    @media only screen and (min-width: ${PHONE_LANDSCAPE_UP}px) {
+      width: 85vw;
+    }
+
+    @media only screen and (min-width: ${SMALL_DEVICES_LANDSCAPE_UP}px) {
+      width: 80vw;
+    }
+
+    @media only screen and (min-width: ${TABLET_LANDSCAPE_UP}px) {
+      width: 55vw;
+      max-width: 600px;
+    }
+
+    @media only screen and (min-width: ${DESKTOP_UP}px) {
+      width: 50vw;
+    }
+  }
+
+  ${BaseStyledSkew} {
+    transform: skew(-2deg, 0deg) translate3d(-50px, 0, 0);
+
+    @media only screen and (min-width: ${POST_IPHONE6_PLUS_PORTRAIT_UP}px) {
+      transform: skew(-5deg, 0deg) translate3d(-75px, 0, 0);
+    }
+
+    @media only screen and (min-width: ${TABLET_PORTRAIT_UP}px) {
+      transform: skew(-5deg, 0deg) translate3d(-70px, 0, 0);
+    }
+
+    @media only screen and (min-width: ${TABLET_LANDSCAPE_UP}px) {
+      transform: skew(-6deg, 0deg) translate3d(-70px, 0, 0);
+    }
+  }
 `;
 
 const StyledHeading = styled(Heading)`
   position: absolute;
-  top: -8.5em;
-  left: 2em;
+  top: 8.5em;
+  left: 2.25em;
 
   @media only screen and (min-width: ${POST_IPHONE6_PORTRAIT_UP}px) {
-    left: 2.875em;
+    top: 12em;
+    left: 2.5em;
   }
 
   @media only screen and (min-width: ${POST_IPHONE6_PLUS_PORTRAIT_UP}px) {
-    top: -9.5em;
-    left: 3.5em;
-  }
-
-  @media only screen and (min-width: ${PHONE_LANDSCAPE_UP}px) {
-    top: -0.5em;
-  }
-
-  @media only screen and (min-width: ${BETWEEN_SMALL_DEVICES_TABLET_UP}px) {
-    top: 0.875em;
+    left: 2em;
+    top: 10.25em;
   }
 
   @media only screen and (min-width: ${TABLET_PORTRAIT_UP}px) {
-    left: 2.25em;
+    left: 2.5em;
+    top: 12.75em;
   }
 
   @media only screen and (min-width: ${TABLET_LANDSCAPE_UP}px) {
-    left: 4em;
-    top: 1em;
+    left: 3.25em;
   }
 
   @media only screen and (min-width: ${DESKTOP_UP}px) {
-    top: 2em;
-    left: 6em;
+    left: 3em;
+    top: 12em;
   }
 
   &:after {
     border-bottom-width: 0.25em;
-    border-bottom-color: rgba(134, 140, 164, 0.3);
     width: 33%;
     bottom: -0.75em;
     left: 0.375em;
@@ -73,19 +156,15 @@ const StyledHeading = styled(Heading)`
 
   > span {
     &:nth-of-type(1) {
-      opacity: 0.3;
-      font-size: 2.25rem;
+      opacity: 0.5;
+      font-size: 2.375rem;
 
       @media only screen and (min-width: ${POST_IPHONE6_PORTRAIT_UP}px) {
         font-size: 2.75rem;
       }
 
-      @media only screen and (min-width: ${PHONE_LANDSCAPE_UP}px) {
-        font-size: 3rem;
-      }
-
       @media only screen and (min-width: ${SMALL_DEVICES_LANDSCAPE_UP}px) {
-        font-size: 3.375rem;
+        font-size: 3rem;
       }
 
       @media only screen and (min-width: ${TABLET_PORTRAIT_UP}px) {
@@ -98,19 +177,15 @@ const StyledHeading = styled(Heading)`
     }
 
     &:nth-of-type(2) {
-      opacity: 0.7;
+      opacity: 1;
       font-size: 4rem;
 
       @media only screen and (min-width: ${POST_IPHONE6_PORTRAIT_UP}px) {
         font-size: 4.5rem;
       }
 
-      @media only screen and (min-width: ${PHONE_LANDSCAPE_UP}px) {
-        font-size: 5rem;
-      }
-
       @media only screen and (min-width: ${SMALL_DEVICES_LANDSCAPE_UP}px) {
-        font-size: 5.375rem;
+        font-size: 5rem;
       }
 
       @media only screen and (min-width: ${TABLET_PORTRAIT_UP}px) {
@@ -126,167 +201,180 @@ const StyledHeading = styled(Heading)`
 
 const StyledText = styled(Text)`
   position: absolute;
+  width: 80%;
   line-height: 1.275;
-  background-position: center;
-  top: 0.625em;
-  width: 72.5%;
-  left: 2.25em;
-  font-size: 1rem;
+  font-size: 1.1rem;
+  top: 16em;
+  left: 2em;
 
   @media only screen and (min-width: ${POST_IPHONE6_PORTRAIT_UP}px) {
-    left: 2.875em;
-    font-size: 1.1rem;
+    font-size: 1.2rem;
+    top: 18.5em;
   }
 
   @media only screen and (min-width: ${POST_IPHONE6_PLUS_PORTRAIT_UP}px) {
-    top: 0.25em;
-    left: 3em;
-    font-size: 1.2rem;
-  }
-
-  @media only screen and (min-width: ${PHONE_LANDSCAPE_UP}px) {
-    top: 7.875em;
+    left: 1.75em;
+    top: 16.25em;
+    font-size: 1.25rem;
   }
 
   @media only screen and (min-width: ${SMALL_DEVICES_LANDSCAPE_UP}px) {
-    width: 77.5%;
-    font-size: 1.4rem;
-    left: 3em;
+    font-size: 1.3rem;
+    left: 1.75em;
   }
 
   @media only screen and (min-width: ${BETWEEN_SMALL_DEVICES_TABLET_UP}px) {
-    top: 9.25em;
+    width: 90%;
   }
 
   @media only screen and (min-width: ${TABLET_PORTRAIT_UP}px) {
-    top: 8.5em;
-    left: 1.75em;
+    top: 17.25em;
+    width: 77.5%;
     font-size: 1.45rem;
   }
 
   @media only screen and (min-width: ${TABLET_LANDSCAPE_UP}px) {
-    background-position: left top;
+    width: 85%;
+    left: 2.25em;
     font-size: 1.475rem;
     line-height: 1.25;
-    width: 70%;
-    left: 2.875em;
-    top: 9em;
   }
 
   @media only screen and (min-width: ${DESKTOP_UP}px) {
+    left: 2.125em;
+    top: 16.5em;
     font-size: 1.5rem;
-    width: 70%;
-    left: 4.25em;
-    top: 10em;
+    width: 80%;
   }
 `;
 
-const StyledRingPhoto = styled(ImageLoader)`
-  position: absolute;
-  display: block;
-  top: 18.5em;
-  left: 2em;
-  height: 195px;
-  width: 260px;
+const StyledProposalImageContainer = styled.div`
+  position: relative;
+  width: 85%;
+  top: 49em;
+  left: 7.5%;
+  height: 37.5%;
 
   @media only screen and (min-width: ${POST_IPHONE6_PORTRAIT_UP}px) {
-    left: 3.125em;
-    width: 280px;
-    height: 210px;
+    width: 85%;
+    height: 35%;
+    left: 7.5%;
+    top: 51em;
   }
 
   @media only screen and (min-width: ${POST_IPHONE6_PLUS_PORTRAIT_UP}px) {
-    width: 300px;
-    height: 225px;
-    left: 3.625em;
+    width: 90%;
+    height: 40%;
+    left: 5%;
+    top: 52.5em;
   }
 
   @media only screen and (min-width: ${PHONE_LANDSCAPE_UP}px) {
-    display: none;
-  }
-`;
-
-const StyledProposalPhoto = styled(ImageLoader)`
-  height: 90%;
-  background-repeat: no-repeat;
-  margin-top: ${props =>
-    props.baseFactor < 0.875
-      ? "0em"
-      : props.baseFactor >= 1
-      ? "-4em"
-      : "-3.5em"};
-
-  @media only screen and (min-width: ${PHONE_LANDSCAPE_UP}px) {
-    height: 110%;
-    margin-top: ${props =>
-      props.baseFactor < 0.875
-        ? "0em"
-        : props.baseFactor >= 1
-        ? "-5.5em"
-        : "-4.5em"};
+    top: 51.5em;
+    height: 35%;
   }
 
-  @media only screen and (min-width: ${BETWEEN_SMALL_DEVICES_TABLET_UP}px) {
-    margin-top: ${props =>
-      props.baseFactor < 0.875
-        ? "0em"
-        : props.baseFactor >= 1
-        ? "-3em"
-        : "-4.5em"};
+  @media only screen and (min-width: ${SMALL_DEVICES_LANDSCAPE_UP}px) {
+    top: 50em;
   }
 
   @media only screen and (min-width: ${TABLET_PORTRAIT_UP}px) {
-    height: 110%;
-    margin-top: 6em;
+    left: 52.5%;
+    width: 45%;
+    height: 80%;
+    top: -2.5em;
   }
 
   @media only screen and (min-width: ${TABLET_LANDSCAPE_UP}px) {
-    height: 120%;
-    margin-top: ${props => (props.baseFactor < 0.875 ? "4em" : "-0.5em")};
+    left: 57.5%;
+    width: 37.5%;
+    top: -3em;
+  }
+
+  @media only screen and (min-width: ${DESKTOP_UP}px) {
+    left: 52.5%;
+    width: 40%;
+    top: -5em;
   }
 `;
 
-const SheSaidYes = ({ isVisible, isGreaterThanTablet, baseFactor }) => {
-  const parallaxSettings = useMemo(
-    () =>
-      isGreaterThanTablet
-        ? {
-            leftArticle: {
-              offset: baseFactor,
-              speed: 0.15625,
-              factor: baseFactor
-            },
-            rightArticle: {
-              offset: baseFactor * -1.2125,
-              speed: -0.15,
-              factor: baseFactor
-            }
-          }
-        : {
-            leftArticle: {
-              offset: baseFactor,
-              speed: 0.1375,
-              factor: baseFactor / 2
-            },
-            rightArticle: {
-              offset: baseFactor * -0.90625,
-              speed: -0.1,
-              factor: baseFactor / 2
-            }
-          },
-    [isGreaterThanTablet, baseFactor]
-  );
+const StyledProposalImageLoader = styled(ImageLoader)`
+  background-repeat: no-repeat;
+  background-position: -50px -60px;
 
+  @media only screen and (min-width: ${POST_IPHONE6_PORTRAIT_UP}px) {
+    background-position: 0 -60px;
+  }
+`;
+
+const StyledRingImageContainer = styled.div`
+  position: relative;
+  height: 14.5%;
+  top: 81.5em;
+  left: 10%;
+  width: 80%;
+
+  @media only screen and (min-width: ${POST_IPHONE6_PORTRAIT_UP}px) {
+    top: 80.5em;
+  }
+
+  @media only screen and (min-width: ${POST_IPHONE6_PLUS_PORTRAIT_UP}px) {
+    top: 90em;
+    left: 20%;
+    width: 60%;
+    height: 10%;
+  }
+
+  @media only screen and (min-width: ${PHONE_LANDSCAPE_UP}px) {
+    top: 88.5em;
+    width: 50%;
+    left: 25%;
+  }
+
+  @media only screen and (min-width: ${SMALL_DEVICES_LANDSCAPE_UP}px) {
+    top: 87.5em;
+    height: 15%;
+  }
+`;
+
+const StyledRingImageLoader = styled(ImageLoader)`
+  background-size: 200%;
+
+  @media only screen and (min-width: ${SMALL_DEVICES_LANDSCAPE_UP}px) {
+    background-size: cover;
+  }
+`;
+
+const SheSaidYes = ({ isGreaterThanTablet, baseFactor, isVisible }) => {
   return (
-    <StyledSheSaidYes>
-      <Article left>
+    <StyledXYearsLater className="clearfix">
+      <StyledBackgroundOverlay>
         <ParallaxLayer
-          offset={parallaxSettings.leftArticle.offset}
-          speed={parallaxSettings.leftArticle.speed}
-          factor={parallaxSettings.leftArticle.factor}
+          offset={baseFactor * -1.5}
+          speed={-0.1625}
+          factor={baseFactor}
+          style={{ mixBlendMode: "multiply" }}
+        >
+          <StyledBackgroundImage
+            title="Brooklyn Bridge Background"
+            placeholder="/img/photos/adventures_opt.jpg"
+            image="/img/photos/brooklyn_bridge.jpg"
+            isCover
+            isVisible={isVisible}
+          />
+        </ParallaxLayer>
+      </StyledBackgroundOverlay>
+      <ParallaxLayer offset={baseFactor * 0.4} speed={0.1} factor={baseFactor}>
+        <StyledSkewPanel
+          backgroundColor="rgba(128, 149, 184, 0.8)"
+          height="150%"
+          color="white"
+          left
         >
           <StyledHeading
+            color="white"
             withUnderline
+            underlineColor="rgba(255, 255, 255, 0.7)"
             animation={{
               height: `${PARALLAX_LAYER_HEIGHT * baseFactor}px`
             }}
@@ -296,6 +384,7 @@ const SheSaidYes = ({ isVisible, isGreaterThanTablet, baseFactor }) => {
             <span>YES!</span>
           </StyledHeading>
           <StyledText
+            color="white"
             animation={{
               height: `${PARALLAX_LAYER_HEIGHT * baseFactor}px`
             }}
@@ -309,31 +398,42 @@ const SheSaidYes = ({ isVisible, isGreaterThanTablet, baseFactor }) => {
             Now, they are excited to celebrate with all of their friends and
             family who have been a part of their journey.
           </StyledText>
-          <StyledRingPhoto
-            title="Photo - Megan Showcases Ring with Ringo and Friends"
-            placeholder="/img/album/IMG_62_opt.jpg"
-            image="/img/album/IMG_62.jpg"
-            isVisible={isVisible}
-          />
-        </ParallaxLayer>
-      </Article>
-      <Article right>
-        <ParallaxLayer
-          offset={parallaxSettings.rightArticle.offset}
-          speed={parallaxSettings.rightArticle.speed}
-          factor={parallaxSettings.rightArticle.factor}
-        >
-          <StyledProposalPhoto
+        </StyledSkewPanel>
+      </ParallaxLayer>
+      <ParallaxLayer
+        offset={baseFactor * (isGreaterThanTablet ? -0.675 : -0.35)}
+        speed={isGreaterThanTablet ? -0.125 : -0.0475}
+        factor={baseFactor}
+      >
+        <StyledProposalImageContainer>
+          <StyledProposalImageLoader
             title="Photo - Ringo Proposes to Megan at Brooklyn Bridge Park"
             placeholder="/img/photos/proposal_opt.jpg"
             image="/img/photos/proposal.jpg"
             isCover
             isVisible={isVisible}
-            baseFactor={baseFactor}
           />
+        </StyledProposalImageContainer>
+      </ParallaxLayer>
+      {isGreaterThanTablet ? null : (
+        <ParallaxLayer
+          offset={baseFactor * -0.5}
+          speed={-0.075}
+          factor={baseFactor}
+        >
+          <StyledRingImageContainer>
+            <StyledRingImageLoader
+              title="Photo - The Ring"
+              placeholder="/img/album/IMG_94_opt.jpg"
+              image="/img/album/IMG_94.jpg"
+              isCover
+              isVisible={isVisible}
+            />
+          </StyledRingImageContainer>
         </ParallaxLayer>
-      </Article>
-    </StyledSheSaidYes>
+      )}
+    </StyledXYearsLater>
   );
 };
+
 export default SheSaidYes;

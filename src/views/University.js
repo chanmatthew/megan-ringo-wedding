@@ -28,8 +28,7 @@ const StyledUniversity = styled.div`
 `;
 
 const StyledBackgroundOverlay = styled.div`
-  background-color: #375f96;
-  opacity: 0.8;
+  background-color: #35445c;
   position: absolute;
   width: 100%;
   height: 100%;
@@ -255,7 +254,7 @@ const University = ({ baseFactor, isVisible }) => {
           offset={baseFactor * -0.5}
           speed={-0.15}
           factor={baseFactor}
-          style={{ mixBlendMode: "overlay" }}
+          style={{ mixBlendMode: "hard-light" }}
         >
           <StyledBackgroundImage
             title="New York University"

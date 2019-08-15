@@ -28,8 +28,7 @@ const StyledFacebook = styled.div`
 `;
 
 const StyledBackgroundOverlay = styled.div`
-  background-color: #375f96;
-  opacity: 0.8;
+  background-color: #35445c;
   position: absolute;
   width: 100%;
   height: 100%;
@@ -274,7 +273,7 @@ const Facebook = ({ baseFactor, isVisible }) => {
           offset={baseFactor * -1}
           speed={-0.15}
           factor={baseFactor}
-          style={{ mixBlendMode: "overlay" }}
+          style={{ mixBlendMode: "hard-light" }}
         >
           <StyledBackgroundImage
             title="Facebook"
@@ -293,7 +292,7 @@ const Facebook = ({ baseFactor, isVisible }) => {
           left
         >
           <StyledHeading
-            color={"white"}
+            color="white"
             withUnderline
             underlineColor="rgba(255, 255, 255, 0.7)"
             animation={{
