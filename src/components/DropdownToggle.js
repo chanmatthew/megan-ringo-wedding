@@ -134,7 +134,7 @@ class DropdownToggle extends Component {
   };
 
   render() {
-    const { isNavbarDark, name, items, handleLinkClick, active } = this.props;
+    const { isNavbarDark, name, items, active } = this.props;
     const { opened } = this.state;
 
     return (
@@ -153,7 +153,6 @@ class DropdownToggle extends Component {
               to={item.link}
               onClick={() => {
                 this.handleToggleOpen(false);
-                handleLinkClick(item.link);
               }}
             >
               {item.label}

@@ -47,12 +47,8 @@ const StyledLink = styled(({ isBrandDark, ...props }) => <Link {...props} />)`
   }
 `;
 
-const Brand = ({ isBrandDark, handleLinkClick }) => (
-  <StyledLink
-    to="/"
-    isBrandDark={isBrandDark}
-    onClick={() => handleLinkClick("/")}
-  >
+const Brand = ({ isBrandDark }) => (
+  <StyledLink to="/" isBrandDark={isBrandDark}>
     MEGAN & RINGO
   </StyledLink>
 );

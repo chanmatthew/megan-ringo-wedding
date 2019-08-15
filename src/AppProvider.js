@@ -53,6 +53,12 @@ export class AppProvider extends Component {
             label: "Bridesmaids & Groomsmen",
             desc: "Browse the VIPs!",
             link: "/bridesmaids-groomsmen"
+          },
+          {
+            id: shortid.generate(),
+            label: "The Menu",
+            desc: "See what will be served!",
+            link: "/menu"
           }
         ]
       },

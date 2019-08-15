@@ -33,6 +33,11 @@ const AsyncBridesmaidsGroomsmen = Loadable({
   loading: () => <span />
 });
 
+const AsyncMenu = Loadable({
+  loader: () => import("./views/Menu"),
+  loading: () => <span />
+});
+
 const AsyncAlbum = Loadable({
   loader: () => import("./views/Album"),
   loading: () => <span />
@@ -63,6 +68,7 @@ const calculatePages = (currentPath, isGreaterThanTablet, baseFactor) => {
   switch (currentPath) {
     case "/":
     case "/when-where":
+    case "/menu":
     case "/album":
     case "/rsvp":
     case "/bridesmaids-groomsmen":
@@ -175,6 +181,7 @@ const App = () => {
                       <AsyncAlbum path="album" />
                       <AsyncWhenWhere path="when-where" />
                       <AsyncBridesmaidsGroomsmen path="bridesmaids-groomsmen" />
+                      <AsyncMenu path="menu" />
                       <AsyncRSVP path="rsvp" />
                     </Router>
                   </animated.div>
