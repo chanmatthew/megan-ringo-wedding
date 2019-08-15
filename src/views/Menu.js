@@ -269,7 +269,7 @@ class Menu extends Component {
     return (
       <StyledMain>
         <Helmet>
-          <title>Megan and Ringo's Wedding - The Ceremony</title>
+          <title>Megan and Ringo's Wedding - The Menu</title>
           <meta name="description" content={description} />
           <meta content={description} property="og:description" />
           <link rel="canonical" href="https://meganandringo.com/menu" />
