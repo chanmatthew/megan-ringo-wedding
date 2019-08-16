@@ -8,6 +8,7 @@ import { Parallax } from "react-spring/renderprops-addons";
 
 import { useMedia, useLocation } from "./hooks";
 import { MIN_WIDTH_BREAKPOINTS, PARALLAX_LAYER_HEIGHT } from "./enums";
+import { getInnerHeight } from "./utils";
 import { AppProvider } from "./AppProvider";
 import SiteHeader from "./components/SiteHeader";
 
@@ -66,13 +67,11 @@ const calculatePages = (currentPath, isGreaterThanTablet, baseFactor) => {
     case "/album":
     case "/rsvp":
     case "/bridesmaids-groomsmen":
-      return window.innerHeight > PARALLAX_LAYER_HEIGHT ? 1 : baseFactor;
+      return getInnerHeight() > PARALLAX_LAYER_HEIGHT ? 1 : baseFactor;
     default:
       return baseFactor * (isGreaterThanTablet ? 7.0375 : 8.0375);
   }
 };
-
-let isLoading = true;
 
 const App = () => {
   const isGreaterThanTablet = useMedia(
@@ -83,7 +82,7 @@ const App = () => {
   const currentLocation = useLocation();
 
   const [baseFactor, setBaseFactor] = useState(
-    PARALLAX_LAYER_HEIGHT / window.innerHeight
+    PARALLAX_LAYER_HEIGHT / getInnerHeight()
   );
 
   const [pages, setPages] = useState(
@@ -97,7 +96,7 @@ const App = () => {
   let parallaxRef = null;
 
   let update = () => {
-    let factor = PARALLAX_LAYER_HEIGHT / window.innerHeight;
+    let factor = PARALLAX_LAYER_HEIGHT / getInnerHeight();
 
     setBaseFactor(factor);
     setPages(
@@ -113,12 +112,16 @@ const App = () => {
   };
 
   useEffect(() => {
-    if (isLoading) {
-      window.addEventListener("resize", updateRaf, false);
+    window.addEventListener("resize", updateRaf);
+    window.addEventListener("orientationchange", updateRaf);
 
-      isLoading = false;
-    }
+    return () => {
+      window.removeEventListener("resize", updateRaf);
+      window.removeEventListener("orientationchange", updateRaf);
+    };
+  }, []);
 
+  useEffect(() => {
     setPages(
       calculatePages(
         currentLocation.location.pathname,
@@ -128,10 +131,6 @@ const App = () => {
     );
 
     setIsOverflowY(currentLocation.location.pathname !== "/our-story");
-
-    return () => {
-      window.removeEventListener("resize", updateRaf, false);
-    };
   }, [currentLocation, isGreaterThanTablet]);
 
   return (
