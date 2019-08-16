@@ -39,7 +39,7 @@ export class AppProvider extends Component {
       },
       {
         id: shortid.generate(),
-        label: "The Ceremony",
+        label: "The Celebration",
         desc: "Get ceremony info here!",
         dropdownItems: [
           {
