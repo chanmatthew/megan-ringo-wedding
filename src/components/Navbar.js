@@ -96,12 +96,7 @@ const StyledLink = styled(({ isNavbarDark, active, ...props }) => (
   }
 `;
 
-const Navbar = ({
-  activeLink,
-  handleLinkClick,
-  isNavbarDark,
-  navigationItems
-}) => (
+const Navbar = ({ isNavbarDark, navigationItems }) => (
   <StyledNavbar>
     <StyledNavList>
       {navigationItems.map(item =>
@@ -111,18 +106,17 @@ const Navbar = ({
               <DropdownToggle
                 name={item.label}
                 items={item.dropdownItems}
-                handleLinkClick={handleLinkClick}
                 active={
-                  item.dropdownItems.filter(dItem => dItem.link === activeLink)
-                    .length > 0
+                  item.dropdownItems.filter(
+                    dItem => dItem.link === window.location.pathname
+                  ).length > 0
                 }
               />
             ) : (
               <StyledLink
                 to={item.link}
-                onClick={() => handleLinkClick(item.link)}
                 isNavbarDark={isNavbarDark}
-                active={activeLink === item.link}
+                active={window.location.pathname === item.link}
               >
                 {item.label}
               </StyledLink>

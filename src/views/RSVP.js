@@ -368,6 +368,10 @@ class RSVP extends Component {
     const { handleIsBrandDark, handleIsNavbarDark } = this.props;
     handleIsBrandDark(false);
     handleIsNavbarDark(false);
+
+    if (this.props.location.state.fromMenu) {
+      window.scrollTo(0, 0);
+    }
   }
 
   handleAddGuest = newGuest => {

@@ -81,7 +81,6 @@ const SiteHeader = ({ isSiteHeaderShown }) => {
     `(min-width: ${BETWEEN_SMALL_DEVICES_TABLET_UP}px)`
   );
   const isTabletLandscapeUp = useMedia(`(min-width: ${TABLET_LANDSCAPE_UP}px)`);
-  const [activeLink, setActiveLink] = useState(window.location.pathname);
   const [isToggled, toggleMenu] = useState(false);
   const [headerState, setHeaderState] = useState("shown");
 
@@ -90,8 +89,6 @@ const SiteHeader = ({ isSiteHeaderShown }) => {
     from: { transform: "translate3d(0, -100%, 0)", opacity: "0" },
     config: config.molasses
   });
-
-  const memoizedHandleLinkClick = useCallback(link => setActiveLink(link), []);
 
   const openMenu = () => {
     toggleMenu(true);
@@ -109,7 +106,6 @@ const SiteHeader = ({ isSiteHeaderShown }) => {
   useEffect(() => {
     window.onpopstate = () => {
       closeMenu();
-      memoizedHandleLinkClick(window.location.pathname);
     };
   }, []);
 
@@ -135,11 +131,8 @@ const SiteHeader = ({ isSiteHeaderShown }) => {
           <AnimatedHeader style={style}>
             {isTabletPortraitUp ? (
               <Fragment>
-                <Brand handleLinkClick={memoizedHandleLinkClick} />
-                <Navbar
-                  activeLink={activeLink}
-                  handleLinkClick={memoizedHandleLinkClick}
-                />
+                <Brand />
+                <Navbar />
               </Fragment>
             ) : (
               <MobileNavbar
