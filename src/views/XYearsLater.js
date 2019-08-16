@@ -357,7 +357,7 @@ const imageColumns = [
     {
       id: shortid.generate(),
       alt: "Photo - Megan on Ringo's Shoulders",
-      name: "IMG_82"
+      name: "IMG_83"
     },
     {
       id: shortid.generate(),
@@ -379,7 +379,7 @@ const imageColumns = [
     {
       id: shortid.generate(),
       alt: "Photo - Megan and Ringo at a Nighttime Rooftop Gathering",
-      name: "IMG_90"
+      name: "IMG_19"
     },
     {
       id: shortid.generate(),

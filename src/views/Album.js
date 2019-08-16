@@ -53,8 +53,9 @@ const Content = styled.div`
 const Image = styled(a.div)`
   width: 100%;
   height: 100%;
-  background-size: cover;
+  background-size: contain;
   background-position: center center;
+  background-repeat: no-repeat;
 `;
 
 const StyledAlbum = styled.main`
@@ -275,7 +276,7 @@ const Album = ({ handleIsBrandDark, handleIsNavbarDark }) => {
     if (isPhoneLandscapeUp === true) {
       setCarouselOptions(500, 4.8, 20, 15);
     } else {
-      setCarouselOptions(320, 0, 0.1, 0.1);
+      setCarouselOptions(320, 0, 0, 0);
     }
   }, [isTabletLandscapeUp, isPhoneLandscapeUp]);
 

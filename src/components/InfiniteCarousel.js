@@ -164,7 +164,7 @@ const StyledCarouselCloseButton = styled.a`
   }
 `;
 
-const AnimatedCarouselSlider = styled(({ ...props }) => (
+const AnimatedCarouselSlider = styled(({ isDragging, ...props }) => (
   <animated.div {...props} />
 ))`
   position: absolute;
@@ -173,6 +173,11 @@ const AnimatedCarouselSlider = styled(({ ...props }) => (
   max-height: 720px;
   overflow-x: hidden;
   top: 3em;
+  cursor: ${props => props.isDragging && "grabbing !important"};
+
+  &:hover {
+    cursor: grab;
+  }
 
   @media only screen and (min-width: ${BETWEEN_SMALL_DEVICES_TABLET_UP}px) {
     top: 7em;
@@ -221,6 +226,7 @@ const InfiniteCarousel = ({
   const [springs, setSprings, stopSprings] = useSprings(items.length, i => ({
     x: (i < items.length - 1 ? i : -1) * width
   }));
+  const [isDragging, setIsDragging] = useState(false);
   const [percent, setPercent] = useState(0);
   const transform = x => x.interpolate(x => `translate3d(${x}px,0,0)`);
 
@@ -281,15 +287,80 @@ const InfiniteCarousel = ({
   const prevAction = useRef(null);
 
   const bind = useGesture({
-    onDrag: ({ delta: [deltaX], vxvy: [vx], first }) => (
+    onDrag: ({ delta: [deltaX], vxvy: [vx], first, last }) => (
+      first && setIsDragging(true),
       (dragOffset.current =
         first && prevAction.current === "drag"
           ? prevDragOffset.current
           : dragOffset.current),
       (prevDragOffset.current = dragOffset.current - deltaX),
-      runSprings(prevDragOffset.current, -vx, "drag")
+      runSprings(prevDragOffset.current, -vx, "drag"),
+      last && setIsDragging(false)
     )
   });
+
+  const onPressNext = useCallback(() => {
+    const offset =
+      prevAction.current === "nextButton" || prevAction.current === "prevButton"
+        ? dragOffset.current
+        : prevDragOffset.current;
+
+    const nextIndex = Math.ceil(
+      offset === (items.length - 1) * width ? 0 : Math.floor(offset / width) + 1
+    );
+
+    const y = nextIndex * width;
+
+    runSprings(y, 1, "nextButton");
+
+    dragOffset.current = y;
+  }, [items.length, width]);
+
+  const onPressPrevious = useCallback(() => {
+    const offset =
+      prevAction.current === "prevButton" || prevAction.current === "nextButton"
+        ? dragOffset.current
+        : prevDragOffset.current;
+
+    const prevIndex = Math.ceil(
+      offset === 0
+        ? items.length - 1
+        : Math.floor(offset / width) -
+            (prevAction.current === "prevButton" ||
+            prevAction.current === "nextButton"
+              ? 1
+              : 0)
+    );
+
+    const y = prevIndex * width;
+
+    runSprings(y, -1, "prevButton");
+
+    dragOffset.current = y;
+  }, [items.length, width]);
+
+  const handleKeyDown = useCallback(
+    e => {
+      if (!isShifted) {
+        if (e.keyCode === 37) {
+          onPressPrevious();
+        } else if (e.keyCode === 39) {
+          onPressNext();
+        } else if (e.keyCode === 27) {
+          onUnshift();
+        }
+      }
+    },
+    [items.length, width]
+  );
+
+  useEffect(() => {
+    document.addEventListener("keyup", handleKeyDown);
+
+    return () => {
+      document.removeEventListener("keyup", handleKeyDown);
+    };
+  }, [items.length, width]);
 
   useEffect(() => {
     handleIsSiteHeaderShown(!isShifted);
@@ -336,27 +407,7 @@ const InfiniteCarousel = ({
                       <a
                         href="javascript:void(0)"
                         onClick={() => {
-                          const offset =
-                            prevAction.current === "prevButton" ||
-                            prevAction.current === "nextButton"
-                              ? dragOffset.current
-                              : prevDragOffset.current;
-
-                          const prevIndex = Math.ceil(
-                            offset === 0
-                              ? items.length - 1
-                              : Math.floor(offset / width) -
-                                  (prevAction.current === "prevButton" ||
-                                  prevAction.current === "nextButton"
-                                    ? 1
-                                    : 0)
-                          );
-
-                          const y = prevIndex * width;
-
-                          runSprings(y, -1, "prevButton");
-
-                          dragOffset.current = y;
+                          onPressPrevious();
                         }}
                       >
                         Previous
@@ -366,23 +417,7 @@ const InfiniteCarousel = ({
                       <a
                         href="javascript:void(0)"
                         onClick={() => {
-                          const offset =
-                            prevAction.current === "nextButton" ||
-                            prevAction.current === "prevButton"
-                              ? dragOffset.current
-                              : prevDragOffset.current;
-
-                          const nextIndex = Math.ceil(
-                            offset === (items.length - 1) * width
-                              ? 0
-                              : Math.floor(offset / width) + 1
-                          );
-
-                          const y = nextIndex * width;
-
-                          runSprings(y, 1, "nextButton");
-
-                          dragOffset.current = y;
+                          onPressNext();
                         }}
                       >
                         Next
@@ -402,6 +437,7 @@ const InfiniteCarousel = ({
 
             <AnimatedCarouselSlider
               {...bind()}
+              isDragging={isDragging}
               style={{
                 ...style,
                 transform: x.interpolate(x => `translate3d(${x}%,0,0)`)
