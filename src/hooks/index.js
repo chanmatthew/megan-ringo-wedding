@@ -1,4 +1,4 @@
-import useMedia from "./useMedia";
 import useLocation from "./useLocation";
+import useMedia from "./useMedia";
 
-export { useMedia, useLocation };
+export { useLocation, useMedia };

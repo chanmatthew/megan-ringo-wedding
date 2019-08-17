@@ -172,7 +172,10 @@ const App = () => {
                         baseFactor={baseFactor}
                         isGreaterThanTablet={isGreaterThanTablet}
                       />
-                      <AsyncAlbum path="album" />
+                      <AsyncAlbum
+                        path="album"
+                        isGreaterThanTablet={isGreaterThanTablet}
+                      />
                       <AsyncWhenWhere path="when-where" />
                       <AsyncBridesmaidsGroomsmen path="bridesmaids-groomsmen" />
                       <AsyncRSVP path="rsvp" />
