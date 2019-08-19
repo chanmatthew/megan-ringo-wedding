@@ -1,20 +1,11 @@
-import React, {
-  useState,
-  Fragment,
-  useEffect,
-  useCallback,
-  useRef
-} from "react";
+import React, { useState, Fragment, useEffect, useRef } from "react";
 import styled from "@emotion/styled/macro";
 import { Spring } from "react-spring/renderprops";
 import { MIN_WIDTH_BREAKPOINTS } from "../enums";
 import { getAlbumPhotos } from "../helpers";
 import { useMedia } from "../hooks";
-import { shuffle } from "../utils";
-import ImageLoader from "../components/ImageLoader";
 import Lightbox from "../components/Lightbox";
 import VisibilitySensor from "../components/VisibilitySensor";
-import ImageWorker from "react-worker-image";
 
 const [
   ,
@@ -152,12 +143,6 @@ const StyledMasonryGrid = styled.div`
     -moz-column-gap: 2em;
     column-gap: 2em;
   }
-
-  /* @media only screen and (min-width: ${POST_IPHONE6_PLUS_PORTRAIT_UP}px) {
-    -webkit-column-gap: 3em;
-    -moz-column-gap: 3em;
-    column-gap: 3em;
-  } */
 
   @media only screen and (min-width: ${PHONE_LANDSCAPE_UP}px) {
     -webkit-column-count: 3;
