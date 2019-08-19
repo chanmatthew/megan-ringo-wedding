@@ -20,7 +20,7 @@ const [
 
 const StyledDropdownToggle = styled.span`
   color: ${props => (props.isNavbarDark ? "#152540" : "white")};
-  font-size: 1rem;
+  font-size: 0.875rem;
   padding: 0.4em 0.8em;
   transition: opacity 0.2s ease;
   opacity: ${props => (props.active ? "1" : "0.8")};
@@ -30,21 +30,21 @@ const StyledDropdownToggle = styled.span`
   letter-spacing: 0.12rem;
 
   @media only screen and (min-width: ${TABLET_PORTRAIT_UP}px) {
-    font-size: 1rem;
+    font-size: 0.875rem;
     letter-spacing: 0.1875rem;
   }
 
   @media only screen and (min-width: ${TABLET_LANDSCAPE_UP}px) {
-    font-size: 1.2rem;
+    font-size: 1.15rem;
   }
 
   @media only screen and (min-width: ${DESKTOP_UP}px) {
-    font-size: 1.4rem;
+    font-size: 1.35rem;
   }
 
-  &:not(:last-child) {
+  ${'' /* &:not(:last-child) {
     margin-right: 1.3em;
-  }
+  } */}
 
   &:hover {
     opacity: 1;
