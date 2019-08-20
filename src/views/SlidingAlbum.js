@@ -5,7 +5,6 @@ import styled from "@emotion/styled/macro";
 import Heading from "../components/Heading";
 import Text from "../components/StoryText";
 import InfiniteCarousel from "../components/InfiniteCarousel";
-import { AppContext } from "../AppProvider";
 import { MIN_WIDTH_BREAKPOINTS } from "../enums";
 import { getAlbumPhotos } from "../helpers";
 import { useMedia } from "../hooks";
@@ -235,7 +234,7 @@ const LeftArticle = Keyframes.Spring({
   }
 });
 
-const Album = ({ handleIsBrandDark, handleIsNavbarDark }) => {
+const SlidingAlbum = () => {
   const [articleState, setArticleState] = useState("open");
   const [width, setWidth] = useState(320);
   const [tensionModifier, setTensionModifier] = useState(0);
@@ -253,11 +252,6 @@ const Album = ({ handleIsBrandDark, handleIsNavbarDark }) => {
     },
     []
   );
-
-  useEffect(() => {
-    handleIsBrandDark(true);
-    handleIsNavbarDark(true);
-  }, []);
 
   useEffect(() => {
     if (isTabletLandscapeUp === false && articleState === "open") {
@@ -327,14 +321,4 @@ const Album = ({ handleIsBrandDark, handleIsNavbarDark }) => {
   );
 };
 
-export default props => (
-  <AppContext.Consumer>
-    {({ handleIsBrandDark, handleIsNavbarDark }) => (
-      <Album
-        {...props}
-        handleIsBrandDark={handleIsBrandDark}
-        handleIsNavbarDark={handleIsNavbarDark}
-      />
-    )}
-  </AppContext.Consumer>
-);
+export default SlidingAlbum;
