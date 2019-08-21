@@ -42,7 +42,7 @@ const StyledDropdownToggle = styled.span`
     font-size: 1.35rem;
   }
 
-  ${'' /* &:not(:last-child) {
+  ${"" /* &:not(:last-child) {
     margin-right: 1.3em;
   } */}
 
@@ -125,12 +125,33 @@ const StyledDropdownLink = styled(({ ...props }) => <Link {...props} />)`
 `;
 
 class DropdownToggle extends Component {
+  toggleRef = null;
+  dropdownRef = null;
+
   state = {
     opened: false
   };
 
+  componentDidMount() {
+    document.addEventListener("touchstart", e => this.handleOutsideClick(e));
+  }
+
+  componentWillUnmount() {
+    document.removeEventListener("touchstart", e => this.handleOutsideClick(e));
+  }
+
   handleToggleOpen = opened => {
     this.setState({ opened });
+  };
+
+  handleOutsideClick = e => {
+    if (
+      this.state.opened &&
+      e.target !== this.dropdownRef &&
+      e.target !== this.toggleRef
+    ) {
+      this.handleToggleOpen(false);
+    }
   };
 
   render() {
@@ -143,10 +164,14 @@ class DropdownToggle extends Component {
         active={active}
         onMouseEnter={() => this.handleToggleOpen(true)}
         onMouseLeave={() => this.handleToggleOpen(false)}
+        onTouchStart={() =>
+          opened ? this.handleToggleOpen(false) : this.handleToggleOpen(true)
+        }
         opened={opened}
+        ref={node => (this.toggleRef = node)}
       >
         {name}
-        <StyledDropdown opened={opened}>
+        <StyledDropdown opened={opened} ref={node => (this.dropdownRef = node)}>
           {items.map((item, i) => (
             <StyledDropdownLink
               key={item.id}
