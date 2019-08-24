@@ -402,8 +402,12 @@ const StyledRadioInput = styled.input`
 `;
 
 const StyledRadioLabel = styled.label`
-  background-color: ${props => props.active ? "white" : "rgba(250, 252, 254, 1)"};
-  border: ${props => props.active ? "1px solid rgba(21, 37, 64, 1)" : "1px solid rgba(220, 223, 226, 1)"};
+  background-color: ${props =>
+    props.active ? "white" : "rgba(250, 252, 254, 1)"};
+  border: ${props =>
+    props.active
+      ? "1px solid rgba(21, 37, 64, 1)"
+      : "1px solid rgba(220, 223, 226, 1)"};
   border-radius: 0.125em;
   padding: 0 0.8em;
   display: flex;
@@ -411,7 +415,8 @@ const StyledRadioLabel = styled.label`
   flex-direction: row-reverse;
   margin-right: 0.5em;
   position: relative;
-  color: ${props => props.active ? "rgba(54, 63, 84, 1)" : "rgba(54, 63, 84, 0.4)"};
+  color: ${props =>
+    props.active ? "rgba(54, 63, 84, 1)" : "rgba(54, 63, 84, 0.4)"};
   transition: all 0.2s ease;
 
   &:hover {
@@ -597,11 +602,11 @@ class RSVP extends Component {
     );
   };
 
-  handleAttendingClick = (isAttending) => {
+  handleAttendingClick = isAttending => {
     this.setState({
       isAttending
     });
-  }
+  };
 
   render() {
     const { firstName, lastName, emailAddress, message } = this.formRefs;
@@ -700,12 +705,22 @@ class RSVP extends Component {
               <StyledRadioContainer>
                 <StyledRadioLabel active={isAttending === true}>
                   YES
-                  <StyledRadioInput type="radio" name="attending" checked={isAttending === true} onChange={() => this.handleAttendingClick(true)} />
+                  <StyledRadioInput
+                    type="radio"
+                    name="attending"
+                    checked={isAttending === true}
+                    onChange={() => this.handleAttendingClick(true)}
+                  />
                   <StyledCheckmark />
                 </StyledRadioLabel>
                 <StyledRadioLabel active={isAttending === false}>
                   NO
-                  <StyledRadioInput type="radio" name="attending" checked={isAttending === false} onChange={() => this.handleAttendingClick(false)} />
+                  <StyledRadioInput
+                    type="radio"
+                    name="attending"
+                    checked={isAttending === false}
+                    onChange={() => this.handleAttendingClick(false)}
+                  />
                   <StyledCheckmark />
                 </StyledRadioLabel>
               </StyledRadioContainer>

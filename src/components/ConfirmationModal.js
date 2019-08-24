@@ -285,13 +285,16 @@ class ConfirmationModal extends Component {
             RSVP SENT <span>&#10003;</span>
           </StyledModalTitle>
           <StyledModalBody>
-            {isAttending ?
+            {isAttending ? (
               <Fragment>
                 <StyledModalMessage>
                   Thank you{" "}
-                  <StyledModalStrongMessage>{firstName}</StyledModalStrongMessage>{" "}
+                  <StyledModalStrongMessage>
+                    {firstName}
+                  </StyledModalStrongMessage>{" "}
                   for RSVP'ing to Megan and Ringo's wedding ceremony! <br />A
-                  receipt of the following information has been sent to your e-mail:
+                  receipt of the following information has been sent to your
+                  e-mail:
                 </StyledModalMessage>
                 <StyledModalGrid>
                   <StyledModalGridLabel>{labels[0]}</StyledModalGridLabel>
@@ -314,24 +317,24 @@ class ConfirmationModal extends Component {
                   <StyledModalGridValue>{message || "-"}</StyledModalGridValue>
                 </StyledModalGrid>
               </Fragment>
-              :
+            ) : (
               <Fragment>
                 <StyledModalMessage>
                   Thank you{" "}
-                  <StyledModalStrongMessage>{firstName}</StyledModalStrongMessage>{" "}
-                  for RSVP'ing to Megan and Ringo's wedding ceremony! <br />We're
-                  sorry you won't be joining us!
+                  <StyledModalStrongMessage>
+                    {firstName}
+                  </StyledModalStrongMessage>{" "}
+                  for RSVP'ing to Megan and Ringo's wedding ceremony! <br />
+                  We're sorry you won't be joining us!
                 </StyledModalMessage>
-                <StyledHeartOutline
-                  className="fill"
-                >
+                <StyledHeartOutline className="fill">
                   <SVG
                     src="/img/graphics/heart_outline.svg"
                     alt="Blue-Gold Heart - Outline"
                   />
                 </StyledHeartOutline>
               </Fragment>
-            }
+            )}
           </StyledModalBody>
         </StyledModal>
       </StyledModalBackdrop>,
