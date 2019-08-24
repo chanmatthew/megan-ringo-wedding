@@ -341,6 +341,87 @@ const StyledFormError = styled.span`
   }
 `;
 
+const StyledRadioContainer = styled.div`
+  font-size: 1.1rem;
+  letter-spacing: 0.15em;
+  margin-top: 0.67em;
+  display: block;
+  height: 2.25em;
+  width: 100%;
+  display: flex;
+
+  @media only screen and (min-width: ${POST_IPHONE6_PORTRAIT_UP}px) {
+    font-size: 1.2rem;
+  }
+
+  @media only screen and (min-width: ${SMALL_DEVICES_LANDSCAPE_UP}px) {
+    font-size: 1.3rem;
+  }
+
+  @media only screen and (min-width: ${TABLET_PORTRAIT_UP}px) {
+    font-size: 1.4rem;
+  }
+
+  @media only screen and (min-width: ${TABLET_LANDSCAPE_UP}px) {
+    font-size: 1.5rem;
+  }
+`;
+
+const StyledCheckmark = styled.span`
+  width: 0.8em;
+  height: 0.8em;
+  background-color: white;
+  border: 1px solid rgba(220, 223, 226, 1);
+  border-radius: 0.125em;
+  margin-right: 0.5em;
+  position: relative;
+
+  &::after {
+    content: "";
+    position: absolute;
+    opacity: 0;
+    bottom: 0.125em;
+    left: 0.1667em;
+    width: 0.42em;
+    height: 0.833em;
+    border: solid rgba(54, 63, 84, 1);
+    border-width: 0 0.125em 0.125em 0;
+    transform: rotate3d(0, 0, 1, 40deg);
+    transition: opacity 0.2s ease;
+  }
+`;
+
+const StyledRadioInput = styled.input`
+  pointer-events: none;
+  opacity: 0;
+  position: absolute;
+
+  &:checked + ${StyledCheckmark}::after {
+    opacity: 1;
+  }
+`;
+
+const StyledRadioLabel = styled.label`
+  background-color: ${props => props.active ? "white" : "rgba(250, 252, 254, 1)"};
+  border: ${props => props.active ? "1px solid rgba(21, 37, 64, 1)" : "1px solid rgba(220, 223, 226, 1)"};
+  border-radius: 0.125em;
+  padding: 0 0.8em;
+  display: flex;
+  align-items: center;
+  flex-direction: row-reverse;
+  margin-right: 0.5em;
+  position: relative;
+  color: ${props => props.active ? "rgba(54, 63, 84, 1)" : "rgba(54, 63, 84, 0.4)"};
+  transition: all 0.2s ease;
+
+  &:hover {
+    cursor: pointer;
+    background-color: white;
+    border: 1px solid rgba(21, 37, 64, 1);
+    color: rgba(54, 63, 84, 1);
+  }
+`;
+
 const maxGuests = 10;
 const maxMessageLength = 500;
 
@@ -356,8 +437,10 @@ class RSVP extends Component {
     formErrors: {
       firstName: null,
       lastName: null,
-      emailAddress: null
+      emailAddress: null,
+      attending: null
     },
+    isAttending: null,
     guests: [],
     messageRemainingLength: maxMessageLength,
     submittingForm: false,
@@ -369,7 +452,7 @@ class RSVP extends Component {
     handleIsBrandDark(false);
     handleIsNavbarDark(false);
 
-    if (this.props.location.state.fromMenu) {
+    if (this.props.location.state && this.props.location.state.fromMenu) {
       window.scrollTo(0, 0);
     }
   }
@@ -398,6 +481,7 @@ class RSVP extends Component {
       this.formRefs[formRef].value = "";
     }
     this.setState({
+      isAttending: null,
       guests: [],
       messageRemainingLength: maxMessageLength,
       submittingForm: false
@@ -411,6 +495,7 @@ class RSVP extends Component {
       firstName: firstName.value,
       lastName: lastName.value,
       emailAddress: emailAddress.value,
+      isAttending: this.state.isAttending,
       guests: this.state.guests.reduce(
         (acc, guest) => acc.concat([guest.name]),
         []
@@ -446,7 +531,8 @@ class RSVP extends Component {
                 )
               ? "Invalid E-mail"
               : null
-            : "Required"
+            : "Required",
+          attending: this.state.isAttending == null ? "Required" : null
         }
       },
       () => {
@@ -511,6 +597,12 @@ class RSVP extends Component {
     );
   };
 
+  handleAttendingClick = (isAttending) => {
+    this.setState({
+      isAttending
+    });
+  }
+
   render() {
     const { firstName, lastName, emailAddress, message } = this.formRefs;
     const {
@@ -518,7 +610,8 @@ class RSVP extends Component {
       guests,
       messageRemainingLength,
       submittingForm,
-      isModalShown
+      isModalShown,
+      isAttending
     } = this.state;
 
     return (
@@ -599,6 +692,24 @@ class RSVP extends Component {
                 }}
               />
             </FormArea>
+            <FormArea
+              label="WILL YOU BE ATTENDING?"
+              error={formErrors.attending}
+              inputId="attending"
+            >
+              <StyledRadioContainer>
+                <StyledRadioLabel active={isAttending === true}>
+                  YES
+                  <StyledRadioInput type="radio" name="attending" checked={isAttending === true} onChange={() => this.handleAttendingClick(true)} />
+                  <StyledCheckmark />
+                </StyledRadioLabel>
+                <StyledRadioLabel active={isAttending === false}>
+                  NO
+                  <StyledRadioInput type="radio" name="attending" checked={isAttending === false} onChange={() => this.handleAttendingClick(false)} />
+                  <StyledCheckmark />
+                </StyledRadioLabel>
+              </StyledRadioContainer>
+            </FormArea>
             <FormArea label="GUESTS">
               <Guests
                 guests={guests}
@@ -640,6 +751,7 @@ class RSVP extends Component {
             firstName={firstName && firstName.value}
             lastName={lastName && lastName.value}
             emailAddress={emailAddress && emailAddress.value}
+            isAttending={isAttending}
             guests={guests.reduce((acc, guest) => acc.concat([guest.name]), [])}
             message={message && message.value}
           />
