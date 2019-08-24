@@ -1,17 +1,18 @@
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
 import { createPortal } from "react-dom";
 import styled from "@emotion/styled/macro";
+import SVG from "react-inlinesvg";
 
 import { MIN_WIDTH_BREAKPOINTS } from "../enums";
 
 const [
-  BASE_UP,
-  PHONE_PORTRAIT_UP,
+  ,
+  ,
   POST_IPHONE6_PORTRAIT_UP,
-  POST_IPHONE6_PLUS_PORTRAIT_UP,
+  ,
   PHONE_LANDSCAPE_UP,
   SMALL_DEVICES_LANDSCAPE_UP,
-  BETWEEN_SMALL_DEVICES_TABLET_UP,
+  ,
   TABLET_PORTRAIT_UP,
   TABLET_LANDSCAPE_UP,
   DESKTOP_UP
@@ -232,6 +233,17 @@ const StyledModalList = styled.ul`
   list-style: none;
 `;
 
+const StyledHeartOutline = styled.div`
+  display: flex;
+  justify-content: center;
+  opacity: 0.1;
+
+  > svg {
+    width: 8.125em;
+    height: 8.125em;
+  }
+`;
+
 const modalRoot = document.getElementById("modal-root");
 
 const labels = [
@@ -260,6 +272,7 @@ class ConfirmationModal extends Component {
       firstName,
       lastName,
       emailAddress,
+      isAttending,
       guests,
       message
     } = this.props;
@@ -272,32 +285,56 @@ class ConfirmationModal extends Component {
             RSVP SENT <span>&#10003;</span>
           </StyledModalTitle>
           <StyledModalBody>
-            <StyledModalMessage>
-              Thank you{" "}
-              <StyledModalStrongMessage>{firstName}</StyledModalStrongMessage>{" "}
-              for RSVP'ing to Megan and Ringo's wedding ceremony! <br />A
-              receipt of the following information has been sent to your e-mail:
-            </StyledModalMessage>
-            <StyledModalGrid>
-              <StyledModalGridLabel>{labels[0]}</StyledModalGridLabel>
-              <StyledModalGridValue>{firstName}</StyledModalGridValue>
-              <StyledModalGridLabel>{labels[1]}</StyledModalGridLabel>
-              <StyledModalGridValue>{lastName}</StyledModalGridValue>
-              <StyledModalGridLabel>{labels[2]}</StyledModalGridLabel>
-              <StyledModalGridValue>{emailAddress}</StyledModalGridValue>
-              <StyledModalGridLabel>{labels[3]}</StyledModalGridLabel>
-              <StyledModalGridValue>
-                <StyledModalList>
-                  {guests.length > 0
-                    ? guests.map((guest, i) => (
-                        <li key={`${guest}--${i}`}>{guest}</li>
-                      ))
-                    : "-"}
-                </StyledModalList>
-              </StyledModalGridValue>
-              <StyledModalGridLabel>{labels[4]}</StyledModalGridLabel>
-              <StyledModalGridValue>{message || "-"}</StyledModalGridValue>
-            </StyledModalGrid>
+            {isAttending ? (
+              <Fragment>
+                <StyledModalMessage>
+                  Thank you{" "}
+                  <StyledModalStrongMessage>
+                    {firstName}
+                  </StyledModalStrongMessage>{" "}
+                  for RSVP'ing to Megan and Ringo's wedding ceremony! <br />A
+                  receipt of the following information has been sent to your
+                  e-mail:
+                </StyledModalMessage>
+                <StyledModalGrid>
+                  <StyledModalGridLabel>{labels[0]}</StyledModalGridLabel>
+                  <StyledModalGridValue>{firstName}</StyledModalGridValue>
+                  <StyledModalGridLabel>{labels[1]}</StyledModalGridLabel>
+                  <StyledModalGridValue>{lastName}</StyledModalGridValue>
+                  <StyledModalGridLabel>{labels[2]}</StyledModalGridLabel>
+                  <StyledModalGridValue>{emailAddress}</StyledModalGridValue>
+                  <StyledModalGridLabel>{labels[3]}</StyledModalGridLabel>
+                  <StyledModalGridValue>
+                    <StyledModalList>
+                      {guests.length > 0
+                        ? guests.map((guest, i) => (
+                            <li key={`${guest}--${i}`}>{guest}</li>
+                          ))
+                        : "-"}
+                    </StyledModalList>
+                  </StyledModalGridValue>
+                  <StyledModalGridLabel>{labels[4]}</StyledModalGridLabel>
+                  <StyledModalGridValue>{message || "-"}</StyledModalGridValue>
+                </StyledModalGrid>
+              </Fragment>
+            ) : (
+              <Fragment>
+                <StyledModalMessage>
+                  Thank you{" "}
+                  <StyledModalStrongMessage>
+                    {firstName}
+                  </StyledModalStrongMessage>{" "}
+                  for RSVP'ing to Megan and Ringo's wedding ceremony! <br />
+                  We're sorry you won't be joining us!
+                </StyledModalMessage>
+                <StyledHeartOutline className="fill">
+                  <SVG
+                    src="/img/graphics/heart_outline.svg"
+                    alt="Blue-Gold Heart - Outline"
+                  />
+                </StyledHeartOutline>
+              </Fragment>
+            )}
           </StyledModalBody>
         </StyledModal>
       </StyledModalBackdrop>,
