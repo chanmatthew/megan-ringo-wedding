@@ -54,7 +54,7 @@ class Guests extends Component {
   };
 
   render() {
-    const { guests, handleRemoveGuest, maxGuests } = this.props;
+    const { guests, handleRemoveGuest, maxGuests, disabled } = this.props;
     const { inputError } = this.state;
 
     return (
@@ -67,6 +67,7 @@ class Guests extends Component {
                 guestId={guest.id}
                 guestName={guest.name}
                 handleRemoveGuest={handleRemoveGuest}
+                disabled={disabled}
               />
             ))}
           </StyledGuestList>
@@ -75,8 +76,9 @@ class Guests extends Component {
           setInputRef={this.setInputRef}
           handleAddGuest={this.handleAddGuest}
           error={inputError}
-          disabled={guests.length >= maxGuests}
+          disabled={disabled}
           maxGuests={maxGuests}
+          atMax={guests.length >= maxGuests}
         />
       </StyledGuestContainer>
     );

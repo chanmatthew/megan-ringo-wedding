@@ -18,51 +18,46 @@ const StyledInputContainer = styled.div`
   margin-bottom: 0.67em;
   position: relative;
   display: flex;
+`;
 
-  ${props =>
-    props.disabled &&
-    `
-    &::after {
-      position: absolute;
-      content: "MAX ${props.maxGuests} GUESTS";
-      top: 0;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      background-color: rgba(250, 252, 254, 1);
-      border: 1px dashed rgba(220, 223, 226, 1);
-      border-radius: 0.25em;
-      text-align: center;
-      color: rgba(54, 63, 84, 0.4);
-      padding: 0 1em;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      transition: all 0.2s ease;
-      cursor: not-allowed;
-      font-size: 1rem;
+const StyledMaxGuestsOverlay = styled.div`
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: rgba(250, 252, 254, 1);
+  border: 1px dashed rgba(220, 223, 226, 1);
+  border-radius: 0.25em;
+  text-align: center;
+  color: rgba(54, 63, 84, 0.4);
+  padding: 0 1em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: all 0.2s ease;
+  cursor: not-allowed;
+  font-size: 1rem;
 
-      @media only screen and (min-width: ${POST_IPHONE6_PORTRAIT_UP}px) {
-        font-size: 1.1rem;
-      }
+  @media only screen and (min-width: ${POST_IPHONE6_PORTRAIT_UP}px) {
+    font-size: 1.1rem;
+  }
 
-      @media only screen and (min-width: ${SMALL_DEVICES_LANDSCAPE_UP}px) {
-        font-size: 1.15rem;
-      }
+  @media only screen and (min-width: ${SMALL_DEVICES_LANDSCAPE_UP}px) {
+    font-size: 1.15rem;
+  }
 
-      @media only screen and (min-width: ${TABLET_PORTRAIT_UP}px) {
-        font-size: 1.2rem;
-      }
+  @media only screen and (min-width: ${TABLET_PORTRAIT_UP}px) {
+    font-size: 1.2rem;
+  }
 
-      @media only screen and (min-width: ${TABLET_LANDSCAPE_UP}px) {
-        font-size: 1.25rem;
-      }
-    }
+  @media only screen and (min-width: ${TABLET_LANDSCAPE_UP}px) {
+    font-size: 1.25rem;
+  }
 
-    &:hover::after {
-      color: rgba(54, 63, 84, 0.7);
-    }
-  `}
+  &:hover {
+    color: rgba(54, 63, 84, 0.7);
+  }
 `;
 
 const StyledLabel = styled.label`
@@ -84,9 +79,9 @@ const StyledGuestInput = styled.input`
   padding: 0 0.5em;
   vertical-align: middle;
   outline: none;
-  opacity: ${props => (props.disabled ? "0" : "1")};
   appearance: none;
   font-size: 1.1rem;
+  cursor: ${props => (props.disabled ? "not-allowed" : "auto")};
 
   @media only screen and (min-width: ${POST_IPHONE6_PORTRAIT_UP}px) {
     font-size: 1.2rem;
@@ -136,7 +131,6 @@ const StyledAddButton = styled.button`
   border-radius: 0.25em;
   vertical-align: middle;
   transition: all 0.2s ease;
-  opacity: ${props => (props.disabled ? "0" : "1")};
   padding: 0.6em 1em;
   font-size: 1rem;
 
@@ -159,9 +153,9 @@ const StyledAddButton = styled.button`
 
   &:hover,
   &:focus {
-    background-color: rgba(176, 246, 172, 1);
-    color: rgba(21, 37, 64, 1);
-    cursor: pointer;
+    background-color: ${props => !props.disabled && "rgba(176, 246, 172, 1)"};
+    color: ${props => !props.disabled && "rgba(21, 37, 64, 1)"};
+    cursor: ${props => (props.disabled ? "not-allowed" : "pointer")};
   }
 `;
 
@@ -170,9 +164,10 @@ const GuestInput = ({
   disabled,
   error,
   setInputRef,
-  handleAddGuest
+  handleAddGuest,
+  atMax
 }) => (
-  <StyledInputContainer maxGuests={maxGuests} disabled={disabled}>
+  <StyledInputContainer>
     <StyledLabel>
       <StyledGuestInput
         placeholder="Guest name"
@@ -186,13 +181,20 @@ const GuestInput = ({
             }
           }
         }}
-        disabled={disabled}
+        disabled={disabled || atMax}
       />
       {error ? <StyledInputError>* {error}</StyledInputError> : null}
     </StyledLabel>
-    <StyledAddButton type="button" disabled={disabled} onClick={handleAddGuest}>
+    <StyledAddButton
+      type="button"
+      disabled={disabled || atMax}
+      onClick={handleAddGuest}
+    >
       ADD
     </StyledAddButton>
+    {atMax ? (
+      <StyledMaxGuestsOverlay>MAX {maxGuests} GUESTS</StyledMaxGuestsOverlay>
+    ) : null}
   </StyledInputContainer>
 );
 

@@ -57,9 +57,9 @@ const StyledGuest = styled.div`
   }
 
   &:hover {
-    color: rgba(54, 63, 84, 1);
-    background-color: rgba(240, 240, 245, 1);
-    cursor: pointer;
+    color: ${props => !props.disabled && "rgba(54, 63, 84, 1)"};
+    background-color: ${props => !props.disabled && "rgba(240, 240, 245, 1)"};
+    cursor: ${props => (props.disabled ? "not-allowed" : "pointer")};
   }
 `;
 
@@ -88,7 +88,7 @@ class Guest extends Component {
 
   render() {
     const { mounted, removed } = this.state;
-    const { handleRemoveGuest, guestName, guestId } = this.props;
+    const { handleRemoveGuest, guestName, guestId, disabled } = this.props;
 
     return (
       <StyledGuest
@@ -100,7 +100,8 @@ class Guest extends Component {
             handleRemoveGuest(guestId);
           }
         }}
-        onClick={() => this.setState({ removed: true })}
+        onClick={() => !disabled && this.setState({ removed: true })}
+        disabled={disabled}
       >
         {guestName}
         <StyledRemoveButton>+</StyledRemoveButton>

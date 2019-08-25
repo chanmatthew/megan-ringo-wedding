@@ -20,6 +20,8 @@ const StyledFormArea = styled.div`
   float: ${props => props.float || "none"};
   width: 100%;
   margin-bottom: 2em;
+  opacity: ${props => (props.disabled ? "0.5" : "1")};
+  transition: opacity 0.2s ease;
 
   @media only screen and (min-width: ${POST_IPHONE6_PORTRAIT_UP}px) {
     margin-bottom: 2.75em;
@@ -81,9 +83,10 @@ const FormArea = ({
   subLabelError,
   error,
   children,
-  className
+  className,
+  disabled
 }) => (
-  <StyledFormArea className={className} float={float}>
+  <StyledFormArea className={className} float={float} disabled={disabled}>
     <StyledLabel htmlFor={inputId}>
       {label}
       {subLabel ? (
