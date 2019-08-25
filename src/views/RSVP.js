@@ -501,10 +501,9 @@ class RSVP extends Component {
       lastName: lastName.value,
       emailAddress: emailAddress.value,
       isAttending: this.state.isAttending,
-      guests: this.state.guests.reduce(
-        (acc, guest) => acc.concat([guest.name]),
-        []
-      ),
+      guests: this.state.isAttending
+        ? this.state.guests.reduce((acc, guest) => acc.concat([guest.name]), [])
+        : [],
       message: message.value.replace(/\s\s+/g, " ")
     };
     return formJson;
@@ -725,12 +724,13 @@ class RSVP extends Component {
                 </StyledRadioLabel>
               </StyledRadioContainer>
             </FormArea>
-            <FormArea label="GUESTS">
+            <FormArea label="GUESTS" disabled={isAttending === false}>
               <Guests
                 guests={guests}
                 handleAddGuest={this.handleAddGuest}
                 handleRemoveGuest={this.handleRemoveGuest}
                 maxGuests={maxGuests}
+                disabled={isAttending === false}
               />
             </FormArea>
             <FormArea
