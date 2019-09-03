@@ -145,12 +145,19 @@ class DropdownToggle extends Component {
   };
 
   handleOutsideClick = e => {
+    const { opened } = this.state;
+
     if (
-      this.state.opened &&
+      opened &&
       e.target !== this.dropdownRef &&
-      e.target !== this.toggleRef
+      e.target !== this.toggleRef &&
+      !this.dropdownRef.contains(e.target)
     ) {
       this.handleToggleOpen(false);
+    } else {
+      if (!opened && e.target === this.toggleRef) {
+        this.handleToggleOpen(true);
+      }
     }
   };
 
@@ -164,15 +171,12 @@ class DropdownToggle extends Component {
         active={active}
         onMouseEnter={() => this.handleToggleOpen(true)}
         onMouseLeave={() => this.handleToggleOpen(false)}
-        onTouchStart={() =>
-          opened ? this.handleToggleOpen(false) : this.handleToggleOpen(true)
-        }
         opened={opened}
         ref={node => (this.toggleRef = node)}
       >
         {name}
         <StyledDropdown opened={opened} ref={node => (this.dropdownRef = node)}>
-          {items.map((item, i) => (
+          {items.map(item => (
             <StyledDropdownLink
               key={item.id}
               to={item.link}
