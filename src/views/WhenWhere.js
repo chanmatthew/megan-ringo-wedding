@@ -5,6 +5,7 @@ import styled from "@emotion/styled/macro";
 import { AppContext } from "../AppProvider";
 import Article from "../components/Article";
 import LabelSection from "../components/LabelSection";
+import Weather from "../components/Weather";
 import {
   formatDate,
   formatTime,
@@ -172,7 +173,17 @@ class WhenWhere extends Component {
             <LabelSection
               category="Date"
               title={event.formattedDate.toUpperCase()}
-            />
+            >
+              <Weather>
+                <StyledActionLink
+                  href="https://openweathermap.org/city/5133268"
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  Check Weather
+                </StyledActionLink>
+              </Weather>
+            </LabelSection>
             <LabelSection
               category="Time"
               subtitle={`(${event.timeZoneAbbr})`}
