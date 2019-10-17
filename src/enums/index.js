@@ -12,6 +12,7 @@ import {
 } from "./breakpoints";
 import { MONTHS, WEEKDAYS } from "./date";
 import { LAYER_HEIGHT as PARALLAX_LAYER_HEIGHT } from "./parallax";
+import { WEATHER_API_URL } from "./weather";
 
 const MIN_WIDTH_BREAKPOINTS = [
   BASE_UP,
@@ -26,4 +27,10 @@ const MIN_WIDTH_BREAKPOINTS = [
   DESKTOP_UP
 ];
 
-export { MIN_WIDTH_BREAKPOINTS, MONTHS, WEEKDAYS, PARALLAX_LAYER_HEIGHT };
+export {
+  MIN_WIDTH_BREAKPOINTS,
+  MONTHS,
+  WEEKDAYS,
+  PARALLAX_LAYER_HEIGHT,
+  WEATHER_API_URL
+};

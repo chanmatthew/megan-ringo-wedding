@@ -6,6 +6,8 @@ import {
   getTimeZoneAbbr
 } from "./date";
 
+import { kelvinToFahrenheit } from "./weather";
+
 const getInnerHeight = () =>
   navigator.userAgent.match(/iphone|ipod|ipad/i) &&
   !navigator.userAgent.match(/CriOS|FxiOS/i)
@@ -20,5 +22,6 @@ export {
   getCalendarIsoString,
   getInnerHeight,
   getMeridiem,
-  getTimeZoneAbbr
+  getTimeZoneAbbr,
+  kelvinToFahrenheit
 };
