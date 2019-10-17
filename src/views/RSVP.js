@@ -724,7 +724,10 @@ class RSVP extends Component {
                 </StyledRadioLabel>
               </StyledRadioContainer>
             </FormArea>
-            <FormArea label="GUESTS" disabled={isAttending === false}>
+            <FormArea
+              label="ADDITIONAL GUESTS"
+              disabled={isAttending === false}
+            >
               <Guests
                 guests={guests}
                 handleAddGuest={this.handleAddGuest}
